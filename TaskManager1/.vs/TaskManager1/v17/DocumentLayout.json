@@ -1,0 +1,145 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\ll\\source\\repos\\TaskManager1\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{72E2CE5F-3F1E-49EF-9C93-D8525A2B02F5}|TaskManager1\\TaskManager1.csproj|c:\\users\\ll\\source\\repos\\taskmanager1\\taskmanager1\\styles.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{72E2CE5F-3F1E-49EF-9C93-D8525A2B02F5}|TaskManager1\\TaskManager1.csproj|solutionrelative:taskmanager1\\styles.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/_LocalDB__MSSQLLocalDB/C__USERS_LL_SOURCE_REPOS_TASKMANAGER1_TASKMANAGER1_APP_DATA_TASKMANAGER1.MDF/True/SqlTable/dbo.Tasks.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{72E2CE5F-3F1E-49EF-9C93-D8525A2B02F5}|TaskManager1\\TaskManager1.csproj|C:\\Users\\ll\\source\\repos\\TaskManager1\\taskmanager1\\taskmanager.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{72E2CE5F-3F1E-49EF-9C93-D8525A2B02F5}|TaskManager1\\TaskManager1.csproj|solutionrelative:taskmanager1\\taskmanager.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/_LocalDB__MSSQLLocalDB/C__USERS_LL_SOURCE_REPOS_TASKMANAGER1_TASKMANAGER1_APP_DATA_TASKMANAGER1.MDF/True/SqlTable/dbo.Login.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{72E2CE5F-3F1E-49EF-9C93-D8525A2B02F5}|TaskManager1\\TaskManager1.csproj|C:\\Users\\ll\\source\\repos\\TaskManager1\\taskmanager1\\register.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{72E2CE5F-3F1E-49EF-9C93-D8525A2B02F5}|TaskManager1\\TaskManager1.csproj|solutionrelative:taskmanager1\\register.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{72E2CE5F-3F1E-49EF-9C93-D8525A2B02F5}|TaskManager1\\TaskManager1.csproj|C:\\Users\\ll\\source\\repos\\TaskManager1\\taskmanager1\\login.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{72E2CE5F-3F1E-49EF-9C93-D8525A2B02F5}|TaskManager1\\TaskManager1.csproj|solutionrelative:taskmanager1\\login.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{72E2CE5F-3F1E-49EF-9C93-D8525A2B02F5}|TaskManager1\\TaskManager1.csproj|C:\\Users\\ll\\source\\repos\\TaskManager1\\taskmanager1\\landingpage.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{72E2CE5F-3F1E-49EF-9C93-D8525A2B02F5}|TaskManager1\\TaskManager1.csproj|solutionrelative:taskmanager1\\landingpage.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 1,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedHeight": 200,
+          "SelectedChildIndex": 6,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "dbo.Login.sql",
+              "DocumentMoniker": "ViewDataWindow_MSSQL__/_LocalDB__MSSQLLocalDB/C__USERS_LL_SOURCE_REPOS_TASKMANAGER1_TASKMANAGER1_APP_DATA_TASKMANAGER1.MDF/True/SqlTable/dbo.Login.sql",
+              "ToolTip": "ViewDataWindow_MSSQL__/_LocalDB__MSSQLLocalDB/C__USERS_LL_SOURCE_REPOS_TASKMANAGER1_TASKMANAGER1_APP_DATA_TASKMANAGER1.MDF/True/SqlTable/dbo.Login.sql",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2024-12-18T12:46:12.931Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "dbo.Tasks.sql",
+              "DocumentMoniker": "ViewDataWindow_MSSQL__/_LocalDB__MSSQLLocalDB/C__USERS_LL_SOURCE_REPOS_TASKMANAGER1_TASKMANAGER1_APP_DATA_TASKMANAGER1.MDF/True/SqlTable/dbo.Tasks.sql",
+              "ToolTip": "ViewDataWindow_MSSQL__/_LocalDB__MSSQLLocalDB/C__USERS_LL_SOURCE_REPOS_TASKMANAGER1_TASKMANAGER1_APP_DATA_TASKMANAGER1.MDF/True/SqlTable/dbo.Tasks.sql",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2024-12-18T11:41:50.088Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "TaskManager.aspx",
+              "DocumentMoniker": "C:\\Users\\ll\\source\\repos\\TaskManager1\\TaskManager1\\TaskManager.aspx",
+              "RelativeDocumentMoniker": "TaskManager1\\TaskManager.aspx",
+              "ToolTip": "C:\\Users\\ll\\source\\repos\\TaskManager1\\TaskManager1\\TaskManager.aspx",
+              "RelativeToolTip": "TaskManager1\\TaskManager.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2024-12-18T12:47:08.699Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Register.aspx",
+              "DocumentMoniker": "C:\\Users\\ll\\source\\repos\\TaskManager1\\TaskManager1\\Register.aspx",
+              "RelativeDocumentMoniker": "TaskManager1\\Register.aspx",
+              "ToolTip": "C:\\Users\\ll\\source\\repos\\TaskManager1\\TaskManager1\\Register.aspx",
+              "RelativeToolTip": "TaskManager1\\Register.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2024-12-18T09:08:45.454Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Login.aspx",
+              "DocumentMoniker": "C:\\Users\\ll\\source\\repos\\TaskManager1\\TaskManager1\\Login.aspx",
+              "RelativeDocumentMoniker": "TaskManager1\\Login.aspx",
+              "ToolTip": "C:\\Users\\ll\\source\\repos\\TaskManager1\\TaskManager1\\Login.aspx",
+              "RelativeToolTip": "TaskManager1\\Login.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2024-12-18T09:11:03.26Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "LandingPage.aspx",
+              "DocumentMoniker": "C:\\Users\\ll\\source\\repos\\TaskManager1\\TaskManager1\\LandingPage.aspx",
+              "RelativeDocumentMoniker": "TaskManager1\\LandingPage.aspx",
+              "ToolTip": "C:\\Users\\ll\\source\\repos\\TaskManager1\\TaskManager1\\LandingPage.aspx",
+              "RelativeToolTip": "TaskManager1\\LandingPage.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2024-12-18T09:01:32.47Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "styles.css",
+              "DocumentMoniker": "C:\\Users\\ll\\source\\repos\\TaskManager1\\TaskManager1\\styles.css",
+              "RelativeDocumentMoniker": "TaskManager1\\styles.css",
+              "ToolTip": "C:\\Users\\ll\\source\\repos\\TaskManager1\\TaskManager1\\styles.css",
+              "RelativeToolTip": "TaskManager1\\styles.css",
+              "ViewState": "AgIAAHwCAAAAAAAAAAAAAIYCAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-12-18T06:46:26.164Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedHeight": 12,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            }
+          ]
+        },
+        {
+          "DockedHeight": 12,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

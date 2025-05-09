@@ -1,0 +1,353 @@
+﻿.register-container {
+    max-width: 400px;
+    margin: 50px auto;
+    background-color: #f8d7da;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: left;
+}
+
+.input-box {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.status-icon {
+    width: 20px;
+    height: 20px;
+    margin-left: 10px;
+}
+
+.rules {
+    font-size: 12px;
+    color: #555;
+    margin-top: -10px;
+    margin-bottom: 10px;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background-color: #f8d7da;
+}
+
+.task-manager-container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 2px solid #ddd;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+    .logo img {
+        width: 40px;
+        height: 40px;
+        margin-right: 10px;
+    }
+
+.user-info {
+    display: flex;
+    align-items: center;
+}
+
+    .user-info img {
+        width: 30px;
+        height: 30px;
+        margin-left: 10px;
+        border-radius: 50%;
+    }
+
+.pet-section {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.pet-image {
+    max-width: 200px;
+    height: auto;
+}
+
+.pet-stats {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.progress-bar {
+    width: 60%;
+    height: 10px;
+    background: #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+    margin: 0 10px;
+}
+
+.progress {
+    height: 10px;
+    background-color: #4caf50;
+}
+
+.tabs {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.tab {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    cursor: pointer;
+}
+
+    .tab.active {
+        background-color: #fff;
+        border-bottom: 2px solid #f00;
+    }
+
+.tasks-section {
+    margin-top: 20px;
+}
+
+.todo-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.filters button {
+    background-color: #ddd;
+    padding: 5px 10px;
+    border: none;
+    margin-right: 5px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+    .filters button.active {
+        background-color: #f00;
+        color: #fff;
+    }
+
+.create-task {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.task {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+    .task input[type="checkbox"] {
+        margin-right: 10px;
+    }
+
+.task-info {
+    flex: 1;
+}
+
+.delete-task {
+    background: transparent;
+    color: red;
+    font-size: 18px;
+    border: none;
+    cursor: pointer;
+}
+
+footer {
+    background-color: #f8d7da;
+    padding: 20px;
+    margin-top: 20px;
+    border-top: 2px solid #ddd;
+    text-align: center;
+}
+
+
+/* General Container Styles */
+.container {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    padding: 20px;
+    background-color: #f8d9e0;
+    font-family: Arial, sans-serif;
+}
+
+/* Left Section */
+.left-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #ffe5e9;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.photo-placeholder {
+    width: 200px;
+    height: 200px;
+    border: 2px dashed #ccc;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.cat-image {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 10px;
+}
+
+.random-facts p {
+    margin: 10px 0;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* Right Section */
+.right-section {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+    .right-section h1 {
+        font-size: 24px;
+        margin-bottom: 20px;
+        color: #e63946;
+    }
+
+/* Tabs */
+.tabs {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 20px;
+}
+
+    .tabs button {
+        background-color: #ffe5e9;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        border-radius: 5px;
+        margin-right: 10px;
+        transition: all 0.3s ease;
+    }
+
+        .tabs button.active-tab {
+            background-color: #e63946;
+            color: #fff;
+        }
+
+        .tabs button.completed-tab:hover {
+            background-color: #fa8072;
+        }
+
+/* Task Items */
+.task-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fefefe;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.task-complete-button {
+    background-color: #e63946;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+    .task-complete-button:hover {
+        background-color: #c62f3b;
+    }
+
+.task-delete-button {
+    background-color: transparent;
+    color: #e63946;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+    .task-delete-button:hover {
+        color: #c62f3b;
+    }
+
+.task-content h3 {
+    font-size: 18px;
+    margin: 0;
+    font-weight: bold;
+}
+
+.task-content p {
+    margin: 5px 0;
+    font-size: 14px;
+    color: #555;
+}
+
+/* Create Task Button */
+.create-task-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    align-self: flex-end;
+    margin-top: 20px;
+    transition: all 0.3s ease;
+}
+
+    .create-task-button:hover {
+        background-color: #0056b3;
+    }

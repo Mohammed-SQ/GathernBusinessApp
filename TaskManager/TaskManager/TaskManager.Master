@@ -1,0 +1,30 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="TaskManager.Master.cs" Inherits="TaskManager.TaskManager" %>
+<!DOCTYPE html>
+<html>
+<head runat="server">
+    <title>Task Manager</title>
+    <asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <!-- Main Container -->
+        <div style="display: flex; flex-direction: column; height: 100vh;">
+            <!-- Header Section -->
+            <header style="background-color: #007bff; color: #fff; padding: 10px; text-align: center;">
+                <h1>Task Manager</h1>
+            </header>
+
+            <!-- Main Content Section -->
+            <div style="flex-grow: 1; display: flex;">
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
+            </div>
+
+            <!-- Footer Section -->
+            <footer style="background-color: #333; color: #fff; padding: 10px; text-align: center;">
+                <p>&copy; 2024 Task Manager Application</p>
+            </footer>
+        </div>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server"></asp:ContentPlaceHolder>
+    </form>
+</body>
+</html>

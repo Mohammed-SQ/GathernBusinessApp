@@ -1,0 +1,75 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\ll\\source\\repos\\WebApplication1\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{0611790A-78E2-4648-8290-CEA8E943615C}|WebApplication1\\WebApplication1.csproj|c:\\users\\ll\\source\\repos\\webapplication1\\webapplication1\\preview.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{0611790A-78E2-4648-8290-CEA8E943615C}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\preview.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0611790A-78E2-4648-8290-CEA8E943615C}|WebApplication1\\WebApplication1.csproj|c:\\users\\ll\\source\\repos\\webapplication1\\webapplication1\\login.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{0611790A-78E2-4648-8290-CEA8E943615C}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\login.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0611790A-78E2-4648-8290-CEA8E943615C}|WebApplication1\\WebApplication1.csproj|c:\\users\\ll\\source\\repos\\webapplication1\\webapplication1\\xmltutorial.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{0611790A-78E2-4648-8290-CEA8E943615C}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\xmltutorial.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Login.aspx",
+              "DocumentMoniker": "C:\\Users\\ll\\source\\repos\\WebApplication1\\WebApplication1\\Login.aspx",
+              "RelativeDocumentMoniker": "WebApplication1\\Login.aspx",
+              "ToolTip": "C:\\Users\\ll\\source\\repos\\WebApplication1\\WebApplication1\\Login.aspx*",
+              "RelativeToolTip": "WebApplication1\\Login.aspx*",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2024-09-04T19:29:40.847Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "XMLTutorial.aspx",
+              "DocumentMoniker": "C:\\Users\\ll\\source\\repos\\WebApplication1\\WebApplication1\\XMLTutorial.aspx",
+              "RelativeDocumentMoniker": "WebApplication1\\XMLTutorial.aspx",
+              "ToolTip": "C:\\Users\\ll\\source\\repos\\WebApplication1\\WebApplication1\\XMLTutorial.aspx",
+              "RelativeToolTip": "WebApplication1\\XMLTutorial.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2024-09-04T19:24:43.57Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Preview.aspx",
+              "DocumentMoniker": "C:\\Users\\ll\\source\\repos\\WebApplication1\\WebApplication1\\Preview.aspx",
+              "RelativeDocumentMoniker": "WebApplication1\\Preview.aspx",
+              "ToolTip": "C:\\Users\\ll\\source\\repos\\WebApplication1\\WebApplication1\\Preview.aspx",
+              "RelativeToolTip": "WebApplication1\\Preview.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2024-09-04T19:24:06.383Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
