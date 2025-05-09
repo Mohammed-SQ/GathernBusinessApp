@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:FMMSRestaurant.Converters"
+             x:Class="FMMSRestaurant.Pages.OrderPage"
+             BackgroundColor="#212121"
+             Padding="0">
+    <ContentPage.Resources>
+        <converters:NotConverter x:Key="NotConverter" />
+    </ContentPage.Resources>
+    <Grid RowDefinitions="*" ColumnDefinitions="200,*,200" Margin="0">
+        <!-- Left Panel (Navigation) -->
+        <VerticalStackLayout Grid.Column="0" BackgroundColor="#FAF1E6" Padding="10" IsEnabled="{Binding Source={x:Static Application.Current}, Path=IsFormSubmitted}">
+            <VerticalStackLayout BackgroundColor="#D32F2F" Padding="10" Margin="0,0,0,10">
+                <Label Text="FM" TextColor="#FFFFFF" FontSize="24" FontAttributes="Bold" HorizontalOptions="Center" />
+            </VerticalStackLayout>
+            <Button Text="Home / User Entry" Clicked="OnHomeClicked" BackgroundColor="#E0E0E0" TextColor="#000000" Padding="10" Margin="0,5" IsVisible="{Binding Source={x:Static Application.Current}, Path=IsFormSubmitted, Converter={StaticResource NotConverter}}" />
+            <Button Text="Menu" Clicked="OnMenuClicked" TextColor="#000000" Padding="10" Margin="0,5" />
+            <Button Text="Table" Clicked="OnTableClicked" TextColor="#000000" Padding="10" Margin="0,5" />
+            <Button Text="Order" Clicked="OnOrderClicked" BackgroundColor="#E0E0E0" TextColor="#000000" Padding="10" Margin="0,5" />
+            <Button Text="Staff See All Orders" Clicked="OnStaffOrdersClicked" TextColor="#000000" Padding="10" Margin="0,5" />
+        </VerticalStackLayout>
+
+        <!-- Main Content -->
+        <Grid Grid.Column="1" BackgroundColor="#212121">
+            <Label Text="Order Page" TextColor="#FFFFFF" FontSize="24" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" />
+        </Grid>
+
+        <!-- Right Panel (Order Summary) -->
+        <VerticalStackLayout Grid.Column="2" BackgroundColor="#FAF1E6" Padding="10">
+            <Label Text="Current Order" TextColor="#D32F2F" FontSize="18" FontAttributes="Bold" />
+            <Label Text="Your order is empty." TextColor="#666666" />
+            <Button Text="Place Order" Clicked="OnPlaceOrderClicked" BackgroundColor="#D32F2F" TextColor="#FFFFFF" Padding="10" Margin="0,10,0,0" />
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>

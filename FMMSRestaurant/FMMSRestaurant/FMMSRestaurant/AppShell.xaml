@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Shell xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:pages="clr-namespace:FMMSRestaurant.Pages"
+       x:Class="FMMSRestaurant.AppShell"
+       NavBarIsVisible="False">
+    <ShellContent Title="Main" ContentTemplate="{DataTemplate pages:MainPage}" Route="MainPage" />
+    <ShellContent Title="Menu" ContentTemplate="{DataTemplate pages:MenuPage}" Route="MenuPage" />
+    <ShellContent Title="Table" ContentTemplate="{DataTemplate pages:TablePage}" Route="TablePage" />
+    <ShellContent Title="Order" ContentTemplate="{DataTemplate pages:OrderPage}" Route="OrderPage" />
+    <ShellContent Title="StaffOrders" ContentTemplate="{DataTemplate pages:StaffOrdersPage}" Route="StaffOrdersPage" />
+</Shell>
