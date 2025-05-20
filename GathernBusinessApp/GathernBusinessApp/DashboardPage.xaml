@@ -1,0 +1,21 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GathernBusinessApp.DashboardPage"
+             BackgroundColor="White">
+    <StackLayout Padding="10">
+        <Label Text="Host Dashboard" FontSize="24" FontAttributes="Bold" TextColor="#6200EE"/>
+        <Button Text="Add Property" Clicked="OnAddPropertyClicked"/>
+        <CollectionView x:Name="PropertiesCollection" SelectionChanged="OnPropertySelected">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Padding="10">
+                        <Label Text="{Binding Name}" FontAttributes="Bold"/>
+                        <Label Text="{Binding Location}"/>
+                        <Label Text="{Binding Price, StringFormat='Price: {0:C}'}"/>
+                        <Label Text="{Binding Rating, StringFormat='Rating: {0:F1}'}"/>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </StackLayout>
+</ContentPage>

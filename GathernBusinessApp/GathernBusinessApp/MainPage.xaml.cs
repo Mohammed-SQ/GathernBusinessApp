@@ -1,25 +1,25 @@
-﻿namespace GathernBusinessApp
+﻿using System;
+using Microsoft.Maui.Controls;
+
+namespace GathernBusinessApp
 {
     public partial class MainPage : ContentPage
     {
-        int count = 0;
-
         public MainPage()
         {
             InitializeComponent();
         }
 
-        private void OnCounterClicked(object sender, EventArgs e)
+        // If you ever want to go home (not used right now)
+        async void OnExploreClicked(object sender, EventArgs e)
         {
-            count++;
+            await Shell.Current.GoToAsync("//DashboardPage");
+        }
 
-            if (count == 1)
-                CounterBtn.Text = $"Clicked {count} time";
-            else
-                CounterBtn.Text = $"Clicked {count} times";
-
-            SemanticScreenReader.Announce(CounterBtn.Text);
+        // Navigate absolutely to AddPropertyPage
+        async void OnAddPropertyClicked(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync("//AddPropertyPage");
         }
     }
-
 }

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="GathernBusinessApp.AddPropertyPage"
+    BackgroundColor="White"
+    Shell.NavBarIsVisible="False">
+
+    <ScrollView>
+        <VerticalStackLayout
+      VerticalOptions="StartAndExpand"
+      HorizontalOptions="Center"
+      Spacing="20"
+      Padding="20">
+
+            <!-- HEADER -->
+            <HorizontalStackLayout Spacing="10" VerticalOptions="Start">
+                <Button
+          Text="⟵"
+          BackgroundColor="Transparent"
+          FontSize="24"
+          TextColor="Black"
+          WidthRequest="40"
+          Clicked="OnBackClicked" />
+                <Label
+          Text="معلومات العقار"
+          FontSize="24"
+          FontAttributes="Bold"
+          VerticalOptions="Center" />
+            </HorizontalStackLayout>
+
+            <!-- PROPERTY NAME -->
+            <Label Text="اسم عقارك" FontSize="18" />
+            <Frame
+        BackgroundColor="#F5F5F5"
+        CornerRadius="12"
+        HasShadow="False"
+        Padding="0"
+        WidthRequest="350"
+        HeightRequest="50"
+        HorizontalOptions="Center">
+                <Entry
+          Placeholder="فندق"
+          FontSize="16"
+          BackgroundColor="Transparent"
+          Margin="10,0" />
+            </Frame>
+
+            <!-- CATEGORY SECTION -->
+            <Label Text="تصنيف عقارك" FontSize="18" Margin="0,10,0,0" />
+            <Label Text="حدد التصنيف المناسب" FontSize="14" TextColor="Gray" />
+
+            <!-- 9-tile grid centered in a 360-px container -->
+            <StackLayout
+        WidthRequest="360"
+        HorizontalOptions="Center">
+                <CollectionView
+          x:Name="CategoryView"
+          ItemsLayout="VerticalGrid,3"
+          SelectionMode="Single"
+          HeightRequest="360">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame
+                CornerRadius="15"
+                HasShadow="False"
+                BorderColor="Transparent"
+                Padding="0"
+                Margin="5">
+                                <Grid>
+                                    <Image
+                    Source="{Binding Image}"
+                    Aspect="AspectFill" />
+                                    <Label
+                    Text="{Binding Name}"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    HorizontalOptions="End"
+                    VerticalOptions="End"
+                    Margin="10" />
+                                </Grid>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+            <Image Source="ga_resthouse"  
+       WidthRequest="200"  
+       HeightRequest="120"  
+       HorizontalOptions="Center" />
+
+            <!-- NEXT BUTTON -->
+            <Button
+        Text="التالي"
+        FontSize="20"
+        BackgroundColor="#6200EE"
+        TextColor="White"
+        CornerRadius="12"
+        HeightRequest="50"
+        WidthRequest="350"
+        HorizontalOptions="Center"
+        Clicked="OnNextClicked" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
