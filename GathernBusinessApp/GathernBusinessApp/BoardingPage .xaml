@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+  x:Class="GathernBusinessApp.BoardingPage"
+  xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  BackgroundColor="#6200EE"
+  NavigationPage.HasNavigationBar="False">
+
+    <Grid RowDefinitions="Auto,Auto,*,Auto" Padding="20">
+        <!-- Skip -->
+        <Label
+      Grid.Row="0"
+      Text="تخطي"
+      TextColor="White"
+      FontSize="16"
+      HorizontalOptions="End"
+      VerticalOptions="Center"
+      Margin="0,0,0,10">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnSkipTapped" />
+            </Label.GestureRecognizers>
+        </Label>
+
+        <!-- Title & Subtitle -->
+        <StackLayout Grid.Row="1" Spacing="5" HorizontalOptions="Center">
+            <Label
+        x:Name="SlideTitle"
+        TextColor="White"
+        FontSize="28"
+        FontAttributes="Bold"
+        HorizontalTextAlignment="Center"/>
+            <Label
+        x:Name="SlideSubtitle"
+        TextColor="White"
+        FontSize="20"
+        HorizontalTextAlignment="Center"/>
+        </StackLayout>
+
+        <!-- Image container -->
+        <ContentView Grid.Row="2" x:Name="SlideContainer">
+            <Frame
+        CornerRadius="30"
+        HasShadow="False"
+        BackgroundColor="White"
+        HeightRequest="500"
+        HorizontalOptions="Center">
+                <Image x:Name="SlideImage" Aspect="AspectFill"/>
+            </Frame>
+        </ContentView>
+
+        <!-- Next button -->
+        <Button
+      Grid.Row="3"
+      Text="التالي"
+      FontSize="20"
+      BackgroundColor="White"
+      TextColor="#6200EE"
+      CornerRadius="12"
+      HeightRequest="50"
+      Clicked="OnNextTapped"/>
+    </Grid>
+</ContentPage>

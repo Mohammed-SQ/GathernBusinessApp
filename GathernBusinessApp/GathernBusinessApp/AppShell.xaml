@@ -12,7 +12,19 @@
         Title="Splash"
         Route="SplashPage"
         ContentTemplate="{DataTemplate local:SplashPage}" />
+    
+    <ShellContent
+        Route="boarding"
+        ContentTemplate="{DataTemplate local:BoardingPage}" />
 
+    <ShellContent
+        Route="signinsplash"
+        ContentTemplate="{DataTemplate local:SignInSplashPage}" />
+    
+    <ShellContent
+        Route="signin"
+        ContentTemplate="{DataTemplate local:SignInPage}" />
+    
     <ShellContent
         Title="الرئيسية"
         Route="MainPage"
@@ -27,13 +39,9 @@
         Title="Add Property"
         Route="AddPropertyPage"
         ContentTemplate="{DataTemplate local:AddPropertyPage}" />
-    
+
     <ShellContent
         Title="Dashboard"
         Route="DashboardPage"
         ContentTemplate="{DataTemplate local:DashboardPage}" />
-    <ShellContent
-        Title="Bookings"
-        Route="BookingsPage"
-        ContentTemplate="{DataTemplate local:BookingsPage}" />
 </Shell>

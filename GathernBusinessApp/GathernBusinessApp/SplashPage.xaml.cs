@@ -21,7 +21,21 @@ namespace GathernBusinessApp
             InitializeComponent();
             StartAnimation();
         }
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
 
+            await Task.Delay(2000);                   // show brand briefly
+            bool boarded = Preferences.Get("HasCompletedBoarding", false);
+            bool loggedIn = Preferences.Get("IsLoggedIn", false);
+
+            if (!boarded)
+                await Shell.Current.GoToAsync("//boarding");
+            else if (!loggedIn)
+                await Shell.Current.GoToAsync("//signinsplash");
+            else
+                await Shell.Current.GoToAsync("//main");
+        }
         private async void StartAnimation()
         {
             System.Diagnostics.Debug.WriteLine("Splash animation started");

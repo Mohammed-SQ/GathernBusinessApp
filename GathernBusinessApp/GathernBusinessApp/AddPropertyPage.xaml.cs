@@ -16,7 +16,7 @@ namespace GathernBusinessApp
         private readonly int _maxSteps = 8;
         private int _bedroomCount = 2;
         private int _bathroomCount = 2;
-        private string _propertyName;
+        private string? _propertyName; // Made nullable to fix warning
 
         public AddPropertyPage()
         {
@@ -139,11 +139,11 @@ namespace GathernBusinessApp
                 case 8: Step8.IsVisible = true; TitleLabel.Text = "وصف العقار"; break;
             }
 
-            // Update progress line
-            ProgressLine.WidthRequest = (_step * 500) / _maxSteps;
+            // Update progress bar (width = 460 units, so 1/8 = 57.5)
+            double progress = (_step * 460) / _maxSteps;
+            ProgressStrokeFill.WidthRequest = progress;
 
             // Toggle buttons
-            BackButton.IsVisible = _step > 1;
             NextButton.Text = _step < _maxSteps ? "التالي" : "حفظ";
         }
     }

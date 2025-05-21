@@ -9,110 +9,102 @@
 
     <!-- Root grid: scrollable content + fixed bottom bar -->
     <Grid RowDefinitions="*,Auto">
-        <ScrollView Grid.Row="0" >
+        <ScrollView Grid.Row="0">
             <HorizontalStackLayout HorizontalOptions="Center" Padding="0,20">
                 <VerticalStackLayout WidthRequest="500" Spacing="24">
 
                     <!-- HEADER (shared, always on top) -->
                     <Grid
-  ColumnDefinitions="*,Auto"
-  FlowDirection="LeftToRight"   
+                        ColumnDefinitions="*,Auto"
+                        FlowDirection="LeftToRight"
                         Padding="20,10">
 
                         <!-- Page title centered -->
                         <Label
-    Grid.Column="0"
-    x:Name="TitleLabel"
-    Text="معلومات العقار"
-    FontSize="35"
-    FontAttributes="Bold"
-    TextColor="Black"
-    VerticalOptions="Center"
-    HorizontalOptions="End" />
+                            Grid.Column="0"
+                            x:Name="TitleLabel"
+                            Text="معلومات العقار"
+                            FontSize="35"
+                            FontAttributes="Bold"
+                            TextColor="Black"
+                            VerticalOptions="Center"
+                            HorizontalOptions="End" />
 
                         <!-- Back arrow on the right -->
                         <Button
-    Grid.Column="1"
-    x:Name="BackButton"
-    Text=">"
-     Margin="0,0,-15,-20"
-
+                            Grid.Column="1"
+                            x:Name="BackButton"
+                            Text=">"
+                            Margin="0,0,-15,-20"
                             FontSize="35"
-    FontAttributes="Bold"
-    BackgroundColor="Transparent"
-    TextColor="Black"
-    WidthRequest="40"
-    Clicked="OnBackClicked"
-    VerticalOptions="Center"
-    HorizontalOptions="End" />
+                            FontAttributes="Bold"
+                            BackgroundColor="Transparent"
+                            TextColor="Black"
+                            WidthRequest="40"
+                            Clicked="OnBackClicked"
+                            VerticalOptions="Center"
+                            HorizontalOptions="End" />
                     </Grid>
-
 
                     <!-- STEP 1: Property Name + Category Selection -->
                     <VerticalStackLayout
-    x:Name="Step1"
-    Spacing="16"
-    Padding="20,0"
-    IsVisible="True">
-
-
+                        x:Name="Step1"
+                        Spacing="16"
+                        Padding="20,0"
+                        IsVisible="True">
 
                         <!-- Property Name -->
                         <Label
-    Text="اسم عقارك"
-    FontSize="16"
-    FontAttributes="Bold"
-    TextColor="Black"
-    HorizontalOptions="Start" />
-                        <Frame
-  HeightRequest="40"
-  CornerRadius="12"
-  BackgroundColor="#F5F5F5"
-  BorderColor="#E0E0E0"
-  >
-                            <Entry
-    x:Name="PropertyNameEntry"
-    Placeholder="أدخل اسم العقار"
-    FontSize="14"
-    TextColor="Black"
-    IsEnabled="True"    
-                                Margin="10,0" />
-                        </Frame>
+                            Text="اسم عقارك"
+                            FontSize="16"
+                            FontAttributes="Bold"
+                            TextColor="Black"
+                            HorizontalOptions="Start" />
+
+                        <Entry
+                            x:Name="PropertyNameEntry"
+                            Text="فندق"
+                            Placeholder="أدخل اسم العقار"
+                            FontSize="14"
+                            TextColor="Black"
+                            BackgroundColor="#F5F5F5"
+                            HeightRequest="50"
+                            HorizontalOptions="Fill" />
 
                         <!-- Category Labels -->
                         <Label
-    Text="تصنيف عقارك"
-    FontSize="18"
-    FontAttributes="Bold"
-    TextColor="Black"
-    HorizontalOptions="Start" />
+                            Text="تصنيف عقارك"
+                            FontSize="18"
+                            FontAttributes="Bold"
+                            TextColor="Black"
+                            HorizontalOptions="Start" />
                         <Label
-    Text="حدد التصنيف المناسب"
-    FontSize="14"
-    TextColor="Gray"
-    HorizontalOptions="Start" />
+                            Text="حدد التصنيف المناسب"
+                            FontSize="14"
+                            TextColor="Gray"
+                            HorizontalOptions="Start" />
 
                         <!-- 3×3 Category Grid -->
                         <CollectionView
-    x:Name="CategoryGrid"
-    SelectionMode="Single"
-    HeightRequest="460"
-    HorizontalOptions="Center">
+                            x:Name="CategoryGrid"
+                            SelectionMode="Single"
+                            HeightRequest="460"
+                            HorizontalOptions="Center">
                             <CollectionView.ItemsLayout>
                                 <GridItemsLayout
-        Orientation="Vertical"
-        Span="3"
-        HorizontalItemSpacing="10"
-        VerticalItemSpacing="10" />
+                                    Orientation="Vertical"
+                                    Span="3"
+                                    HorizontalItemSpacing="10"
+                                    VerticalItemSpacing="10" />
                             </CollectionView.ItemsLayout>
                             <CollectionView.ItemTemplate>
                                 <DataTemplate>
                                     <Border
-          BackgroundColor="#F5F5F5"
-          Stroke="Transparent"
-          Padding="0"
-          HeightRequest="120"     
-          WidthRequest="120">
+                                        BackgroundColor="#F5F5F5"
+                                        Stroke="Transparent"
+                                        Padding="0"
+                                        HeightRequest="120"
+                                        WidthRequest="120">
                                         <Border.StrokeShape>
                                             <RoundRectangle CornerRadius="12" />
                                         </Border.StrokeShape>
@@ -130,12 +122,12 @@
                                         <Grid>
                                             <Image Source="{Binding Image}" Aspect="AspectFill" />
                                             <Label
-              Text="{Binding Name}"
-              TextColor="White"
-              FontAttributes="Bold"
-              HorizontalOptions="End"
-              VerticalOptions="End"
-              Margin="8" />
+                                                Text="{Binding Name}"
+                                                TextColor="White"
+                                                FontAttributes="Bold"
+                                                HorizontalOptions="End"
+                                                VerticalOptions="End"
+                                                Margin="8" />
                                         </Grid>
                                     </Border>
                                 </DataTemplate>
@@ -143,15 +135,12 @@
                         </CollectionView>
                     </VerticalStackLayout>
 
-
-
-
                     <!-- STEP 2: Property Location -->
                     <VerticalStackLayout x:Name="Step2" Spacing="16" IsVisible="False">
                         <Label Text="عنوان العقار"
                                FontSize="18" FontAttributes="Bold" />
                         <WebView HeightRequest="300"
-                                 Source="https://www.google.com/maps/embed/v1/place?key=YOUR_API_KEY&amp;q=Al+Khobar" />
+                                 Source="" />
                         <Frame BackgroundColor="#F5F5F5" BorderColor="#E0E0E0" CornerRadius="12" HasShadow="False" HeightRequest="60">
                             <Label Text="ECAB8351, 3679, التحلية, الخبر 34717, السعودية"
                                    FontSize="14" VerticalOptions="Center" Margin="10,0" />
@@ -273,49 +262,49 @@
             </HorizontalStackLayout>
         </ScrollView>
 
-        <!-- BOTTOM BAR -->
+        <!-- BOTTOM BAR with Progress Bar -->
         <Border
-  Grid.Row="1"
-  BackgroundColor="White"
-  Padding="0"
-  HorizontalOptions="FillAndExpand">
+            Grid.Row="1"
+            BackgroundColor="White"
+            Stroke="#6200EE"
+            StrokeThickness="2"
+            HorizontalOptions="Center"
+            WidthRequest="500">
             <Border.StrokeShape>
                 <RoundRectangle CornerRadius="20,20,0,0" />
             </Border.StrokeShape>
 
-            <Grid Padding="20,10">
+            <Grid Padding="20,20,20,10">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
-                <!-- progress line, centered -->
-                <BoxView
-      Grid.Row="0"
-      x:Name="ProgressLine"
-      HeightRequest="4"
-      WidthRequest="100"
-      Color="#6200EE"
-      HorizontalOptions="Center" />
+                <!-- Progress Bar aligned with the stroke -->
+                <Grid Grid.Row="0" HorizontalOptions="Center" Margin="0,-12,0,0">
+                    <BoxView
+                        x:Name="ProgressStrokeFill"
+                        HeightRequest="8"
+                        WidthRequest="57.5"
+                        BackgroundColor="#6200EE"
+                        CornerRadius="4"
+                        HorizontalOptions="Start" />
+                </Grid>
 
                 <!-- Next button, centered and fixed width -->
                 <Button
-      Grid.Row="1"
-      x:Name="NextButton"
-      Text="التالي"
-      BackgroundColor="#6200EE"
-      TextColor="White"
-      CornerRadius="12"
-      HeightRequest="50"
-      WidthRequest="300"           
+                    Grid.Row="1"
+                    x:Name="NextButton"
+                    Text="التالي"
+                    BackgroundColor="#6200EE"
+                    TextColor="White"
+                    CornerRadius="12"
+                    HeightRequest="50"
+                    WidthRequest="300"
                     HorizontalOptions="Center"
-      Margin="0,10,0,0"
-      Clicked="OnNextClicked" />
+                    Margin="0,10,0,0"
+                    Clicked="OnNextClicked" />
             </Grid>
         </Border>
-
-
-
-
     </Grid>
 </ContentPage>
