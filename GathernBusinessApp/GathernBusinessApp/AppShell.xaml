@@ -17,17 +17,21 @@
         Title="الرئيسية"
         Route="MainPage"
         ContentTemplate="{DataTemplate local:MainPage}" />
-
+    
     <ShellContent
-        Title="Dashboard"
-        Route="DashboardPage"
-        ContentTemplate="{DataTemplate local:DashboardPage}" />
-
+    Title="Tutorial"
+    Route="TutorialPage"
+    ContentTemplate="{DataTemplate local:TutorialPage}" />
+    
     <ShellContent
         Title="Add Property"
         Route="AddPropertyPage"
         ContentTemplate="{DataTemplate local:AddPropertyPage}" />
-
+    
+    <ShellContent
+        Title="Dashboard"
+        Route="DashboardPage"
+        ContentTemplate="{DataTemplate local:DashboardPage}" />
     <ShellContent
         Title="Bookings"
         Route="BookingsPage"

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="GathernBusinessApp.TutorialPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Shell.NavBarIsVisible="False"
+    BackgroundImageSource="purple_pattern.png">
+
+    <!-- Outer Grid: main content + bottom row -->
+    <Grid RowDefinitions="*,Auto">
+
+        <!-- Main Tutorial Section -->
+        <Grid
+            Grid.Row="0"
+            HorizontalOptions="Center"
+            WidthRequest="500"
+            RowDefinitions="Auto,Auto,Auto,*,Auto"
+            Padding="40">
+
+            <!-- Row 1: تخطي, title, arrow -->
+            <Grid Grid.Row="1" ColumnDefinitions="Auto,*,Auto" Margin="0,0,0,12">
+
+                <Label
+                    Grid.Column="0"
+                    Text="تخطي"
+                    FontSize="24"
+                    TextColor="White"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Start"
+                    Margin="0,0,10,0"
+                    ZIndex="2">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnSkipTapped"/>
+                    </Label.GestureRecognizers>
+                </Label>
+
+                <Label
+                    Grid.Column="1"
+                    Margin="-50,0,0,0"
+                    x:Name="SlideTitle"
+                    Text="ثانياً:"
+                    FontSize="36"
+                    FontAttributes="Bold"
+                    TextColor="White"
+                    HorizontalOptions="Center"
+                    HorizontalTextAlignment="Center"
+                    VerticalOptions="Center"
+                    ZIndex="1"/>
+
+                <Label
+                    Grid.Column="2"
+                    Text="›"
+                    FontSize="32"
+                    TextColor="White"
+                    VerticalOptions="Center"
+                    HorizontalOptions="End"
+                    Margin="10,0,0,0"
+                    ZIndex="2">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnBackTapped"/>
+                    </Label.GestureRecognizers>
+                </Label>
+            </Grid>
+
+            <!-- Row 2: Subtitle -->
+            <Label
+                Grid.Row="2"
+                x:Name="SlideSubtitle"
+                Text="حدد السعر والشروط"
+                FontSize="28"
+                TextColor="White"
+                HorizontalTextAlignment="Center"
+                Margin="0" />
+
+            <!-- Row 3: Phone Image -->
+            <ContentView
+                Grid.Row="3"
+                x:Name="SlideContainer"
+                HorizontalOptions="Center"
+                VerticalOptions="Center">
+                <Frame
+    CornerRadius="40"
+    HasShadow="False"
+    BorderColor="Transparent"
+    BackgroundColor="Transparent"
+    WidthRequest="326"
+    HeightRequest="650">
+
+                    <Image
+                        x:Name="SlideImage"
+                        Aspect="AspectFill" />
+                </Frame>
+            </ContentView>
+        </Grid>
+
+        <!-- Bottom Bar -->
+        <Grid Grid.Row="1" HeightRequest="140" WidthRequest="500" HorizontalOptions="Center">
+            <!-- White background -->
+            <Frame
+                BackgroundColor="White"
+                CornerRadius="32"
+                Margin="0"
+                HasShadow="False"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand"/>
+
+            <!-- Button -->
+            <Button
+                Text="التالي"
+                Clicked="OnNextClicked"
+                FontSize="26"
+                BackgroundColor="#6200EE"
+                TextColor="White"
+                CornerRadius="16"
+                HeightRequest="60"
+                WidthRequest="200"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"/>
+        </Grid>
+    </Grid>
+</ContentPage>

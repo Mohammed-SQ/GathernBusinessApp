@@ -13,7 +13,7 @@ namespace GathernBusinessApp
         // If you ever want to go home (not used right now)
         async void OnExploreClicked(object sender, EventArgs e)
         {
-            await Shell.Current.GoToAsync("//DashboardPage");
+            await Shell.Current.GoToAsync("//TutorialPage");
         }
 
         // Navigate absolutely to AddPropertyPage

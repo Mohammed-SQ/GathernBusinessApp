@@ -1,4 +1,9 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.Maui;
+using Microsoft.Maui.Hosting;
+
+// brings in .UseMauiCommunityToolkit()
+using CommunityToolkit.Maui;
+// brings in the MediaElement control registrations
 
 namespace GathernBusinessApp
 {
@@ -7,17 +12,18 @@ namespace GathernBusinessApp
         public static MauiApp CreateMauiApp()
         {
             var builder = MauiApp.CreateBuilder();
+
             builder
                 .UseMauiApp<App>()
+                // Initialize the Community Toolkit itself
+                .UseMauiCommunityToolkit()
+                // and then specifically register the MediaElement feature
+                .UseMauiCommunityToolkitMediaElement()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
-                    fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+                    // …other fonts…
                 });
-
-#if DEBUG
-    		builder.Logging.AddDebug();
-#endif
 
             return builder.Build();
         }
