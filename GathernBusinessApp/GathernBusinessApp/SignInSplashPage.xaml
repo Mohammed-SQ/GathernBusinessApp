@@ -6,25 +6,42 @@
     BackgroundColor="White"
     Shell.NavBarIsVisible="False">
 
-    <AbsoluteLayout>
-        <!-- Stack of letters, centered -->
-        <StackLayout
-            x:Name="LettersStack"
-            AbsoluteLayout.LayoutBounds="0.5,0.4,AutoSize,AutoSize"
-            AbsoluteLayout.LayoutFlags="PositionProportional"
-            Spacing="0"
-            HorizontalOptions="Center"
-            VerticalOptions="Center" />
 
-        <!-- Subtitle under the word -->
-        <Label
-            x:Name="SubtitleLabel"
-            Text="في كل مكان لك بيت"
-            FontSize="18"
-            TextColor="#6200EE"
-            Opacity="0"
-            AbsoluteLayout.LayoutBounds="0.5,0.55,AutoSize,AutoSize"
-            AbsoluteLayout.LayoutFlags="PositionProportional"
-            HorizontalOptions="Center" />
-    </AbsoluteLayout>
+        <AbsoluteLayout>
+
+            <!-- Phase 1: single‐letter holder -->
+            <ContentView
+      x:Name="CenterLetterHolder"
+      AbsoluteLayout.LayoutBounds="0.5,0.45,AutoSize,AutoSize"
+      AbsoluteLayout.LayoutFlags="PositionProportional"
+      HorizontalOptions="Center"
+      VerticalOptions="Center" />
+
+            <!-- Phase 2: full word, hidden at first -->
+            <StackLayout
+      x:Name="WordStack"
+      Orientation="Horizontal"
+      IsVisible="False"
+      AbsoluteLayout.LayoutBounds="0.5,0.45,AutoSize,AutoSize"
+      AbsoluteLayout.LayoutFlags="PositionProportional"
+      Spacing="0"
+      HorizontalOptions="Center"
+      VerticalOptions="Center" />
+
+            <!-- Subtitle -->
+            <Label
+      x:Name="SubtitleLabel"
+      Text="في كل مكان لك بيت"
+      FontSize="50"
+      FontAttributes="Bold"
+      TextColor="#6200EE"
+      Opacity="0"
+      TranslationX="300"
+                Margin="0,0,0,-40"
+      AbsoluteLayout.LayoutBounds="0.5,0.6,AutoSize,AutoSize"
+      AbsoluteLayout.LayoutFlags="PositionProportional"
+      HorizontalOptions="Center" />
+
+        </AbsoluteLayout>
+
 </ContentPage>

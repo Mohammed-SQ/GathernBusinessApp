@@ -1,15 +1,13 @@
-﻿using Microsoft.Maui.Controls;
+﻿using System;
+using System.Text.RegularExpressions;
+using Microsoft.Maui.Controls;
 using Microsoft.Maui.Storage;
 using Microsoft.Data.SqlClient;
-using System;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace GathernBusinessApp
 {
     public partial class SignInPage : ContentPage
     {
-        // your Azure/SQL connection string
         const string ConnectionString =
             "Data Source=SQL6032.site4now.net,1433;" +
             "Initial Catalog=db_ab93cb_gathernapp;" +
@@ -20,42 +18,42 @@ namespace GathernBusinessApp
         public SignInPage()
         {
             InitializeComponent();
-            ContinueButton.IsEnabled = false;
-            PhoneEntry.TextChanged += OnPhoneEntryTextChanged;
         }
 
-        // only allow digits, must start with '5' and be exactly 9 chars
+        async void OnBackTapped(object sender, EventArgs e)
+        {
+            // Navigate back to boarding
+            await Shell.Current.GoToAsync("//boarding");
+        }
+
         void OnPhoneEntryTextChanged(object sender, TextChangedEventArgs e)
         {
-            // strip non-digits
-            var digits = Regex.Replace(e.NewTextValue ?? "", @"\D", "");
-            if (digits != e.NewTextValue)
-                PhoneEntry.Text = digits;
+            // Remove non-digits, enforce max 9
+            var raw = e.NewTextValue ?? "";
+            var digits = Regex.Replace(raw, @"\D", "");
+            if (digits.Length > 9)
+                digits = digits.Substring(0, 9);
 
-            // must start with 5
-            if (digits.Length > 0 && digits[0] != '5')
+            if (digits.StartsWith("05"))
             {
-                ContinueButton.IsEnabled = false;
-                return;
+                digits = digits.Substring(1);
             }
 
-            // enable only when exactly 9 digits
-            ContinueButton.IsEnabled = Regex.IsMatch(digits, @"^5\d{8}$");
+            if (digits != raw)
+                PhoneEntry.Text = digits;
+
+            // Enable only if exactly 9 digits and starts with '5'
+            var ok = Regex.IsMatch(digits, @"^5\d{8}$");
+            ContinueButton.IsEnabled = ok;
+            ContinueButton.BackgroundColor = ok ? Color.FromArgb("#6200EE") : Colors.Gray;
         }
 
-        // pressed the back arrow
-        async void OnBackClicked(object sender, EventArgs e)
-        {
-            await Shell.Current.GoToAsync("//main");
-        }
-
-        // tapped "المتابعة"
         async void OnContinueTapped(object sender, EventArgs e)
         {
-            var phone = PhoneEntry.Text;
-            if (string.IsNullOrWhiteSpace(phone))
+            var phone = PhoneEntry.Text?.Trim();
+            if (!Regex.IsMatch(phone ?? "", @"^5\d{8}$"))
             {
-                await DisplayAlert("خطأ", "الرجاء إدخال رقم الجوال", "حسنًا");
+                await DisplayAlert("خطأ", "الرجاء إدخال رقم جوال صالح، يبدأ بـ5 ويتكون من 9 أرقام", "حسنًا");
                 return;
             }
 
@@ -78,13 +76,12 @@ BEGIN
     SET @UserID = SCOPE_IDENTITY();
 END;
 
-SELECT @UserID;
-";
+SELECT @UserID;";
 
                 await using var cmd = new SqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@phone", phone);
 
-                userId = Convert.ToInt32(await cmd.ExecuteScalarAsync());
+                userId = (int)await cmd.ExecuteScalarAsync();
             }
             catch (Exception ex)
             {
@@ -92,12 +89,12 @@ SELECT @UserID;
                 return;
             }
 
-            // save into preferences
+            // persist
             Preferences.Set("IsLoggedIn", true);
             Preferences.Set("UserPhone", phone);
             Preferences.Set("UserID", userId);
 
-            // go to main
+            // navigate
             await Shell.Current.GoToAsync("//main");
         }
     }

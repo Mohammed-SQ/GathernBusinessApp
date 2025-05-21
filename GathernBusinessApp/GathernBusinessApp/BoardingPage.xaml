@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -8,95 +8,97 @@
 
     <ScrollView>
         <VerticalStackLayout
-    VerticalOptions="StartAndExpand"
-    HorizontalOptions="Center"
-    Spacing="40"              
-        Padding="30,50,30,30">
-            <!-- added more top & side padding -->
+        VerticalOptions="StartAndExpand" 
+            HorizontalOptions="Center"
+        Spacing="30"
+        Padding="40,30,30,120">
 
             <!-- Logo -->
             <Image
-      Source="logo.jpg"
-      Aspect="AspectFit"
-      WidthRequest="300"
-      HeightRequest="80"
-      Margin="0,0,0,20"       
-            HorizontalOptions="Center" />
+        Source="logo.jpg"
+        Aspect="AspectFit"
+        WidthRequest="450"
+        HeightRequest="100"
+        HorizontalOptions="Center"
+        Margin="0,0,0,16" />
 
             <!-- Purple underline -->
             <BoxView
-      Color="#6200EE"
-      HeightRequest="2"
-      WidthRequest="120"
-      Margin="0,0,0,30"      
-                HorizontalOptions="Center" />
+        Color="#6200EE"
+        HeightRequest="3"
+        WidthRequest="100"
+        HorizontalOptions="Center"
+        Margin="0,0,0,0" />
 
-            <!-- Title text -->
+            <!-- Title -->
             <Label
-      Text="سجل وأجر عقارك معنا"
-      FontSize="22"
-      TextColor="Black"
-      HorizontalOptions="Center"
-      HorizontalTextAlignment="Center"
-      Margin="0,0,0,20"         
-                    />
+        Text="سجل وأجر عقارك معنا"
+        FontSize="28"
+        TextColor="Black"
+        HorizontalOptions="Center"
+        HorizontalTextAlignment="Center"
+        Margin="0,0,0,240" />
 
-            <!-- Primary button -->
+            <!-- Primary Button -->
             <Button
-      Text="سجل عقارك"
-      FontSize="18"
-      BackgroundColor="#6200EE"
-      TextColor="White"
-      CornerRadius="12"
-      HeightRequest="50"
-      WidthRequest="300"
-      HorizontalOptions="Center"
-      Margin="0,0,0,15"         
-                        Clicked="OnRegisterPropertyClicked" />
+        Text="سجل عقارك"
+        FontSize="20"
+        BackgroundColor="#6200EE"
+        TextColor="White"
+        FontAttributes="Bold" 
+        CornerRadius="14"
+        HeightRequest="60"
+        WidthRequest="375"
+        HorizontalOptions="Center"
+        Margin="0,0,0,16"
+        Clicked="OnRegisterPropertyClicked" />
 
-            <!-- Secondary button -->
+            <!-- Secondary Button -->
             <Button
-      Text="سجل دخولك لتطبيق المضيفين"
-      FontSize="18"
-      BackgroundColor="White"
-      TextColor="#6200EE"
-      BorderColor="#6200EE"
-      BorderWidth="2"
-      CornerRadius="12"
-      HeightRequest="50"
-      WidthRequest="300"
-      HorizontalOptions="Center"
-      Margin="0,0,0,30"         
-                            Clicked="OnSignInClicked" />
+        Text="سجل دخولك لتطبيق المضيفين"
+        FontSize="20"
+        BackgroundColor="White"
+        FontAttributes="Bold" 
+        TextColor="#6200EE"
+        BorderColor="#6200EE"
+        BorderWidth="2"
+        CornerRadius="14"
+        HeightRequest="60"
+        WidthRequest="375"
+        HorizontalOptions="Center"
+        Margin="0,0,0,24"
+        Clicked="OnSignInClicked" />
 
+            <!-- Divider -->
             <BoxView
-      Color="#E0E0E0"
-      HeightRequest="1"
-      WidthRequest="200"
-      HorizontalOptions="Center"
-      Margin="0,0,0,25" />
+        Color="Black"
+        HeightRequest="2"
+        WidthRequest="140"
+        HorizontalOptions="Center"
+        Margin="0,0,0,24" />
 
+            <!-- Footer text, two lines -->
             <Label
-      FontSize="14"
-      TextColor="Gray"
-      HorizontalOptions="Center"
-      HorizontalTextAlignment="Center"
-      Margin="0,20,0,0">
+        FontSize="21"
+        TextColor="Gray"
+        HorizontalOptions="Center"
+        HorizontalTextAlignment="Center"
+        HeightRequest="60" 
+                Margin="0,0,0,24">
                 <Label.FormattedText>
                     <FormattedString>
-                        <Span Text="تبي تحجز شقة، شاليه وغيرها من بيوت العطلات؟" />
-                        <Span Text="&#x0a;" />
-                        <Span Text="حمل من هنا " />
+                        <Span Text="تبي تحجز شقة، شاليه، وغيرها من بيوت العطلات؟" TextColor="Gray"/>
+                        <Span Text="&#x0A;" />
+                        <Span Text="حمل من هنا " TextColor="Gray"/>
                         <Span
-            Text="تطبيق جاهزٍ للضيوف"
-            TextColor="#6200EE"
-            FontAttributes="Bold" />
+              Text="تطبيق جاهزٍ للضيوف"
+              TextColor="#6200EE"
+              FontAttributes="Bold"
+              TextDecorations="Underline"/>
                     </FormattedString>
                 </Label.FormattedText>
             </Label>
 
         </VerticalStackLayout>
     </ScrollView>
-
-
 </ContentPage>

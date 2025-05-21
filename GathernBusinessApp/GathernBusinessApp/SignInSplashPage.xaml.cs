@@ -1,4 +1,5 @@
-﻿using Microsoft.Maui.Controls;
+﻿// SignInSplashPage.xaml.cs
+using Microsoft.Maui.Controls;
 using Microsoft.Maui.Graphics;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -18,34 +19,59 @@ namespace GathernBusinessApp
         {
             base.OnAppearing();
 
-            LettersStack.Children.Clear();
+            // PHASE 1: one big letter in center
             foreach (var c in _letters)
             {
-                LettersStack.Children.Add(new Label
+                CenterLetterHolder.Content = new Label
                 {
                     Text = c.ToString(),
-                    FontSize = 60,
+                    FontSize = 200,
                     FontAttributes = FontAttributes.Bold,
                     TextColor = c == 'n'
-                              ? Color.FromArgb("#FF9F1C")
-                              : Color.FromArgb("#6200EE"),
-                    Opacity = 0,
-                    TranslationY = -30
-                });
+                                        ? Color.FromArgb("#FF9F1C")
+                                        : Color.FromArgb("#6200EE"),
+                    Opacity = 0
+                };
+
+                var lbl = (Label)CenterLetterHolder.Content;
+                await lbl.FadeTo(1, 200, Easing.CubicOut);
+                await Task.Delay(200);
+                await lbl.FadeTo(0, 200, Easing.CubicIn);
             }
 
-            for (int i = 0; i < LettersStack.Children.Count; i++)
+            // PHASE 2: full word assembly
+            CenterLetterHolder.IsVisible = false;
+            WordStack.IsVisible = true;
+
+            foreach (var c in _letters)
             {
-                var lbl = (Label)LettersStack.Children[i];
+                var lbl = new Label
+                {
+                    Text = c.ToString(),
+                    FontSize = 200,
+                    FontAttributes = FontAttributes.Bold,
+                    TextColor = c == 'n'
+                                        ? Color.FromArgb("#FF9F1C")
+                                        : Color.FromArgb("#6200EE"),
+                    Opacity = 0,
+                    TranslationX = 300
+                };
+                WordStack.Children.Add(lbl);
+
                 await Task.WhenAll(
-                  lbl.FadeTo(1, 300, Easing.CubicOut),
-                  lbl.TranslateTo(0, 0, 300, Easing.SpringOut)
+                    lbl.FadeTo(1, 200, Easing.CubicOut),
+                    lbl.TranslateTo(0, 0, 200, Easing.CubicOut)
                 );
-                await Task.Delay(100);
             }
 
-            await SubtitleLabel.FadeTo(1, 500, Easing.CubicInOut);
-            await Task.Delay(800);
+            // PHASE 3: subtitle slide in
+            await Task.WhenAll(
+                SubtitleLabel.FadeTo(1, 300, Easing.CubicInOut),
+                SubtitleLabel.TranslateTo(0, 0, 300, Easing.CubicInOut)
+            );
+
+            // Hold for 3 seconds before navigating
+            await Task.Delay(3000);
 
             await Shell.Current.GoToAsync("//boarding");
         }

@@ -4,95 +4,105 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     BackgroundColor="White"
-    NavigationPage.HasNavigationBar="False"
+    FlowDirection="RightToLeft"
     Padding="20">
 
-    <Grid RowDefinitions="Auto,*,Auto" ColumnDefinitions="*">
-
-        <!-- Back Arrow -->
-        <Button
-      Grid.Row="0"
-      Text="›"
-      FontSize="30"
-      BackgroundColor="Transparent"
-      TextColor="Black"
-      HorizontalOptions="End"
-      Clicked="OnBackClicked"
-      Margin="0,10,0,0" />
-
-        <!-- Main Content -->
+    <ScrollView>
         <VerticalStackLayout
-      Grid.Row="1"
-      Spacing="20"
-      VerticalOptions="Center"
-      HorizontalOptions="FillAndExpand">
+      Spacing="30"
+      VerticalOptions="StartAndExpand"
+      HorizontalOptions="Center"
+      Padding="0,20">
 
-            <!-- Title -->
+            <!-- Top bar: back button + title -->
+            <!-- 1) Page Title -->
+            <Button
+          x:Name="BackButton"
+          Grid.Column="0"
+          Text="‹"
+          FontSize="54"
+          BackgroundColor="Transparent"
+          Clicked="OnBackTapped"
+          HorizontalOptions="Start" />
             <Label
-        Text="ادخل رقم الجوال"
-        FontSize="28"
-        FontAttributes="Bold"
-        TextColor="Black"
-        HorizontalTextAlignment="Center" />
+  Text="ادخل رقم الجوال"
+  FontSize="38"
+  FontAttributes="Bold"
+  TextColor="Black"
+  HorizontalOptions="Start"
+  Margin="0,0,0,5" />
 
-            <!-- Subtitle -->
+            <!-- 2) Two-line Subtitle -->
             <Label
-        Text="سوف يصلك رمز التحقق لتسجيل الدخول او إنشاء حساب جديد"
-        FontSize="16"
-        TextColor="Gray"
-        HorizontalTextAlignment="Center" />
+  Text="سوف يصلك رمز التحقق لتسجيل الدخول
+أو إنشاء حساب جديد"
+  FontSize="22"
+  TextColor="Gray"
+  HorizontalTextAlignment="Center"
+  HorizontalOptions="Start"
+  Margin="0,0,0,20" />
 
-            <!-- Phone input with flag +966 -->
+
+            <!-- 3) Phone Entry Frame -->
             <Frame
-        BackgroundColor="#F5F5F5"
-        CornerRadius="12"
-        HasShadow="False"
-        Padding="10"
-        HorizontalOptions="FillAndExpand">
-                <Grid ColumnDefinitions="Auto,Auto,*,Auto" VerticalOptions="Center">
+    CornerRadius="12"
+    BorderColor="#E0E0E0"
+    BackgroundColor="#F5F5F5"
+    HasShadow="False"
+    WidthRequest="500"
+    HorizontalOptions="Center">
+                <Grid ColumnDefinitions="*,Auto,Auto" Padding="10,0">
 
-                    <!-- Saudi flag -->
-                    <Image
-            Source="sa_flag.png"
-            WidthRequest="24"
-            HeightRequest="24"
-            VerticalOptions="Center" />
-
-                    <!-- Country code -->
-                    <Label
-            Text="+966"
-            FontSize="16"
-            TextColor="Black"
-            VerticalOptions="Center"
-            Margin="8,0,10,0" />
-
-                    <!-- Phone entry -->
+                    <!-- a) The phone Entry on the left -->
                     <Entry
-            x:Name="PhoneEntry"
-            Placeholder="5XXXXXXXX"
-            Keyboard="Numeric"
-            MaxLength="9"
-            FontSize="18"
-            TextColor="Black"
-            VerticalOptions="Center"
-            TextChanged="OnPhoneEntryTextChanged" />
+        x:Name="PhoneEntry"
+        Grid.Column="0"
+        Placeholder="5XXXXXXXX"
+        Keyboard="Telephone"
+        FontSize="18"
+        TextColor="Black"
+        BackgroundColor="Transparent"
+        MaxLength="9"
+        HorizontalTextAlignment="End"
+        CursorPosition="0"
+        TextChanged="OnPhoneEntryTextChanged"
+        VerticalOptions="Center" />
 
+                    <!-- b) Country code next -->
+                    <Label
+        Grid.Column="1"
+        Text="+966"
+        FontSize="20"
+        TextColor="Black"
+        VerticalOptions="Center"
+        Margin="8,0" />
+
+                    <!-- c) Flag on the far right -->
+                    <Image
+        Source="sa_flag.png"
+        Grid.Column="2"
+        WidthRequest="40"
+        HeightRequest="24"
+        VerticalOptions="Center" />
                 </Grid>
             </Frame>
+    
 
-            <!-- Continue button -->
+
+            <!-- 4) Continue Button -->
             <Button
-        x:Name="ContinueButton"
-        Text="المتابعة"
-        FontSize="20"
-        BackgroundColor="#6200EE"
-        TextColor="White"
-        CornerRadius="12"
-        HeightRequest="50"
-        IsEnabled="False"
-        Clicked="OnContinueTapped" />
+  x:Name="ContinueButton"
+  Text="المتابعة"
+  FontSize="20"
+  CornerRadius="12"
+  HeightRequest="50"
+  WidthRequest="500"
+  BackgroundColor="Gray"
+  TextColor="White"
+  IsEnabled="False"
+  HorizontalOptions="Center"
+  Clicked="OnContinueTapped" />
 
         </VerticalStackLayout>
-
-    </Grid>
+    </ScrollView>
 </ContentPage>
