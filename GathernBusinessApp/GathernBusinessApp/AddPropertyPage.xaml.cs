@@ -50,7 +50,7 @@ namespace GathernBusinessApp
             }
             else
             {
-                Shell.Current.GoToAsync("//MainPage");
+                Shell.Current.GoToAsync("//main");
             }
         }
 

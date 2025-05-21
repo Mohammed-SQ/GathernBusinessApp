@@ -44,7 +44,7 @@ namespace GathernBusinessApp
             }
 
             System.Diagnostics.Debug.WriteLine("Splash animation completed, navigating to MainPage");
-            await Shell.Current.GoToAsync("//MainPage");
+            await Shell.Current.GoToAsync("//main");
         }
     }
 }

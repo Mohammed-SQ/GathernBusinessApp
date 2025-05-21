@@ -2,12 +2,14 @@
 using Microsoft.Maui.Storage;
 using Microsoft.Data.SqlClient;
 using System;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace GathernBusinessApp
 {
     public partial class SignInPage : ContentPage
     {
+        // your Azure/SQL connection string
         const string ConnectionString =
             "Data Source=SQL6032.site4now.net,1433;" +
             "Initial Catalog=db_ab93cb_gathernapp;" +
@@ -18,11 +20,39 @@ namespace GathernBusinessApp
         public SignInPage()
         {
             InitializeComponent();
+            ContinueButton.IsEnabled = false;
+            PhoneEntry.TextChanged += OnPhoneEntryTextChanged;
         }
 
+        // only allow digits, must start with '5' and be exactly 9 chars
+        void OnPhoneEntryTextChanged(object sender, TextChangedEventArgs e)
+        {
+            // strip non-digits
+            var digits = Regex.Replace(e.NewTextValue ?? "", @"\D", "");
+            if (digits != e.NewTextValue)
+                PhoneEntry.Text = digits;
+
+            // must start with 5
+            if (digits.Length > 0 && digits[0] != '5')
+            {
+                ContinueButton.IsEnabled = false;
+                return;
+            }
+
+            // enable only when exactly 9 digits
+            ContinueButton.IsEnabled = Regex.IsMatch(digits, @"^5\d{8}$");
+        }
+
+        // pressed the back arrow
+        async void OnBackClicked(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync("//main");
+        }
+
+        // tapped "المتابعة"
         async void OnContinueTapped(object sender, EventArgs e)
         {
-            var phone = PhoneEntry.Text?.Trim();
+            var phone = PhoneEntry.Text;
             if (string.IsNullOrWhiteSpace(phone))
             {
                 await DisplayAlert("خطأ", "الرجاء إدخال رقم الجوال", "حسنًا");
@@ -48,12 +78,13 @@ BEGIN
     SET @UserID = SCOPE_IDENTITY();
 END;
 
-SELECT @UserID;";
+SELECT @UserID;
+";
 
                 await using var cmd = new SqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@phone", phone);
 
-                userId = (int)await cmd.ExecuteScalarAsync();
+                userId = Convert.ToInt32(await cmd.ExecuteScalarAsync());
             }
             catch (Exception ex)
             {
@@ -61,13 +92,13 @@ SELECT @UserID;";
                 return;
             }
 
-            // persist
+            // save into preferences
             Preferences.Set("IsLoggedIn", true);
             Preferences.Set("UserPhone", phone);
             Preferences.Set("UserID", userId);
 
-            // navigate on success
-            await Shell.Current.GoToAsync("//MainPage");
+            // go to main
+            await Shell.Current.GoToAsync("//main");
         }
     }
 }

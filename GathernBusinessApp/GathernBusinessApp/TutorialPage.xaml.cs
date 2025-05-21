@@ -52,7 +52,7 @@ namespace GathernBusinessApp
             // bounds
             if (newIndex < 0)
             {
-                await Shell.Current.GoToAsync("//MainPage");
+                await Shell.Current.GoToAsync("//main");
                 return;
             }
 

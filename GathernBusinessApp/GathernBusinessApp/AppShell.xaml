@@ -7,17 +7,21 @@
     Shell.NavBarIsVisible="False"
     Shell.FlyoutBehavior="Flyout"
     >
+    <ShellContent
+        Title="LogoPage"
+        Route="LogoPage"
+        ContentTemplate="{DataTemplate local:LogoPage}" />
     
     <ShellContent
         Title="Signinsplash"
         Route="signinsplash"
         ContentTemplate="{DataTemplate local:SignInSplashPage}" />
-    
+
     <ShellContent
         Title="Splash"
         Route="SplashPage"
         ContentTemplate="{DataTemplate local:SplashPage}" />
-    
+
     <ShellContent
         Title="Boarding"
         Route="boarding"
@@ -30,7 +34,7 @@
     
     <ShellContent
         Title="الرئيسية"
-        Route="MainPage"
+        Route="main"
         ContentTemplate="{DataTemplate local:MainPage}" />
     
     <ShellContent

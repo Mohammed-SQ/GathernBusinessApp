@@ -9,36 +9,32 @@ namespace GathernBusinessApp
         public AppShell()
         {
             InitializeComponent();
-
-            // register the routes
-            Routing.RegisterRoute("boarding", typeof(BoardingPage));
-            Routing.RegisterRoute("signinsplash", typeof(SignInSplashPage));
-            Routing.RegisterRoute("signin", typeof(SignInPage));
-            Routing.RegisterRoute("main", typeof(MainPage));
-
-            // fire‐and‐forget our initial router
+            // Fire-and-forget our startup router
             _ = PerformInitialRouting();
         }
 
         async Task PerformInitialRouting()
         {
-            // a tiny delay to ensure the Shell is fully loaded
+            // Give the Shell a moment
             await Task.Delay(100);
 
-            var hasBoarded = Preferences.Get("HasCompletedBoarding", false);
-            var isLoggedIn = Preferences.Get("IsLoggedIn", false);
+            bool isLoggedIn = Preferences.Get("IsLoggedIn", false);
+            bool hasBoarded = Preferences.Get("HasCompletedBoarding", false);
 
-            if (!hasBoarded)
+            if (!isLoggedIn)
             {
+                // User has never signed in
                 await GoToAsync("//signinsplash");
             }
-            else if (!isLoggedIn)
+            else if (!hasBoarded)
             {
+                // User signed in, but never finished the tutorial
                 await GoToAsync("//SplashPage");
             }
             else
             {
-                await GoToAsync("//SplashPage");
+                // User signed in *and* completed boarding → straight into app
+                await GoToAsync("//main");
             }
         }
     }
