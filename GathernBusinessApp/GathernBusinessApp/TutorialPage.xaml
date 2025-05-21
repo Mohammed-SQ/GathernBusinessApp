@@ -87,6 +87,7 @@
     HeightRequest="650">
 
                     <Image
+                        Source="phone_frame.jpg"
                         x:Name="SlideImage"
                         Aspect="AspectFill" />
                 </Frame>

@@ -1,23 +1,30 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
-  x:Class="GathernBusinessApp.SignInSplashPage"
-  xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-  NavigationPage.HasNavigationBar="False"
-  BackgroundColor="White">
-	<Grid>
-		<!-- your logo etc -->
-		<Image
-		  Source="gathern_logo.png"
-		  HorizontalOptions="Center" VerticalOptions="Center"
-		  WidthRequest="200"/>
-		<Button
-		  Text="سجل دخولك لتطبيق المضيفين"
-		  VerticalOptions="End"
-		  Margin="20"
-		  BackgroundColor="#6200EE"
-		  TextColor="White"
-		  CornerRadius="8"
-		  Clicked="OnContinueToSignIn"/>
-	</Grid>
+    x:Class="GathernBusinessApp.SignInSplashPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    BackgroundColor="White"
+    Shell.NavBarIsVisible="False">
+
+    <AbsoluteLayout>
+        <!-- Stack of letters, centered -->
+        <StackLayout
+            x:Name="LettersStack"
+            AbsoluteLayout.LayoutBounds="0.5,0.4,AutoSize,AutoSize"
+            AbsoluteLayout.LayoutFlags="PositionProportional"
+            Spacing="0"
+            HorizontalOptions="Center"
+            VerticalOptions="Center" />
+
+        <!-- Subtitle under the word -->
+        <Label
+            x:Name="SubtitleLabel"
+            Text="في كل مكان لك بيت"
+            FontSize="18"
+            TextColor="#6200EE"
+            Opacity="0"
+            AbsoluteLayout.LayoutBounds="0.5,0.55,AutoSize,AutoSize"
+            AbsoluteLayout.LayoutFlags="PositionProportional"
+            HorizontalOptions="Center" />
+    </AbsoluteLayout>
 </ContentPage>

@@ -59,6 +59,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="BoardingPage.xaml.cs">
+	    <DependentUpon>BoardingPage.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
 		<MauiXaml Update="SignInSplashPage.xaml">
 		  <Generator>MSBuild:Compile</Generator>
 		</MauiXaml>

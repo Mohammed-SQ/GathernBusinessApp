@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="GathernBusinessApp.BoardingPage"
+    BackgroundColor="White"
+    FlowDirection="RightToLeft">
+
+    <ScrollView>
+        <VerticalStackLayout
+    VerticalOptions="StartAndExpand"
+    HorizontalOptions="Center"
+    Spacing="40"              
+        Padding="30,50,30,30">
+            <!-- added more top & side padding -->
+
+            <!-- Logo -->
+            <Image
+      Source="logo.jpg"
+      Aspect="AspectFit"
+      WidthRequest="300"
+      HeightRequest="80"
+      Margin="0,0,0,20"       
+            HorizontalOptions="Center" />
+
+            <!-- Purple underline -->
+            <BoxView
+      Color="#6200EE"
+      HeightRequest="2"
+      WidthRequest="120"
+      Margin="0,0,0,30"      
+                HorizontalOptions="Center" />
+
+            <!-- Title text -->
+            <Label
+      Text="سجل وأجر عقارك معنا"
+      FontSize="22"
+      TextColor="Black"
+      HorizontalOptions="Center"
+      HorizontalTextAlignment="Center"
+      Margin="0,0,0,20"         
+                    />
+
+            <!-- Primary button -->
+            <Button
+      Text="سجل عقارك"
+      FontSize="18"
+      BackgroundColor="#6200EE"
+      TextColor="White"
+      CornerRadius="12"
+      HeightRequest="50"
+      WidthRequest="300"
+      HorizontalOptions="Center"
+      Margin="0,0,0,15"         
+                        Clicked="OnRegisterPropertyClicked" />
+
+            <!-- Secondary button -->
+            <Button
+      Text="سجل دخولك لتطبيق المضيفين"
+      FontSize="18"
+      BackgroundColor="White"
+      TextColor="#6200EE"
+      BorderColor="#6200EE"
+      BorderWidth="2"
+      CornerRadius="12"
+      HeightRequest="50"
+      WidthRequest="300"
+      HorizontalOptions="Center"
+      Margin="0,0,0,30"         
+                            Clicked="OnSignInClicked" />
+
+            <BoxView
+      Color="#E0E0E0"
+      HeightRequest="1"
+      WidthRequest="200"
+      HorizontalOptions="Center"
+      Margin="0,0,0,25" />
+
+            <Label
+      FontSize="14"
+      TextColor="Gray"
+      HorizontalOptions="Center"
+      HorizontalTextAlignment="Center"
+      Margin="0,20,0,0">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="تبي تحجز شقة، شاليه وغيرها من بيوت العطلات؟" />
+                        <Span Text="&#x0a;" />
+                        <Span Text="حمل من هنا " />
+                        <Span
+            Text="تطبيق جاهزٍ للضيوف"
+            TextColor="#6200EE"
+            FontAttributes="Bold" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+
+</ContentPage>
