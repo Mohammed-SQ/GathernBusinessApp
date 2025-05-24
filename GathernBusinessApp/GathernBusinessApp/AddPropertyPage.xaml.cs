@@ -18,7 +18,6 @@ namespace GathernBusinessApp
         int _step = 1;
         int _bedrooms = 2;
         int _bathroomCount = 1;
-        int _amenityCount = 1;
         string? _propertyName;
         private HashSet<string> _selectedAmenities = new HashSet<string>();
         private CategoryItem? _selectedCategory;
@@ -177,7 +176,7 @@ namespace GathernBusinessApp
             }
             else
             {
-                Shell.Current.GoToAsync("//BookingsPage");
+                Shell.Current.GoToAsync("//DashboardPage");
             }
         }
 
@@ -265,7 +264,6 @@ namespace GathernBusinessApp
 
                     if (!string.IsNullOrEmpty(parameter))
                     {
-                        // Handle Step 5, Step 6, and Step 7 amenities/features with CommandParameter
                         amenityName = parameter switch
                         {
                             "Banio" => "بانيو / حوض استحمام",
@@ -329,7 +327,6 @@ namespace GathernBusinessApp
 
                     if (string.IsNullOrEmpty(amenityName))
                     {
-                        // Fallback for Step 3 amenities
                         if (frame.Content is VerticalStackLayout stackLayout)
                         {
                             var labels = stackLayout.Children.OfType<Label>().ToList();
