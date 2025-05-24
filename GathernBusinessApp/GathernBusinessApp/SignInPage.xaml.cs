@@ -81,7 +81,11 @@ SELECT @UserID;";
                 await using var cmd = new SqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@phone", phone);
 
-                userId = (int)await cmd.ExecuteScalarAsync();
+                var obj = await cmd.ExecuteScalarAsync();
+                if (obj == null || obj == DBNull.Value)
+                    throw new InvalidOperationException("UserID came back null from the database.");
+
+                userId = (int)obj;
             }
             catch (Exception ex)
             {

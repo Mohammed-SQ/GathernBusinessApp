@@ -10,8 +10,8 @@
     <!-- Root grid: scrollable content + fixed bottom bar -->
     <Grid RowDefinitions="*,Auto">
         <ScrollView Grid.Row="0">
-            <HorizontalStackLayout HorizontalOptions="Center" Padding="0,20">
-                <VerticalStackLayout WidthRequest="500" Spacing="24">
+            <HorizontalStackLayout HorizontalOptions="Center" Padding="0,60">
+                <VerticalStackLayout WidthRequest="500" Spacing="30">
 
                     <!-- HEADER (shared, always on top) -->
                     <Grid
@@ -88,14 +88,14 @@
                         <CollectionView
                             x:Name="CategoryGrid"
                             SelectionMode="Single"
-                            HeightRequest="460"
+                            HeightRequest="500" 
                             HorizontalOptions="Center">
                             <CollectionView.ItemsLayout>
                                 <GridItemsLayout
                                     Orientation="Vertical"
                                     Span="3"
-                                    HorizontalItemSpacing="10"
-                                    VerticalItemSpacing="10" />
+                                    HorizontalItemSpacing="0" 
+                                    VerticalItemSpacing="0"/>
                             </CollectionView.ItemsLayout>
                             <CollectionView.ItemTemplate>
                                 <DataTemplate>
@@ -103,10 +103,10 @@
                                         BackgroundColor="#F5F5F5"
                                         Stroke="Transparent"
                                         Padding="0"
-                                        HeightRequest="120"
-                                        WidthRequest="120">
+                                        HeightRequest="140" 
+                                        WidthRequest="140">
                                         <Border.StrokeShape>
-                                            <RoundRectangle CornerRadius="12" />
+                                            <RoundRectangle CornerRadius="15" />
                                         </Border.StrokeShape>
                                         <VisualStateManager.VisualStateGroups>
                                             <VisualStateGroup Name="CommonStates">
@@ -114,18 +114,18 @@
                                                 <VisualState Name="Selected">
                                                     <VisualState.Setters>
                                                         <Setter Property="Stroke" Value="#6200EE" />
-                                                        <Setter Property="StrokeThickness" Value="3" />
+                                                        <Setter Property="StrokeThickness" Value="4" />
                                                     </VisualState.Setters>
                                                 </VisualState>
                                             </VisualStateGroup>
                                         </VisualStateManager.VisualStateGroups>
                                         <Grid>
-                                            <Image Source="{Binding Image}" Aspect="AspectFill" />
+                                            <Image Source="{Binding Image}" Aspect="AspectFill" HeightRequest="140" WidthRequest="140" VerticalOptions="Center" HorizontalOptions="Center" />
                                             <Label
                                                 Text="{Binding Name}"
                                                 TextColor="White"
-                                                FontAttributes="Bold"
-                                                HorizontalOptions="End"
+                                                FontSize="20" 
+                                                HorizontalOptions="Start"
                                                 VerticalOptions="End"
                                                 Margin="8" />
                                         </Grid>
@@ -136,125 +136,1244 @@
                     </VerticalStackLayout>
 
                     <!-- STEP 2: Property Location -->
-                    <VerticalStackLayout x:Name="Step2" Spacing="16" IsVisible="False">
-                        <Label Text="عنوان العقار"
-                               FontSize="18" FontAttributes="Bold" />
-                        <WebView HeightRequest="300"
-                                 Source="" />
-                        <Frame BackgroundColor="#F5F5F5" BorderColor="#E0E0E0" CornerRadius="12" HasShadow="False" HeightRequest="60">
-                            <Label Text="ECAB8351, 3679, التحلية, الخبر 34717, السعودية"
-                                   FontSize="14" VerticalOptions="Center" Margin="10,0" />
-                        </Frame>
-                        <Label Text="تأكيد عنوان العقار"
-                               FontSize="18" FontAttributes="Bold" />
-                        <Label Text="حدد المدينة والحي والاتجاه"
-                               FontSize="14" TextColor="Gray" />
-                        <Frame BackgroundColor="#F5F5F5" BorderColor="#E0E0E0" CornerRadius="12" HasShadow="False" HeightRequest="50">
-                            <Grid ColumnDefinitions="40,*">
-                                <Label Text="‹" FontSize="20" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="0"/>
-                                <Label Text="الخبر" FontSize="16" VerticalOptions="Center" Grid.Column="1"/>
+                    <VerticalStackLayout
+                        x:Name="Step2"
+                        Spacing="24"
+                        Padding="10,0"
+                        IsVisible="False"
+                        FlowDirection="RightToLeft">
+
+                        <!-- CITY -->
+                        <Label
+                            Text="المدينة"
+                            FontSize="18"
+                            FontAttributes="Bold"
+                            TextColor="Black" />
+
+                        <Border
+                            BackgroundColor="#F5F5F5"
+                            Stroke="#E0E0E0"
+                            StrokeThickness="2">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="12" />
+                            </Border.StrokeShape>
+                            <Grid ColumnDefinitions="*" HeightRequest="50">
+                                <!-- City Picker -->
+                                <Picker
+                                    x:Name="CityPicker"
+                                    FontSize="16"
+                                    TextColor="Black"
+                                    BackgroundColor="Transparent"
+                                    VerticalOptions="Center"
+                                    HorizontalOptions="Fill"
+                                    Grid.Column="0"
+                                    Margin="0">
+                                    <Picker.Items>
+                                        <x:String>الرياض</x:String>
+                                        <x:String>جدة</x:String>
+                                        <x:String>مكة المكرمة</x:String>
+                                        <x:String>المدينة المنورة</x:String>
+                                        <x:String>الدمام</x:String>
+                                        <x:String>الخبر</x:String>
+                                        <x:String>الطائف</x:String>
+                                        <x:String>أبها</x:String>
+                                        <x:String>تبوك</x:String>
+                                    </Picker.Items>
+                                </Picker>
                             </Grid>
-                        </Frame>
-                        <Frame BackgroundColor="#F5F5F5" BorderColor="#E0E0E0" CornerRadius="12" HasShadow="False" HeightRequest="50">
-                            <Grid ColumnDefinitions="40,*">
-                                <Label Text="‹" FontSize="20" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="0"/>
-                                <Label Text="التحلية" FontSize="16" VerticalOptions="Center" Grid.Column="1"/>
+                        </Border>
+
+                        <!-- DISTRICT -->
+                        <Label
+                            Text="الحي"
+                            FontSize="18"
+                            FontAttributes="Bold"
+                            TextColor="Black" />
+
+                        <Border
+                            BackgroundColor="#F5F5F5"
+                            Stroke="#E0E0E0"
+                            StrokeThickness="1">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="12" />
+                            </Border.StrokeShape>
+                            <Grid ColumnDefinitions="*" HeightRequest="50">
+                                <Label
+                                    Text="-"
+                                    TextColor="Black"
+                                    FontSize="40"
+                                    Margin="20,-10"
+                                    VerticalOptions="Start"
+                                    HorizontalOptions="Start"
+                                    Grid.Column="0" />
                             </Grid>
-                        </Frame>
-                        <Frame BackgroundColor="#F5F5F5" BorderColor="#E0E0E0" CornerRadius="12" HasShadow="False" HeightRequest="50">
-                            <Grid ColumnDefinitions="40,*">
-                                <Label Text="‹" FontSize="20" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="0"/>
-                                <Label Text="الشمال الشرقي" FontSize="16" VerticalOptions="Center" Grid.Column="1"/>
+                        </Border>
+
+                        <!-- DIRECTION -->
+                        <Label
+                            Text="الاتجاه"
+                            FontSize="18"
+                            FontAttributes="Bold"
+                            TextColor="Black" />
+
+                        <Border
+                            BackgroundColor="#F5F5F5"
+                            Stroke="#E0E0E0"
+                            StrokeThickness="1">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="12" />
+                            </Border.StrokeShape>
+                            <Grid ColumnDefinitions="*" HeightRequest="50">
+                                <!-- Direction Picker -->
+                                <Picker
+                                    x:Name="DirectionPicker"
+                                    FontSize="16"
+                                    TextColor="Black"
+                                    BackgroundColor="Transparent"
+                                    VerticalOptions="Center"
+                                    HorizontalOptions="Fill"
+                                    Grid.Column="0"
+                                    Margin="0">
+                                    <Picker.Items>
+                                        <x:String>الشمال الشرقي</x:String>
+                                        <x:String>الجنوب الغربي</x:String>
+                                        <x:String>الشمال الغربي</x:String>
+                                        <x:String>الجنوب الشرقي</x:String>
+                                    </Picker.Items>
+                                </Picker>
                             </Grid>
-                        </Frame>
+                        </Border>
                     </VerticalStackLayout>
 
                     <!-- STEP 3: Property Details -->
-                    <VerticalStackLayout x:Name="Step3" Spacing="16" IsVisible="False">
-                        <Label Text="تفاصيل العقار"
-                               FontSize="18" FontAttributes="Bold" />
-                        <Grid ColumnDefinitions="Auto,*,Auto" HorizontalOptions="Fill">
-                            <Label Text="المساحة" FontSize="16" Grid.Column="0" VerticalOptions="Center" />
-                            <Frame BackgroundColor="#F5F5F5" BorderColor="#E0E0E0" CornerRadius="12" WidthRequest="100" HeightRequest="50" Grid.Column="1" HorizontalOptions="Center">
-                                <Entry Text="250" FontSize="16" HorizontalTextAlignment="Center"/>
+                    <VerticalStackLayout
+    x:Name="Step3"
+    Spacing="16"
+    Padding="20,0"
+    IsVisible="False"
+    FlowDirection="RightToLeft">
+
+                        <!-- Area row: [مساحة عقارك] [Entry] [متر مربع], centered -->
+                        <Grid
+        HorizontalOptions="Start"
+        ColumnDefinitions="Auto,Auto,Auto"
+        ColumnSpacing="40">
+                            <!-- right label -->
+                            <Label
+            Grid.Column="0"
+            Text="مساحة عقارك"
+            FontSize="16"
+            FontAttributes="Bold"
+            VerticalOptions="Center"
+            TextColor="Black" />
+
+                            <!-- Entry framed -->
+                            <Frame
+            Grid.Column="1"
+            WidthRequest="120"
+            HeightRequest="50"
+            BackgroundColor="#F5F5F5"
+            BorderColor="#E0E0E0"
+            CornerRadius="12"
+            HasShadow="False"
+            Padding="8"
+            VerticalOptions="Center"
+            HorizontalOptions="Center">
+                                <Entry
+                x:Name="PropertyAreaEntry"
+                Text="250"
+                Keyboard="Numeric"
+                FontSize="20"
+                Margin="0,-8"
+                TextColor="Black"
+                BackgroundColor="Transparent"
+                HorizontalTextAlignment="Center"
+                VerticalTextAlignment="Center"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="Start" />
                             </Frame>
-                            <Label Text="متر مربع" FontSize="16" Grid.Column="2" VerticalOptions="Center" />
+
+                            <!-- left label -->
+                            <Label
+            Grid.Column="2"
+            Text="متر مربع"
+            FontSize="16"
+            VerticalOptions="Center"
+            TextColor="Black" />
+                        </Grid>
+
+                        <!-- thin divider -->
+                        <BoxView
+        HeightRequest="1"
+        Color="#E0E0E0"
+        HorizontalOptions="Fill" />
+
+                        <!-- Amenities headers -->
+                        <Label
+        Text="مرافق عقارك الرئيسية"
+        FontSize="19"
+        FontAttributes="Bold"
+        TextColor="Black" />
+                        <Label
+        Text="اختر كل المرافق الموجودة في عقارك"
+        FontSize="16"
+        TextColor="Gray" />
+
+                        <!-- Amenity cards in a 3×2 grid -->
+                        <Grid
+        ColumnDefinitions="*,*,*"
+        RowDefinitions="Auto,Auto"
+        ColumnSpacing="15" 
+        RowSpacing="15"
+        Padding="0,8">
+
+                            <!-- Row 0, Col 0: Pool -->
+                            <Frame
+            x:Name="AmenityPool"
+            Grid.Row="0" Grid.Column="0"
+            Padding="0"
+            HasShadow="False"
+            CornerRadius="15" 
+            BackgroundColor="#6200EE"
+            WidthRequest="140"
+            HeightRequest="140">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnAmenityTapped" />
+                                </Frame.GestureRecognizers>
+                                <VerticalStackLayout
+                Spacing="8" 
+                HorizontalOptions="Center"
+                VerticalOptions="Center">
+                                    <Label Text="🏊" FontSize="60" TextColor="#6200EE" HorizontalOptions="Center" />
+                                    <Label Text="مسبح" FontSize="20" TextColor="#6200EE" HorizontalOptions="Center" />
+                                </VerticalStackLayout>
+                            </Frame>
+
+                            <!-- Row 0, Col 1: Living Room -->
+                            <Frame
+            x:Name="AmenityParking"
+            Grid.Row="0" Grid.Column="1"
+            Padding="0"
+            HasShadow="False"
+            CornerRadius="15" 
+            BackgroundColor="#6200EE"
+            WidthRequest="140"
+            HeightRequest="140">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnAmenityTapped" />
+                                </Frame.GestureRecognizers>
+                                <VerticalStackLayout
+                Spacing="8" 
+                HorizontalOptions="Center"
+                VerticalOptions="Center">
+                                    <Label Text="🛋️" FontSize="60" TextColor="#6200EE" HorizontalOptions="Center" />
+                                    <Label Text="مجلس" FontSize="20" TextColor="#6200EE" HorizontalOptions="Center" />
+                                </VerticalStackLayout>
+                            </Frame>
+
+                            <!-- Row 0, Col 2: Bedroom -->
+                            <Frame
+            x:Name="AmenityBed"
+            Grid.Row="0" Grid.Column="2"
+            Padding="0"
+            HasShadow="False"
+            CornerRadius="15" 
+            BackgroundColor="#6200EE"
+            WidthRequest="140"
+            HeightRequest="140">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnAmenityTapped" />
+                                </Frame.GestureRecognizers>
+                                <VerticalStackLayout
+                Spacing="8" 
+                HorizontalOptions="Center"
+                VerticalOptions="Center">
+                                    <Label Text="🛏️" FontSize="60" TextColor="#6200EE" HorizontalOptions="Center" />
+                                    <Label Text="غرفة نوم" FontSize="20" TextColor="#6200EE" HorizontalOptions="Center" />
+                                </VerticalStackLayout>
+                            </Frame>
+
+                            <!-- Row 1, Col 0: Bathroom -->
+                            <Frame
+            x:Name="AmenityBathroom"
+            Grid.Row="1" Grid.Column="0"
+            Padding="0"
+            HasShadow="False"
+            CornerRadius="15" 
+            BackgroundColor="#6200EE"
+            WidthRequest="140"
+            HeightRequest="140">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnAmenityTapped" />
+                                </Frame.GestureRecognizers>
+                                <VerticalStackLayout
+                Spacing="8" 
+                HorizontalOptions="Center"
+                VerticalOptions="Center">
+                                    <Label Text="🚿" FontSize="60" TextColor="#6200EE" HorizontalOptions="Center" />
+                                    <Label Text="دورة مياه" FontSize="20" TextColor="#6200EE" HorizontalOptions="Center" />
+                                </VerticalStackLayout>
+                            </Frame>
+
+                            <!-- Row 1, Col 1: Kitchen -->
+                            <Frame
+            x:Name="AmenityKitchen"
+            Grid.Row="1" Grid.Column="1"
+            Padding="0"
+            HasShadow="False"
+            CornerRadius="15" 
+            BackgroundColor="#6200EE"
+            WidthRequest="140"
+            HeightRequest="140">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnAmenityTapped" />
+                                </Frame.GestureRecognizers>
+                                <VerticalStackLayout
+                Spacing="8" 
+                HorizontalOptions="Center"
+                VerticalOptions="Center">
+                                    <Label Text="🍳" FontSize="60" TextColor="#6200EE" HorizontalOptions="Center" />
+                                    <Label Text="مطبخ" FontSize="20" TextColor="#6200EE" HorizontalOptions="Center" />
+                                </VerticalStackLayout>
+                            </Frame>
                         </Grid>
                     </VerticalStackLayout>
 
-                    <!-- STEP 4: Bedroom Counts -->
-                    <VerticalStackLayout x:Name="Step4" Spacing="16" IsVisible="False">
-                        <Label Text="تفاصيل غرف النوم"
-                               FontSize="18" FontAttributes="Bold" />
-                        <Grid ColumnDefinitions="Auto,*,Auto" VerticalOptions="Center">
-                            <Button x:Name="IncrementBedroomButton" Text="+" FontSize="20" TextColor="#6200EE" BackgroundColor="Transparent" Clicked="OnIncrementBedroomClicked" />
-                            <Frame WidthRequest="80" HeightRequest="50" BackgroundColor="#F5F5F5" BorderColor="#E0E0E0" CornerRadius="12">
-                                <Label x:Name="BedroomCountLabel" Text="2" FontSize="18" HorizontalOptions="Center" VerticalOptions="Center" />
+                    <!-- STEP 4: Bedroom & Family Counts -->
+                    <VerticalStackLayout
+                        x:Name="Step4"
+                        Spacing="24"
+                        Padding="20,0"
+                        IsVisible="False"
+                        FlowDirection="RightToLeft">
+
+                        <!-- Bedrooms -->
+                        <Grid
+                            ColumnDefinitions="*,Auto,Auto,Auto"
+                            ColumnSpacing="16">
+                            <Label
+                                Grid.Column="0"
+                                Text="عدد غرف النوم"
+                                FontSize="18"
+                                FontAttributes="Bold"
+                                TextColor="Black" />
+                            <!-- PLUS -->
+                            <Button
+                                Grid.Column="3"
+                                x:Name="IncrementBedroomsButton"
+                                Text="+"
+                                FontSize="20"
+                                TextColor="#6200EE"
+                                BackgroundColor="Transparent"
+                                Clicked="OnIncrementBedroomsClicked" />
+                            <!-- CURRENT COUNT -->
+                            <Frame
+                                Grid.Column="2"
+                                WidthRequest="80"
+                                HeightRequest="50"
+                                BackgroundColor="#F5F5F5"
+                                BorderColor="#E0E0E0"
+                                CornerRadius="12"
+                                HasShadow="False"
+                                VerticalOptions="Center">
+                                <Label
+                                    x:Name="BedroomsCountLabel"
+                                    Text="2"
+                                    FontSize="18"
+                                    Margin="0,-15"
+                                    TextColor="Black"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center" />
                             </Frame>
-                            <Button x:Name="DecrementBedroomButton" Text="–" FontSize="20" TextColor="#6200EE" BackgroundColor="Transparent" Clicked="OnDecrementBedroomClicked" />
+                            <!-- MINUS -->
+                            <Button
+                                Grid.Column="1"
+                                x:Name="DecrementBedroomsButton"
+                                Text="−"
+                                FontSize="20"
+                                TextColor="#6200EE"
+                                BackgroundColor="Transparent"
+                                Clicked="OnDecrementBedroomsClicked" />
+                        </Grid>
+
+                        <!-- Single-family units -->
+                        <Grid
+                            ColumnDefinitions="*,Auto,Auto,Auto"
+                            ColumnSpacing="16">
+                            <Label
+                                Grid.Column="0"
+                                Text="عدد الأسرة المفردة"
+                                FontSize="18"
+                                FontAttributes="Bold"
+                                TextColor="Black" />
+                            <Button
+                                Grid.Column="3"
+                                x:Name="IncrementSingleButton"
+                                Text="+"
+                                FontSize="20"
+                                TextColor="#6200EE"
+                                BackgroundColor="Transparent"
+                                Clicked="OnIncrementSingleClicked" />
+                            <Frame
+                                Grid.Column="2"
+                                WidthRequest="80"
+                                HeightRequest="50"
+                                BackgroundColor="#F5F5F5"
+                                BorderColor="#E0E0E0"
+                                CornerRadius="12"
+                                HasShadow="False"
+                                VerticalOptions="Center">
+                                <Label
+                                    x:Name="SingleCountLabel"
+                                    Text="1"
+                                    FontSize="18"
+                                    Margin="0,-15"
+                                    TextColor="Black"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center" />
+                            </Frame>
+                            <Button
+                                Grid.Column="1"
+                                x:Name="DecrementSingleButton"
+                                Text="−"
+                                FontSize="20"
+                                TextColor="#6200EE"
+                                BackgroundColor="Transparent"
+                                Clicked="OnDecrementSingleClicked" />
+                        </Grid>
+
+                        <!-- Master-family units -->
+                        <Grid
+                            ColumnDefinitions="*,Auto,Auto,Auto"
+                            ColumnSpacing="16">
+                            <Label
+                                Grid.Column="0"
+                                Text="عدد الأسرة الرئيسية"
+                                FontSize="18"
+                                FontAttributes="Bold"
+                                TextColor="Black" />
+                            <Button
+                                Grid.Column="3"
+                                x:Name="IncrementMasterButton"
+                                Text="+"
+                                FontSize="20"
+                                TextColor="#6200EE"
+                                BackgroundColor="Transparent"
+                                Clicked="OnIncrementMasterClicked" />
+                            <Frame
+                                Grid.Column="2"
+                                WidthRequest="80"
+                                HeightRequest="50"
+                                BackgroundColor="#F5F5F5"
+                                BorderColor="#E0E0E0"
+                                CornerRadius="12"
+                                HasShadow="False"
+                                VerticalOptions="Center">
+                                <Label
+                                    x:Name="MasterCountLabel"
+                                    Text="1"
+                                    FontSize="18"
+                                    TextColor="Black"
+                                    Margin="0,-15"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center" />
+                            </Frame>
+                            <Button
+                                Grid.Column="1"
+                                x:Name="DecrementMasterButton"
+                                Text="−"
+                                FontSize="20"
+                                TextColor="#6200EE"
+                                BackgroundColor="Transparent"
+                                Clicked="OnDecrementMasterClicked" />
                         </Grid>
                     </VerticalStackLayout>
 
                     <!-- STEP 5: Bathroom Counts -->
-                    <VerticalStackLayout x:Name="Step5" Spacing="16" IsVisible="False">
-                        <Label Text="تفاصيل دورات المياه"
-                               FontSize="18" FontAttributes="Bold" />
-                        <Grid ColumnDefinitions="Auto,*,Auto" VerticalOptions="Center">
-                            <Button x:Name="IncrementBathroomButton" Text="+" FontSize="20" TextColor="#6200EE" BackgroundColor="Transparent" Clicked="OnIncrementBathroomClicked" />
-                            <Frame WidthRequest="80" HeightRequest="50" BackgroundColor="#F5F5F5" BorderColor="#E0E0E0" CornerRadius="12">
-                                <Label x:Name="BathroomCountLabel" Text="2" FontSize="18" HorizontalOptions="Center" VerticalOptions="Center" />
-                            </Frame>
-                            <Button x:Name="DecrementBathroomButton" Text="–" FontSize="20" TextColor="#6200EE" BackgroundColor="Transparent" Clicked="OnDecrementBathroomClicked" />
-                        </Grid>
-                    </VerticalStackLayout>
+                    <VerticalStackLayout
+    x:Name="Step5"
+    Spacing="16"
+    Padding="20,0"
+    IsVisible="False"
+    FlowDirection="RightToLeft">
 
-                    <!-- STEP 6: Additional Amenities -->
-                    <VerticalStackLayout x:Name="Step6" Spacing="16" IsVisible="False">
-                        <Label Text="المرافق الإضافية"
-                               FontSize="18" FontAttributes="Bold" />
-                        <Label Text="اختياري" FontSize="14" TextColor="Gray" />
-                        <FlexLayout Wrap="Wrap" JustifyContent="Start" AlignItems="Center">
-                            <Frame Padding="10" Margin="4" BackgroundColor="#F5F5F5" BorderColor="#E0E0E0" CornerRadius="20" HasShadow="False">
-                                <Label Text="ألعاب أطفال" FontSize="14" TextColor="#6200EE" />
+                        <Grid
+        ColumnDefinitions="*,Auto,Auto,Auto"
+        ColumnSpacing="16"
+        VerticalOptions="Center">
+
+                            <!-- Label -->
+                            <Label
+            Grid.Column="0"
+            Text="عدد دورات المياه"
+            FontSize="18"
+            FontAttributes="Bold"
+            TextColor="Black"
+            VerticalOptions="Center" />
+
+                            <!-- Plus Button -->
+                            <Button
+            Grid.Column="3"
+            x:Name="IncrementBathroomButton"
+            Text="+"
+            FontSize="20"
+            TextColor="#6200EE"
+            BackgroundColor="Transparent"
+            Clicked="OnIncrementBathroomClicked"
+            VerticalOptions="Center" />
+
+                            <!-- Count Frame -->
+                            <Frame
+            Grid.Column="2"
+            WidthRequest="80"
+            HeightRequest="50"
+            BackgroundColor="#F5F5F5"
+            BorderColor="#E0E0E0"
+            CornerRadius="12"
+            HasShadow="False"
+            VerticalOptions="Center"
+            HorizontalOptions="Center">
+                                <Label
+                x:Name="BathroomCountLabel"
+                Text="1"
+                FontSize="18"
+                Margin="0,-15"
+                TextColor="Black"
+                HorizontalOptions="Center"
+                VerticalOptions="Center" />
                             </Frame>
-                            <Frame Padding="10" Margin="4" BackgroundColor="#6200EE" CornerRadius="20" HasShadow="False">
-                                <Label Text="إضاءة إضافية" FontSize="14" TextColor="White" />
+
+                            <!-- Minus Button -->
+                            <Button
+            Grid.Column="1"
+            x:Name="DecrementBathroomButton"
+            Text="−"
+            FontSize="20"
+            TextColor="#6200EE"
+            BackgroundColor="Transparent"
+            Clicked="OnDecrementBathroomClicked"
+            VerticalOptions="Center" />
+                        </Grid>
+
+                        <!-- Bathroom Amenities Header -->
+                        <Label
+        Text="مرافق دورات المياه"
+        FontSize="18"
+        FontAttributes="Bold"
+        TextColor="Black"
+        Margin="0,20,0,5" />
+
+                        <!-- Bathroom Amenities Selection -->
+                        <FlexLayout
+        Wrap="Wrap"
+        JustifyContent="Start"
+        AlignItems="Center"
+    Margin="0,0,0,20"
+       >
+                            <!-- Banio / Bathtub -->
+                            <Frame
+            x:Name="AmenityBanio"
+            Padding="10"
+            HasShadow="False"
+            CornerRadius="20"
+            BackgroundColor="#6200EE"
+            WidthRequest="200"
+                                 Margin="2"
+            HeightRequest="54">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnAmenityTapped" CommandParameter="Banio" />
+                                </Frame.GestureRecognizers>
+                                <HorizontalStackLayout
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                Spacing="8">
+                                    <Label Text="بانيو / حوض استحمام" FontSize="20" TextColor="White" />
+                                </HorizontalStackLayout>
+                            </Frame>
+
+                            <!-- Jacuzzi -->
+                            <Frame
+            x:Name="AmenityJacuzzi"
+            Padding="0"
+            HasShadow="False"
+            CornerRadius="20"
+            BackgroundColor="#6200EE"
+            WidthRequest="100"
+            Margin="2"
+            HeightRequest="54">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnAmenityTapped" CommandParameter="Jacuzzi" />
+                                </Frame.GestureRecognizers>
+                                <Label
+                Text="جاكوزي"
+                FontSize="20"
+                TextColor="White"
+                VerticalOptions="Center"
+                HorizontalOptions="Center" />
+                            </Frame>
+
+                            <!-- Shower -->
+                            <Frame
+            x:Name="AmenityShower"
+            Padding="0"
+            HasShadow="False"
+            CornerRadius="20"
+            BackgroundColor="Transparent"
+            BorderColor="#6200EE"
+            WidthRequest="70"
+            Margin="2"
+            HeightRequest="54">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnAmenityTapped" CommandParameter="Shower" />
+                                </Frame.GestureRecognizers>
+                                <Label
+                Text="دش"
+                FontSize="20"
+                TextColor="#6200EE"
+                VerticalOptions="Center"
+                HorizontalOptions="Center" />
+                            </Frame>
+
+                            <!-- Bathrobe -->
+                            <Frame
+            x:Name="AmenityBathrobe"
+            Padding="0"
+            HasShadow="False"
+            CornerRadius="20"
+            BackgroundColor="Transparent"
+            BorderColor="#6200EE"
+            WidthRequest="100"
+            Margin="2"
+            HeightRequest="54">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnAmenityTapped" CommandParameter="Bathrobe" />
+                                </Frame.GestureRecognizers>
+                                <Label
+                Text="رداء حمام"
+                FontSize="20"
+                TextColor="#6200EE"
+                VerticalOptions="Center"
+                HorizontalOptions="Center" />
+                            </Frame>
+
+                            <!-- Sauna -->
+                            <Frame
+            x:Name="AmenitySauna"
+            Padding="0"
+            HasShadow="False"
+            CornerRadius="20"
+            Margin="2"
+            BackgroundColor="Transparent"
+            BorderColor="#6200EE"
+            WidthRequest="85"
+            HeightRequest="54">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnAmenityTapped" CommandParameter="Sauna" />
+                                </Frame.GestureRecognizers>
+                                <Label
+                Text="ساونا"
+                FontSize="20"
+                TextColor="#6200EE"
+                VerticalOptions="Center"
+                HorizontalOptions="Center" />
+                            </Frame>
+
+                            <!-- Slippers -->
+                            <Frame
+x:Name="AmenitySlippers"
+Padding="0"
+HasShadow="False"
+CornerRadius="20"
+Margin="2"
+BackgroundColor="#6200EE"
+WidthRequest="80"
+HeightRequest="54">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnAmenityTapped" CommandParameter="Slippers" />
+                                </Frame.GestureRecognizers>
+                                <Label
+    Text="سلبير"
+    FontSize="20"
+    TextColor="White"
+    VerticalOptions="Center"
+    HorizontalOptions="Center" />
+                            </Frame>
+
+                            <!-- Shampoo -->
+                            <Frame
+            x:Name="AmenityShampoo"
+            Padding="0"
+            HasShadow="False"
+            CornerRadius="20"
+            BackgroundColor="Transparent"
+            BorderColor="#6200EE"
+            WidthRequest="80"
+            Margin="2"
+            HeightRequest="54">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnAmenityTapped" CommandParameter="Shampoo" />
+                                </Frame.GestureRecognizers>
+                                <Label
+                Text="شامبو"
+                FontSize="20"
+                TextColor="#6200EE"
+                VerticalOptions="Center"
+                HorizontalOptions="Center" />
+                            </Frame>
+
+                            <!-- Soap -->
+                            <Frame
+            x:Name="AmenitySoap"
+            Padding="0"
+            HasShadow="False"
+            CornerRadius="20"
+            BackgroundColor="Transparent"
+            BorderColor="#6200EE"
+            WidthRequest="80"
+            Margin="2"
+            HeightRequest="54">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnAmenityTapped" CommandParameter="Soap" />
+                                </Frame.GestureRecognizers>
+                                <Label
+                Text="صابون"
+                FontSize="20"
+                TextColor="#6200EE"
+                VerticalOptions="Center"
+                HorizontalOptions="Center" />
+                            </Frame>
+
+                            <!-- Towel -->
+                            <Frame
+            x:Name="AmenityTowel"
+            Padding="0"
+            HasShadow="False"
+            CornerRadius="20"
+            Margin="2"
+            BackgroundColor="Transparent"
+            BorderColor="#6200EE"
+            WidthRequest="80"
+            HeightRequest="54">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnAmenityTapped" CommandParameter="Towel" />
+                                </Frame.GestureRecognizers>
+                                <Label
+                Text="منايل"
+                FontSize="20"
+                TextColor="#6200EE"
+                VerticalOptions="Center"
+                HorizontalOptions="Center" />
                             </Frame>
                         </FlexLayout>
                     </VerticalStackLayout>
 
-                    <!-- STEP 7: Property Features -->
-                    <VerticalStackLayout x:Name="Step7" Spacing="16" IsVisible="False">
-                        <Label Text="مميزات العقار"
-                               FontSize="18" FontAttributes="Bold" />
-                        <Label Text="اختياري" FontSize="14" TextColor="Gray" />
-                        <Grid ColumnDefinitions="*,*,*" RowSpacing="10" ColumnSpacing="10">
-                            <Frame Grid.Row="0" Grid.Column="0" Padding="10" BackgroundColor="#F5F5F5" BorderColor="#E0E0E0" CornerRadius="12" HasShadow="False">
-                                <StackLayout Spacing="4" HorizontalOptions="Center">
-                                    <Label Text="🌳" FontSize="24" HorizontalOptions="Center" />
-                                    <Label Text="إطلالة على الحديقة" FontSize="14" HorizontalOptions="Center" />
-                                </StackLayout>
+
+
+
+<!-- STEP 6: Additional Amenities -->
+                    <VerticalStackLayout x:Name="Step6" Spacing="16" IsVisible="False">
+                        <Label Text="المرافق الإضافية" FontSize="18" FontAttributes="Bold" />
+                        <FlexLayout Wrap="Wrap" JustifyContent="Start" AlignItems="Center" Margin="0,0,0,20" >
+
+                            <!-- إضاءة إضافية -->
+                            <Frame Padding="0" HasShadow="False" CornerRadius="20" BackgroundColor="#6200EE" WidthRequest="140" HeightRequest="54" Margin="2">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnAmenityTapped" CommandParameter="ExtraLight" />
+                                </Frame.GestureRecognizers>
+                                <Label Text="إضاءة إضافية" FontSize="20" TextColor="White" VerticalOptions="Center" HorizontalOptions="Center" />
                             </Frame>
-                            <Frame Grid.Row="0" Grid.Column="1" Padding="10" BackgroundColor="#6200EE" CornerRadius="12" HasShadow="False">
-                                <StackLayout Spacing="4" HorizontalOptions="Center">
-                                    <Label Text="⛰️" FontSize="24" TextColor="White" HorizontalOptions="Center" />
-                                    <Label Text="إطلالة على الجبل" FontSize="14" TextColor="White" HorizontalOptions="Center" />
-                                </StackLayout>
+
+                            <!-- ألعاب أطفال -->
+                            <Frame Padding="0" HasShadow="False" CornerRadius="20" BackgroundColor="#6200EE" WidthRequest="140" HeightRequest="54" Margin="2">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnAmenityTapped" CommandParameter="KidsPlay" />
+                                </Frame.GestureRecognizers>
+                                <Label Text="ألعاب أطفال" FontSize="20" TextColor="White" VerticalOptions="Center" HorizontalOptions="Center" />
                             </Frame>
-                        </Grid>
+
+                            <!-- بروجكتر -->
+                            <Frame Padding="0" HasShadow="False" CornerRadius="20" BackgroundColor="Transparent" BorderColor="#6200EE" WidthRequest="100" HeightRequest="54" Margin="2">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnAmenityTapped" CommandParameter="Projector" />
+                                </Frame.GestureRecognizers>
+                                <Label Text="بروجكتر" FontSize="20" TextColor="#6200EE" VerticalOptions="Center" HorizontalOptions="Center" />
+                            </Frame>
+
+                            <!-- برميل مندي -->
+                            <Frame Padding="0" HasShadow="False" CornerRadius="20" BackgroundColor="Transparent" BorderColor="#6200EE" WidthRequest="140" HeightRequest="54" Margin="2">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnAmenityTapped" CommandParameter="PrimelMandi" />
+                                </Frame.GestureRecognizers>
+                                <Label Text="برميل مندي" FontSize="20" TextColor="#6200EE" VerticalOptions="Center" HorizontalOptions="Center" />
+                            </Frame>
+
+                            <!-- العاب رمليه -->
+                            <Frame Padding="0" HasShadow="False" CornerRadius="20" BackgroundColor="Transparent" BorderColor="#6200EE" WidthRequest="120" HeightRequest="54" Margin="2">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnAmenityTapped" CommandParameter="SandPlay" />
+                                </Frame.GestureRecognizers>
+                                <Label Text="العاب رمليه" FontSize="20" TextColor="#6200EE" VerticalOptions="Center" HorizontalOptions="Center" />
+                            </Frame>
+
+                            <!-- بلياردو -->
+                            <Frame Padding="0" HasShadow="False" CornerRadius="20" BackgroundColor="Transparent" BorderColor="#6200EE" WidthRequest="110" HeightRequest="54" Margin="2">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnAmenityTapped" CommandParameter="Billiards" />
+                                </Frame.GestureRecognizers>
+                                <Label Text="بلياردو" FontSize="20" TextColor="#6200EE" VerticalOptions="Center" HorizontalOptions="Center" />
+                            </Frame>
+
+                            <!-- بلكونة -->
+                            <Frame Padding="0" HasShadow="False" CornerRadius="20" BackgroundColor="Transparent" BorderColor="#6200EE" WidthRequest="110" HeightRequest="54" Margin="2">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnAmenityTapped" CommandParameter="Balcony" />
+                                </Frame.GestureRecognizers>
+                                <Label Text="بلكونة" FontSize="20" TextColor="#6200EE" VerticalOptions="Center" HorizontalOptions="Center" />
+                            </Frame>
+
+                            <!-- بلايستيشن -->
+                            <Frame Padding="0" HasShadow="False" CornerRadius="20" BackgroundColor="#6200EE" WidthRequest="140" HeightRequest="54" Margin="2">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnAmenityTapped" CommandParameter="Playstation" />
+                                </Frame.GestureRecognizers>
+                                <Label Text="بلايستيشن" FontSize="20" TextColor="White" VerticalOptions="Center" HorizontalOptions="Center" />
+                            </Frame>
+
+                            <!-- بيت شعر ملكي -->
+                            <Frame Padding="0" HasShadow="False" CornerRadius="20" BackgroundColor="Transparent" BorderColor="#6200EE" WidthRequest="140" HeightRequest="54" Margin="2">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnAmenityTapped" CommandParameter="RoyalTent" />
+                                </Frame.GestureRecognizers>
+                                <Label Text="بيت شعر ملكي" FontSize="20" TextColor="#6200EE" VerticalOptions="Center" HorizontalOptions="Center" />
+                            </Frame>
+
+                            <!-- بيت شعر -->
+                            <Frame Padding="0" HasShadow="False" CornerRadius="20" BackgroundColor="Transparent" BorderColor="#6200EE" WidthRequest="100" HeightRequest="54" Margin="2">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnAmenityTapped" CommandParameter="Tent" />
+                                </Frame.GestureRecognizers>
+                                <Label Text="بيت شعر" FontSize="20" TextColor="#6200EE" VerticalOptions="Center" HorizontalOptions="Center" />
+                            </Frame>
+
+                            <!-- جلسة عريش -->
+                            <Frame Padding="0" HasShadow="False" CornerRadius="20" BackgroundColor="Transparent" BorderColor="#6200EE" WidthRequest="110" HeightRequest="54" Margin="2">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnAmenityTapped" CommandParameter="Arish" />
+                                </Frame.GestureRecognizers>
+                                <Label Text="جلسة عريش" FontSize="20" TextColor="#6200EE" VerticalOptions="Center" HorizontalOptions="Center" />
+                            </Frame>
+
+                            <!-- تلفزيون -->
+                            <Frame Padding="0" HasShadow="False" CornerRadius="20" BackgroundColor="Transparent" BorderColor="#6200EE" WidthRequest="100" HeightRequest="54" Margin="2">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnAmenityTapped" CommandParameter="TV" />
+                                </Frame.GestureRecognizers>
+                                <Label Text="تلفزيون" FontSize="20" TextColor="#6200EE" VerticalOptions="Center" HorizontalOptions="Center" />
+                            </Frame>
+
+                            <!-- تزلج على الرمل -->
+                            <Frame Padding="0" HasShadow="False" CornerRadius="20" BackgroundColor="Transparent" BorderColor="#6200EE" WidthRequest="120" HeightRequest="54" Margin="2">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnAmenityTapped" CommandParameter="Sand" />
+                                </Frame.GestureRecognizers>
+                                <Label Text="تزلج على الرمل" FontSize="20" TextColor="#6200EE" VerticalOptions="Center" HorizontalOptions="Center" />
+                            </Frame>
+
+                            <!-- زحليقه -->
+                            <Frame Padding="0" HasShadow="False" CornerRadius="20" BackgroundColor="Transparent" BorderColor="#6200EE" WidthRequest="90" HeightRequest="54" Margin="2">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnAmenityTapped" CommandParameter="Barbecue" />
+                                </Frame.GestureRecognizers>
+                                <Label Text="زحليقه" FontSize="20" TextColor="#6200EE" VerticalOptions="Center" HorizontalOptions="Center" />
+                            </Frame>
+
+                            <!-- ركن شواء -->
+                            <Frame Padding="0" HasShadow="False" CornerRadius="20" BackgroundColor="Transparent" BorderColor="#6200EE" WidthRequest="100" HeightRequest="54" Margin="2">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnAmenityTapped" CommandParameter="Grill" />
+                                </Frame.GestureRecognizers>
+                                <Label Text="ركن شواء" FontSize="20" TextColor="#6200EE" VerticalOptions="Center" HorizontalOptions="Center" />
+                            </Frame>
+
+                            <!-- خيمه -->
+                            <Frame Padding="0" HasShadow="False" CornerRadius="20" BackgroundColor="Transparent" BorderColor="#6200EE" WidthRequest="90" HeightRequest="54" Margin="2">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnAmenityTapped" CommandParameter="Tent" />
+                                </Frame.GestureRecognizers>
+                                <Label Text="خيمه" FontSize="20" TextColor="#6200EE" VerticalOptions="Center" HorizontalOptions="Center" />
+                            </Frame>
+
+                            <!-- رذاذ -->
+                            <Frame Padding="0" HasShadow="False" CornerRadius="20" BackgroundColor="Transparent" BorderColor="#6200EE" WidthRequest="90" HeightRequest="54" Margin="2">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnAmenityTapped" CommandParameter="Riada" />
+                                </Frame.GestureRecognizers>
+                                <Label Text="رذاذ" FontSize="20" TextColor="#6200EE" VerticalOptions="Center" HorizontalOptions="Center" />
+                            </Frame>
+
+                            <!-- صالة طعام -->
+                            <Frame Padding="0" HasShadow="False" CornerRadius="20" BackgroundColor="Transparent" BorderColor="#6200EE" WidthRequest="110" HeightRequest="54" Margin="2">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnAmenityTapped" CommandParameter="Dining" />
+                                </Frame.GestureRecognizers>
+                                <Label Text="صالة طعام" FontSize="20" TextColor="#6200EE" VerticalOptions="Center" HorizontalOptions="Center" />
+                            </Frame>
+
+                            <!-- سماعات -->
+                            <Frame Padding="0" HasShadow="False" CornerRadius="20" BackgroundColor="#6200EE" WidthRequest="140" HeightRequest="54" Margin="2">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnAmenityTapped" CommandParameter="Speakers" />
+                                </Frame.GestureRecognizers>
+                                <Label Text="سماعات" FontSize="20" TextColor="White" VerticalOptions="Center" HorizontalOptions="Center" />
+                            </Frame>
+
+                            <!-- ستيج مضيئ -->
+                            <Frame Padding="0" HasShadow="False" CornerRadius="20" BackgroundColor="Transparent" BorderColor="#6200EE" WidthRequest="110" HeightRequest="54" Margin="2">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnAmenityTapped" CommandParameter="Lighting" />
+                                </Frame.GestureRecognizers>
+                                <Label Text="ستيج مضيئ" FontSize="20" TextColor="#6200EE" VerticalOptions="Center" HorizontalOptions="Center" />
+                            </Frame>
+
+                            <!-- غرفة تجهيز عروس -->
+                            <Frame Padding="0" HasShadow="False" CornerRadius="20" BackgroundColor="#6200EE" WidthRequest="140" HeightRequest="54" Margin="2">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnAmenityTapped" CommandParameter="BrideRoom" />
+                                </Frame.GestureRecognizers>
+                                <Label Text="غرفة تجهيز عروس" FontSize="20" TextColor="White" VerticalOptions="Center" HorizontalOptions="Center" />
+                            </Frame>
+
+                            <!-- طاولة تنس -->
+                            <Frame Padding="0" HasShadow="False" CornerRadius="20" BackgroundColor="Transparent" BorderColor="#6200EE" WidthRequest="140" HeightRequest="54" Margin="2">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnAmenityTapped" CommandParameter="Tennis" />
+                                </Frame.GestureRecognizers>
+                                <Label Text="طاولة تنس" FontSize="20" TextColor="#6200EE" VerticalOptions="Center" HorizontalOptions="Center" />
+                            </Frame>
+
+                            <!-- قسمين -->
+                            <Frame Padding="0" HasShadow="False" CornerRadius="20" BackgroundColor="Transparent" BorderColor="#6200EE" WidthRequest="90" HeightRequest="54" Margin="2">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnAmenityTapped" CommandParameter="TwoRooms" />
+                                </Frame.GestureRecognizers>
+                                <Label Text="قسمين" FontSize="20" TextColor="#6200EE" VerticalOptions="Center" HorizontalOptions="Center" />
+                            </Frame>
+
+                            <!-- غرفة سينما -->
+                            <Frame Padding="0" HasShadow="False" CornerRadius="20" BackgroundColor="Transparent" BorderColor="#6200EE" WidthRequest="140" HeightRequest="54" Margin="2">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnAmenityTapped" CommandParameter="CinemaRoom" />
+                                </Frame.GestureRecognizers>
+                                <Label Text="غرفة سينما" FontSize="20" TextColor="#6200EE" VerticalOptions="Center" HorizontalOptions="Center" />
+                            </Frame>
+
+                            <!-- غرفة سائقين -->
+                            <Frame Padding="0" HasShadow="False" CornerRadius="20" BackgroundColor="Transparent" BorderColor="#6200EE" WidthRequest="140" HeightRequest="54" Margin="2">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnAmenityTapped" CommandParameter="DriverRoom" />
+                                </Frame.GestureRecognizers>
+                                <Label Text="غرفة سائقين" FontSize="20" TextColor="#6200EE" VerticalOptions="Center" HorizontalOptions="Center" />
+                            </Frame>
+
+                            <!-- قسمين منفصلة -->
+                            <Frame Padding="0" HasShadow="False" CornerRadius="20" BackgroundColor="Transparent" BorderColor="#6200EE" WidthRequest="160" HeightRequest="54" Margin="2">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnAmenityTapped" CommandParameter="SeparateRooms" />
+                                </Frame.GestureRecognizers>
+                                <Label Text="قسمين منفصلة" FontSize="20" TextColor="#6200EE" VerticalOptions="Center" HorizontalOptions="Center" />
+                            </Frame>
+
+                            <!-- قسمين متصلة بينهم باب -->
+                            <Frame Padding="0" HasShadow="False" CornerRadius="20" BackgroundColor="#6200EE" WidthRequest="180" HeightRequest="54" Margin="2">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnAmenityTapped" CommandParameter="ConnectedRooms" />
+                                </Frame.GestureRecognizers>
+                                <Label Text="قسمين متصلة بينهم باب" FontSize="20" TextColor="White" VerticalOptions="Center" HorizontalOptions="Center" />
+                            </Frame>
+
+                            <!-- كرسي مساج -->
+                            <Frame Padding="0" HasShadow="False" CornerRadius="20" BackgroundColor="#6200EE" WidthRequest="120" HeightRequest="54" Margin="2">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnAmenityTapped" CommandParameter="MassageChair" />
+                                </Frame.GestureRecognizers>
+                                <Label Text="كرسي مساج" FontSize="20" TextColor="White" VerticalOptions="Center" HorizontalOptions="Center" />
+                            </Frame>
+
+                            <!-- مسبح عام للنساء -->
+                            <Frame Padding="0" HasShadow="False" CornerRadius="20" BackgroundColor="Transparent" BorderColor="#6200EE" WidthRequest="160" HeightRequest="54" Margin="2">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnAmenityTapped" CommandParameter="WomenPool" />
+                                </Frame.GestureRecognizers>
+                                <Label Text="مسبح عام للنساء" FontSize="20" TextColor="#6200EE" VerticalOptions="Center" HorizontalOptions="Center" />
+                            </Frame>
+
+                            <!-- مسبح عام مشترك -->
+                            <Frame Padding="0" HasShadow="False" CornerRadius="20" BackgroundColor="Transparent" BorderColor="#6200EE" WidthRequest="160" HeightRequest="54" Margin="2">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnAmenityTapped" CommandParameter="SharedPool" />
+                                </Frame.GestureRecognizers>
+                                <Label Text="مسبح عام مشترك" FontSize="20" TextColor="#6200EE" VerticalOptions="Center" HorizontalOptions="Center" />
+                            </Frame>
+
+                            <!-- مسطح اخضر -->
+                            <Frame Padding="0" HasShadow="False" CornerRadius="20" BackgroundColor="Transparent" BorderColor="#6200EE" WidthRequest="140" HeightRequest="54" Margin="2">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnAmenityTapped" CommandParameter="GreenArea" />
+                                </Frame.GestureRecognizers>
+                                <Label Text="مسطح اخضر" FontSize="20" TextColor="#6200EE" VerticalOptions="Center" HorizontalOptions="Center" />
+                            </Frame>
+
+                            <!-- ملحق خارجي -->
+                            <Frame Padding="0" HasShadow="False" CornerRadius="20" BackgroundColor="Transparent" BorderColor="#6200EE" WidthRequest="140" HeightRequest="54" Margin="2">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnAmenityTapped" CommandParameter="ExternalAnnex" />
+                                </Frame.GestureRecognizers>
+                                <Label Text="ملحق خارجي" FontSize="20" TextColor="#6200EE" VerticalOptions="Center" HorizontalOptions="Center" />
+                            </Frame>
+
+                            <!-- ملعب كرة سله -->
+                            <Frame Padding="0" HasShadow="False" CornerRadius="20" BackgroundColor="Transparent" BorderColor="#6200EE" WidthRequest="140" HeightRequest="54" Margin="2">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnAmenityTapped" CommandParameter="BasketballCourt" />
+                                </Frame.GestureRecognizers>
+                                <Label Text="ملعب كرة سله" FontSize="20" TextColor="#6200EE" VerticalOptions="Center" HorizontalOptions="Center" />
+                            </Frame>
+                            <!-- ملعب كرة طائرة -->
+                            <Frame Padding="0" HasShadow="False" CornerRadius="20" BackgroundColor="Transparent" BorderColor="#6200EE" WidthRequest="140" HeightRequest="54" Margin="2">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnAmenityTapped" CommandParameter="VolleyballCourt" />
+                                </Frame.GestureRecognizers>
+                                <Label Text="ملعب كرة طائرة" FontSize="20" TextColor="#6200EE" VerticalOptions="Center" HorizontalOptions="Center" />
+                            </Frame>
+
+                            <!-- ملعب كرة قدم -->
+                            <Frame Padding="0" HasShadow="False" CornerRadius="20" BackgroundColor="Transparent" BorderColor="#6200EE" WidthRequest="140" HeightRequest="54" Margin="2">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnAmenityTapped" CommandParameter="FootballCourt" />
+                                </Frame.GestureRecognizers>
+                                <Label Text="ملعب كرة قدم" FontSize="20" TextColor="#6200EE" VerticalOptions="Center" HorizontalOptions="Center" />
+                            </Frame>
+
+                            <!-- موقد حطب -->
+                            <Frame Padding="0" HasShadow="False" CornerRadius="20" BackgroundColor="Transparent" BorderColor="#6200EE" WidthRequest="120" HeightRequest="54" Margin="2">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnAmenityTapped" CommandParameter="WoodFireplace" />
+                                </Frame.GestureRecognizers>
+                                <Label Text="موقد حطب" FontSize="20" TextColor="#6200EE" VerticalOptions="Center" HorizontalOptions="Center" />
+                            </Frame>
+
+                            <!-- نطيطه -->
+                            <Frame Padding="0" HasShadow="False" CornerRadius="20" BackgroundColor="Transparent" BorderColor="#6200EE" WidthRequest="120" HeightRequest="54" Margin="2">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnAmenityTapped" CommandParameter="Trampoline" />
+                                </Frame.GestureRecognizers>
+                                <Label Text="نطيطه" FontSize="20" TextColor="#6200EE" VerticalOptions="Center" HorizontalOptions="Center" />
+                            </Frame>
+
+                        </FlexLayout>
                     </VerticalStackLayout>
 
+
+                    <!-- STEP 7: Property Features -->
+                    <VerticalStackLayout
+    x:Name="Step7"
+    Spacing="16"
+    Padding="20,0"
+    IsVisible="False"
+    FlowDirection="RightToLeft">
+                        <FlexLayout
+        Wrap="Wrap"
+        JustifyContent="Start"
+        AlignItems="Center"
+        Margin="0,0,0,20"
+        >
+
+                            <!-- Feature 1: Garden View -->
+                            <Frame
+            Padding="10"
+            HasShadow="False"
+            CornerRadius="12"
+            BackgroundColor="#F5F5F5"
+            WidthRequest="130"
+            HeightRequest="130"
+            Margin="5">
+                                <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="8">
+                                    <Label Text="🌳" FontSize="40" HorizontalOptions="Center" />
+                                    <Label Text="إطلالة على الحديقة" FontSize="16" TextColor="Black" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
+                                </VerticalStackLayout>
+                            </Frame>
+
+                            <!-- Feature 2: Mountain View -->
+                            <Frame
+            Padding="10"
+            HasShadow="False"
+            CornerRadius="12"
+            BackgroundColor="#6200EE"
+            WidthRequest="130"
+            HeightRequest="130"
+            Margin="5">
+                                <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="8">
+                                    <Label Text="⛰️" FontSize="40" TextColor="White" HorizontalOptions="Center" />
+                                    <Label Text="إطلالة على الجبل" FontSize="16" TextColor="White" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
+                                </VerticalStackLayout>
+                            </Frame>
+
+                            <!-- Feature 3: Elevator -->
+                            <Frame
+            Padding="10"
+            HasShadow="False"
+            CornerRadius="12"
+            BackgroundColor="#6200EE"
+            WidthRequest="130"
+            HeightRequest="130"
+            Margin="5">
+                                <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="8">
+                                    <Label Text="🛗" FontSize="40" TextColor="White" HorizontalOptions="Center" />
+                                    <Label Text="اصنصير - مصاعد" FontSize="16" TextColor="White" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
+                                </VerticalStackLayout>
+                            </Frame>
+
+                            <!-- Feature 4: Internet -->
+                            <Frame
+            Padding="10"
+            HasShadow="False"
+            CornerRadius="12"
+            BackgroundColor="#6200EE"
+            WidthRequest="130"
+            HeightRequest="130"
+            Margin="5">
+                                <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="8">
+                                    <Label Text="📶" FontSize="40" TextColor="White" HorizontalOptions="Center" />
+                                    <Label Text="انترنت" FontSize="16" TextColor="White" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
+                                </VerticalStackLayout>
+                            </Frame>
+
+                            <!-- Feature 5: Self Check-In -->
+                            <Frame
+            Padding="10"
+            HasShadow="False"
+            CornerRadius="12"
+            BackgroundColor="#F5F5F5"
+            WidthRequest="130"
+            HeightRequest="130"
+            Margin="5">
+                                <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="8">
+                                    <Label Text="🔑" FontSize="40" TextColor="Black" HorizontalOptions="Center" />
+                                    <Label Text="دخول ذاتي" FontSize="16" TextColor="Black" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
+                                </VerticalStackLayout>
+                            </Frame>
+
+                            <!-- Feature 6: Private Beach -->
+                            <Frame
+            Padding="10"
+            HasShadow="False"
+            CornerRadius="12"
+            BackgroundColor="#F5F5F5"
+            WidthRequest="130"
+            HeightRequest="130"
+            Margin="5">
+                                <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="8">
+                                    <Label Text="🏖️" FontSize="40" TextColor="Black" HorizontalOptions="Center" />
+                                    <Label Text="شاطئ خاص" FontSize="16" TextColor="Black" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
+                                </VerticalStackLayout>
+                            </Frame>
+
+                            <!-- Feature 7: Sea View -->
+                            <Frame
+            Padding="10"
+            HasShadow="False"
+            CornerRadius="12"
+            BackgroundColor="#6200EE"
+            WidthRequest="130"
+            HeightRequest="130"
+            Margin="5">
+                                <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="8">
+                                    <Label Text="🌊" FontSize="40" TextColor="White" HorizontalOptions="Center" />
+                                    <Label Text="اطلاله على البحر" FontSize="16" TextColor="White" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
+                                </VerticalStackLayout>
+                            </Frame>
+
+                            <!-- Feature 8: Car Entrance -->
+                            <Frame
+            Padding="10"
+            HasShadow="False"
+            CornerRadius="12"
+            BackgroundColor="#6200EE"
+            WidthRequest="130"
+            HeightRequest="130"
+            Margin="5">
+                                <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="8">
+                                    <Label Text="🚗" FontSize="40" TextColor="White" HorizontalOptions="Center" />
+                                    <Label Text="مدخل سيارة" FontSize="16" TextColor="White" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
+                                </VerticalStackLayout>
+                            </Frame>
+
+                            <!-- Feature 9: Mountain Waterfall -->
+                            <Frame
+            Padding="10"
+            HasShadow="False"
+            CornerRadius="12"
+            BackgroundColor="#6200EE"
+            WidthRequest="130"
+            HeightRequest="130"
+            Margin="5">
+                                <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="8">
+                                    <Label Text="🏞️" FontSize="40" TextColor="White" HorizontalOptions="Center" />
+                                    <Label Text="شلال على الجبل" FontSize="16" TextColor="White" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
+                                </VerticalStackLayout>
+                            </Frame>
+
+                            <!-- Feature 10: Security Office -->
+                            <Frame
+            Padding="10"
+            HasShadow="False"
+            CornerRadius="12"
+            BackgroundColor="#F5F5F5"
+            WidthRequest="130"
+            HeightRequest="130"
+            Margin="5">
+                                <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="8">
+                                    <Label Text="🛡️" FontSize="40" TextColor="Black" HorizontalOptions="Center" />
+                                    <Label Text="مكتب امن" FontSize="16" TextColor="Black" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
+                                </VerticalStackLayout>
+                            </Frame>
+
+                        </FlexLayout>
+                    </VerticalStackLayout>
+
+
                     <!-- STEP 8: Description -->
-                    <VerticalStackLayout x:Name="Step8" Spacing="16" IsVisible="False">
-                        <Label Text="وصف العقار"
-                               FontSize="18" FontAttributes="Bold" />
+                    <VerticalStackLayout x:Name="Step8" Spacing="8" Padding="20,0" IsVisible="False" FlowDirection="RightToLeft">
                         <Label Text="أضف وصف مميز لعقارك وايش يتوقع الضيف أن يجد فيه"
-                               FontSize="14" TextColor="Gray" />
-                        <Frame BackgroundColor="#F5F5F5" BorderColor="#E0E0E0" CornerRadius="12" HasShadow="False" HeightRequest="200">
+           FontSize="16"
+           TextColor="Gray"
+           LineBreakMode="WordWrap" />
+
+                        <Label Text="73% من المضيفين المميزين (الذين لديهم حجوزات ومبيعات عالية) يكتبوا وصف مميز وواضح"
+           FontSize="16"
+           TextColor="Gray"
+           LineBreakMode="WordWrap" 
+           Padding="0,0,0,20"/>
+
+                        <Label Text="أكتب وصف مميز لعقارك"
+           FontSize="18"
+           TextColor="Black"
+           FontAttributes="Bold" />
+
+                        <Frame BackgroundColor="#F5F5F5"
+           BorderColor="#E0E0E0"
+           CornerRadius="12"
+           HasShadow="False"
+           HeightRequest="180"
+           Padding="8">
+
                             <Editor x:Name="PropertyDescription"
-                                    Text="أفضل فندق في العالم"
-                                    FontSize="16"
-                                    Margin="10" />
+                Text="أفضل فندق في العالم"
+                TextColor="Black"
+                FontSize="16"
+                AutoSize="TextChanges"
+                Keyboard="Text"
+                VerticalOptions="FillAndExpand" />
                         </Frame>
                     </VerticalStackLayout>
 
@@ -281,13 +1400,13 @@
                 </Grid.RowDefinitions>
 
                 <!-- Progress Bar aligned with the stroke -->
-                <Grid Grid.Row="0" HorizontalOptions="Center" Margin="0,-12,0,0">
+                <Grid Grid.Row="0" HorizontalOptions="Start" Margin="0,-12,0,0">
                     <BoxView
                         x:Name="ProgressStrokeFill"
                         HeightRequest="8"
-                        WidthRequest="57.5"
+                        WidthRequest="57.5" 
                         BackgroundColor="#6200EE"
-                        CornerRadius="4"
+                        CornerRadius="1"
                         HorizontalOptions="Start" />
                 </Grid>
 
