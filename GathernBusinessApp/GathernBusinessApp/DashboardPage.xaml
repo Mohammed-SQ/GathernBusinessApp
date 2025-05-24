@@ -7,9 +7,9 @@
              FlowDirection="RightToLeft"
              Title="لوحة المعلومات">
 
-    <Grid RowDefinitions="Auto, *" ColumnDefinitions="*">
-        <!-- Header -->
-        <Grid BackgroundColor="#6200EE" Padding="20" Row="0" Column="0">
+    <Grid RowDefinitions="Auto, *, Auto" Padding="0">
+        <!-- Top bar -->
+        <Grid BackgroundColor="#6200EE" Padding="10" Row="0" HeightRequest="56">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
@@ -17,167 +17,207 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
-            <!-- Bell Icon -->
-            <Image Source="bell_icon.png" HeightRequest="24" WidthRequest="24" VerticalOptions="Center" HorizontalOptions="Start" />
-            <!-- Title -->
-            <Label Text="لوحة المعلومات" FontSize="20" FontAttributes="Bold" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="1" />
-            <!-- Chat Icon -->
-            <Image Source="chat_icon.png" HeightRequest="24" WidthRequest="24" VerticalOptions="Center" HorizontalOptions="End" Grid.Column="2" />
+            <Label Text="لوحة المعلومات" 
+                   FontSize="20" FontAttributes="Bold" 
+                   VerticalOptions="Center" HorizontalOptions="Center" 
+                   Margin="100,0,0,0"
+                   TextColor="White" Grid.Column="1" />
+
             <!-- Support Icon -->
-            <Image Source="headset_icon.png" HeightRequest="24" WidthRequest="24" VerticalOptions="Center" HorizontalOptions="End" Grid.Column="3" />
+            <ImageButton Grid.Column="0" Source="support_icon.png"
+                         BackgroundColor="Transparent" 
+                         WidthRequest="60" HeightRequest="60"
+                         Margin="0,-10"
+                         Clicked="OnSupportClicked" />
+
+            <!-- Chat Icon -->
+            <ImageButton Grid.Column="2" Source="chat_icon.png"
+                         BackgroundColor="Transparent" 
+                         WidthRequest="0" HeightRequest="120"
+                         Margin="10,-10"
+                         Clicked="OnChatClicked" />
+
+            <!-- Notification Icon -->
+            <ImageButton Grid.Column="3" Source="notification_icon.png"
+                         BackgroundColor="Transparent" 
+                         WidthRequest="28" HeightRequest="28"
+                         Margin="10,-10"
+                         Clicked="OnNotificationClicked" />
         </Grid>
 
-        <!-- Main Scroll Content -->
-        <ScrollView Grid.Row="1" Grid.Column="0">
-            <StackLayout Padding="20" Spacing="25">
+        <!-- Main Content -->
+        <ScrollView Grid.Row="1" Padding="20,10">
+            <VerticalStackLayout Spacing="20">
 
-                <!-- عرض وحدتك Section -->
-                <Frame CornerRadius="15" HasShadow="True" BackgroundColor="White" Padding="15">
-                    <Grid ColumnDefinitions="*,Auto,Auto" RowDefinitions="Auto, Auto" ColumnSpacing="15">
-                        <StackLayout Grid.Column="0" Grid.RowSpan="2" VerticalOptions="Center">
-                            <Label Text="اعرض وحدتك" FontSize="18" FontAttributes="Bold" TextColor="#222" />
-                            <Label Text="لديك وحدة واحدة قيد النشر" FontSize="14" TextColor="#666" />
-                        </StackLayout>
-
-                        <!-- Unit type and image -->
-                        <StackLayout Grid.Column="1" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center" Spacing="2">
-                            <Label Text="فندق" FontSize="16" TextColor="#222" />
-                            <Label Text="فندق" FontSize="14" TextColor="#666" />
-                        </StackLayout>
-                        <Image Grid.Column="2" Grid.Row="0" Source="hotel_thumb.png" HeightRequest="60" WidthRequest="60" Aspect="AspectFill" />
-
-                        <!-- Button and Rating -->
-                        <Button Grid.Column="1" Grid.Row="1" Text="استكمال" BackgroundColor="Transparent" BorderColor="#6200EE" TextColor="#6200EE" CornerRadius="12" WidthRequest="90" />
-                        <StackLayout Grid.Column="2" Grid.Row="1" Orientation="Horizontal" HorizontalOptions="End" VerticalOptions="Center" Spacing="4">
-                            <Label Text="0/5" FontSize="16" FontAttributes="Bold" TextColor="#6200EE" />
-                            <ProgressBar Progress="0" HeightRequest="8" WidthRequest="120" BackgroundColor="#EEE" ProgressColor="#6200EE" />
-                        </StackLayout>
-                    </Grid>
+                <!-- Your top info card -->
+                <Frame BackgroundColor="White" CornerRadius="12" HasShadow="True" Padding="15">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Text="اعرض وحدتك" FontAttributes="Bold" FontSize="18" />
+                        <Label Text="لديك وحدة واحدة قيد النشر" TextColor="Gray" FontSize="14" />
+                        <Grid ColumnDefinitions="*,Auto" VerticalOptions="Center" Margin="0,10">
+                            <VerticalStackLayout>
+                                <Label Text="فندق" FontSize="20" FontAttributes="Bold" />
+                                <Label Text="فندق" FontSize="14" TextColor="Gray" />
+                            </VerticalStackLayout>
+                            <Image Source="property_sample.png" HeightRequest="60" WidthRequest="60" Aspect="AspectFill" />
+                        </Grid>
+                        <Button Text="استكمال" TextColor="#6200EE" BorderColor="#6200EE" BorderWidth="1" BackgroundColor="Transparent" CornerRadius="12" HorizontalOptions="Start" WidthRequest="100" />
+                        <Grid ColumnDefinitions="Auto, *" Margin="0,10">
+                            <Label Text="5/0" FontSize="14" TextColor="#6200EE" VerticalOptions="Center" />
+                            <ProgressBar Progress="0.5" HorizontalOptions="FillAndExpand" VerticalOptions="Center" />
+                        </Grid>
+                    </VerticalStackLayout>
                 </Frame>
 
-                <!-- تقرير أداء أسبوع -->
-                <Frame CornerRadius="15" HasShadow="True" BackgroundColor="White" Padding="15">
-                    <Grid>
-                        <Label Text="تقرير أداء أسبوع" FontSize="18" FontAttributes="Bold" TextColor="#222" />
-                        <Image Source="arrow_left_icon.png" HeightRequest="24" WidthRequest="24" HorizontalOptions="Start" VerticalOptions="Center" />
-                    </Grid>
+                <!-- Weekly report -->
+                <Frame BackgroundColor="White" CornerRadius="12" HasShadow="True" Padding="15">
+                    <HorizontalStackLayout Spacing="10" VerticalOptions="Center">
+                        <Image Source="back_arrow.png" HeightRequest="20" WidthRequest="20" />
+                        <Label Text="تقرير أداء أسبوع" FontSize="18" FontAttributes="Bold" />
+                    </HorizontalStackLayout>
                 </Frame>
 
-                <!-- نقاط وحداتك Section -->
-                <StackLayout>
-                    <Label Text="نقاط وحداتك" FontSize="20" FontAttributes="Bold" TextColor="#222" />
-                    <Label Text="تتحدث يومياً" FontSize="14" TextColor="#999" />
-                    <Label Text="سيتم إضافة النقاط تلقائياً خلال 24 ساعة من تاريخ عرض العقار"
-                           FontSize="14" TextColor="#999" HorizontalOptions="Center" Margin="0,5,0,0" />
-                </StackLayout>
+                <!-- Points info -->
+                <VerticalStackLayout>
+                    <Label Text="نقاط وحداتك" FontSize="20" FontAttributes="Bold" />
+                    <Label Text="تتحدث يومياً" FontSize="14" TextColor="Gray" />
+                    <Label Text="سيتم إضافة النقاط تلقائياً خلال 24 ساعة من تاريخ عرض العقار" FontSize="14" HorizontalTextAlignment="Center" Margin="0,10" />
+                </VerticalStackLayout>
 
-                <!-- Buttons: المعاملات المالية - الأسعار - ملخص الحسابات -->
-                <Grid ColumnSpacing="15" RowSpacing="10" ColumnDefinitions="*,*,*">
-                    <Frame CornerRadius="15" Padding="15" BackgroundColor="#fff" HasShadow="True" HeightRequest="100" WidthRequest="100" HorizontalOptions="Center" VerticalOptions="Center">
-                        <StackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="8">
-                            <Image Source="wallet_icon.png" HeightRequest="36" WidthRequest="36" />
-                            <Label Text="المعاملات المالية" FontSize="14" TextColor="#6200EE" HorizontalOptions="Center" />
-                        </StackLayout>
-                    </Frame>
-                    <Frame CornerRadius="15" Padding="15" BackgroundColor="#fff" HasShadow="True" HeightRequest="100" WidthRequest="100" HorizontalOptions="Center" VerticalOptions="Center">
-                        <StackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="8">
-                            <Image Source="prices_icon.png" HeightRequest="36" WidthRequest="36" />
-                            <Label Text="الأسعار" FontSize="14" TextColor="#6200EE" HorizontalOptions="Center" />
-                        </StackLayout>
-                    </Frame>
-                    <Frame CornerRadius="15" Padding="15" BackgroundColor="#fff" HasShadow="True" HeightRequest="100" WidthRequest="100" HorizontalOptions="Center" VerticalOptions="Center">
-                        <StackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="8">
-                            <Image Source="summary_icon.png" HeightRequest="36" WidthRequest="36" />
-                            <Label Text="ملخص الحسابات" FontSize="14" TextColor="#6200EE" HorizontalOptions="Center" />
-                        </StackLayout>
-                    </Frame>
+                <!-- Buttons row -->
+                <Grid ColumnDefinitions="*,*,*" RowSpacing="10" ColumnSpacing="10">
+                    <Button Text="المعاملات المالية" FontSize="16" TextColor="White" BackgroundColor="#6200EE" CornerRadius="12" HeightRequest="80" />
+                    <Button Text="الأسعار" FontSize="16" TextColor="White" BackgroundColor="#6200EE" CornerRadius="12" HeightRequest="80" />
+                    <Button Text="ملخص الحسابات" FontSize="16" TextColor="White" BackgroundColor="#6200EE" CornerRadius="12" HeightRequest="80" />
                 </Grid>
 
-                <!-- Booking Summary Section -->
-                <StackLayout Spacing="15">
-                    <Label Text="آخر الحجوزات" FontSize="18" FontAttributes="Bold" TextColor="#222" />
-                    <Label Text="لا يوجد لديك حجوزات جديدة" FontSize="14" TextColor="#999" HorizontalOptions="Center" />
-                </StackLayout>
+                <!-- Last bookings -->
+                <Frame BackgroundColor="White" CornerRadius="12" HasShadow="True" Padding="15">
+                    <VerticalStackLayout>
+                        <Label Text="آخر الحجوزات" FontSize="18" FontAttributes="Bold" />
+                        <Label Text="لا يوجد لديك حجوزات جديدة" FontSize="14" TextColor="Gray" />
+                    </VerticalStackLayout>
+                </Frame>
 
-                <StackLayout Spacing="15">
-                    <Label Text="الضيوف القادمين" FontSize="18" FontAttributes="Bold" TextColor="#222" />
-                    <Label Text="لا يوجد لديك ضيوف قادمين" FontSize="14" TextColor="#999" HorizontalOptions="Center" />
-                </StackLayout>
+                <!-- Upcoming guests -->
+                <Frame BackgroundColor="White" CornerRadius="12" HasShadow="True" Padding="15">
+                    <VerticalStackLayout>
+                        <Label Text="الضيوف القادمين" FontSize="18" FontAttributes="Bold" />
+                        <Label Text="لا يوجد لديك ضيوف قادمين" FontSize="14" TextColor="Gray" />
+                    </VerticalStackLayout>
+                </Frame>
 
-                <StackLayout Spacing="15">
-                    <Label Text="آخر الحوالات" FontSize="18" FontAttributes="Bold" TextColor="#222" />
-                    <Label Text="لا يوجد لديك حوالات الان" FontSize="14" TextColor="#999" HorizontalOptions="Center" />
-                </StackLayout>
+                <!-- Last transfers -->
+                <Frame BackgroundColor="White" CornerRadius="12" HasShadow="True" Padding="15">
+                    <VerticalStackLayout>
+                        <Label Text="آخر الحوالات" FontSize="18" FontAttributes="Bold" />
+                        <Label Text="لا يوجد لديك حوالات الان" FontSize="14" TextColor="Gray" />
+                    </VerticalStackLayout>
+                </Frame>
 
-                <!-- Sales Tabs -->
-                <StackLayout>
-                    <Label Text="المبيعات" FontSize="18" FontAttributes="Bold" TextColor="#222" Margin="0,0,0,10" />
-                    <Grid ColumnDefinitions="Auto,Auto,Auto" HorizontalOptions="Center" ColumnSpacing="30">
-                        <Label Text="يومي" FontSize="16" TextColor="#999" />
-                        <Label Text="اسبوعي" FontSize="16" TextColor="#999" />
+                <!-- Sales report -->
+                <VerticalStackLayout>
+                    <Label Text="المبيعات" FontSize="18" FontAttributes="Bold" />
+                    <HorizontalStackLayout HorizontalOptions="Center" Spacing="30" Margin="0,10">
+                        <Label Text="يومي" FontSize="16" TextColor="Gray" />
+                        <Label Text="اسبوعي" FontSize="16" TextColor="Gray" />
                         <Label Text="شهري" FontSize="16" TextColor="#6200EE" />
-                    </Grid>
-                    <!-- Placeholder for Sales chart or list -->
-                    <BoxView HeightRequest="160" BackgroundColor="#EEE" CornerRadius="15" Margin="0,10,0,0" />
-                </StackLayout>
+                    </HorizontalStackLayout>
+                    <BoxView HeightRequest="1" BackgroundColor="#E0E0E0" />
+                </VerticalStackLayout>
 
-                <!-- Filters -->
-                <Grid ColumnDefinitions="*,*" Margin="0,10">
-                    <Picker Title="الكل" />
-                    <Picker Title="جاذران" />
+                <!-- Financial info row -->
+                <Grid ColumnDefinitions="2*,3*" Margin="0,10" Padding="10" BackgroundColor="#F5F5F5" >
+                    <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                        <Label Text="0" FontSize="26" FontAttributes="Bold" />
+                        <Label Text="رصيد كشف الحساب" FontSize="14" TextColor="Gray" />
+                    </VerticalStackLayout>
+                    <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                        <Label Text="استلام المبالغ المالية" FontSize="18" TextColor="#8B7B7B" />
+                        <Image Source="info_icon.png" HeightRequest="18" WidthRequest="18" />
+                    </VerticalStackLayout>
                 </Grid>
 
-
-                <!-- Latest Ratings -->
-                <StackLayout Spacing="10">
-                    <Label Text="اخر التقييمات" FontSize="20" FontAttributes="Bold" TextColor="#222" />
-                    <Label Text="متوسط أجمالي التقييمات" FontSize="14" TextColor="#555" HorizontalOptions="Start" />
-                    <Grid ColumnDefinitions="*,*,*,*" ColumnSpacing="10">
-                        <Frame Padding="15" BackgroundColor="#F5F5F5" CornerRadius="10" HasShadow="False" >
-                            <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
-                                <Label Text="النظافة" FontSize="14" TextColor="#222" />
-                                <Label Text="0 / 10" FontSize="18" FontAttributes="Bold" TextColor="#00AA88" />
-                            </StackLayout>
+                <!-- Latest ratings -->
+                <VerticalStackLayout>
+                    <Label Text="اخر التقييمات" FontSize="18" FontAttributes="Bold" />
+                    <Grid ColumnDefinitions="*,*,*,*"
+                          RowDefinitions="Auto"
+                          Margin="0,10" >
+                        <Frame BackgroundColor="#F5F5F5" CornerRadius="12" Padding="10" HasShadow="False">
+                            <VerticalStackLayout HorizontalOptions="Center">
+                                <Label Text="10 / 0" TextColor="#21B573" FontSize="16" />
+                                <Label Text="النظافة" TextColor="#8B7B7B" FontSize="14" />
+                            </VerticalStackLayout>
                         </Frame>
-                        <Frame Padding="15" BackgroundColor="#F5F5F5" CornerRadius="10" HasShadow="False" >
-                            <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
-                                <Label Text="الحالة" FontSize="14" TextColor="#222" />
-                                <Label Text="0 / 10" FontSize="18" FontAttributes="Bold" TextColor="#00AA88" />
-                            </StackLayout>
+                        <Frame BackgroundColor="#F5F5F5" CornerRadius="12" Padding="10" HasShadow="False" Grid.Column="1">
+                            <VerticalStackLayout HorizontalOptions="Center">
+                                <Label Text="10 / 0" TextColor="#21B573" FontSize="16" />
+                                <Label Text="الحالة" TextColor="#8B7B7B" FontSize="14" />
+                            </VerticalStackLayout>
                         </Frame>
-                        <Frame Padding="15" BackgroundColor="#F5F5F5" CornerRadius="10" HasShadow="False" >
-                            <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
-                                <Label Text="الخدمة" FontSize="14" TextColor="#222" />
-                                <Label Text="0 / 10" FontSize="18" FontAttributes="Bold" TextColor="#00AA88" />
-                            </StackLayout>
+                        <Frame BackgroundColor="#F5F5F5" CornerRadius="12" Padding="10" HasShadow="False" Grid.Column="2">
+                            <VerticalStackLayout HorizontalOptions="Center">
+                                <Label Text="10 / 0" TextColor="#21B573" FontSize="16" />
+                                <Label Text="الخدمة" TextColor="#8B7B7B" FontSize="14" />
+                            </VerticalStackLayout>
                         </Frame>
-                        <Frame Padding="15" BackgroundColor="#F5F5F5" CornerRadius="10" HasShadow="False" >
-                            <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
-                                <Label Text="المعلومات" FontSize="14" TextColor="#222" />
-                                <Label Text="0 / 10" FontSize="18" FontAttributes="Bold" TextColor="#00AA88" />
-                            </StackLayout>
+                        <Frame BackgroundColor="#F5F5F5" CornerRadius="12" Padding="10" HasShadow="False" Grid.Column="3">
+                            <VerticalStackLayout HorizontalOptions="Center">
+                                <Label Text="10 / 0" TextColor="#21B573" FontSize="16" />
+                                <Label Text="المعلومات" TextColor="#8B7B7B" FontSize="14" />
+                            </VerticalStackLayout>
                         </Frame>
                     </Grid>
-                    <Label Text="لا يوجد لديك تقييمات" FontSize="16" TextColor="#999" HorizontalOptions="Center" Margin="0,10,0,0" />
-                </StackLayout>
+                    <Label Text="لا يوجد لديك تقييمات" FontSize="16" TextColor="Gray" HorizontalOptions="Center" Margin="0,15" />
+                </VerticalStackLayout>
 
-                <!-- Latest Reports -->
-                <StackLayout Spacing="10" Margin="0,20,0,0">
-                    <Label Text="آخر البلاغات" FontSize="20" FontAttributes="Bold" TextColor="#222" />
-                    <Label Text="لا يوجد لديك بلاغات" FontSize="16" TextColor="#999" HorizontalOptions="Center" />
-                </StackLayout>
+                <!-- Latest reports -->
+                <Frame BackgroundColor="White" CornerRadius="12" HasShadow="True" Padding="15">
+                    <VerticalStackLayout>
+                        <Label Text="آخر البلاغات" FontSize="18" FontAttributes="Bold" />
+                        <Label Text="لا يوجد لديك بلاغات" FontSize="14" TextColor="Gray" />
+                    </VerticalStackLayout>
+                </Frame>
 
-            </StackLayout>
+            </VerticalStackLayout>
         </ScrollView>
 
-        <!-- Bottom Navigation Bar -->
-        <Grid BackgroundColor="White" RowDefinitions="Auto" ColumnDefinitions="*,*,*,*,*"
-              VerticalOptions="End" HeightRequest="80" Padding="10">
-            <Button Text="المزيد" TextColor="#888" FontSize="14" />
-            <Button Text="العقار" TextColor="#888" FontSize="14" />
-            <Button Text="الرئيسية" TextColor="White" FontSize="14" BackgroundColor="#6200EE" />
-            <Button Text="الحجوزات" TextColor="#888" FontSize="14" />
-            <Button Text="التقويم" TextColor="#888" FontSize="14" />
+        <!-- Bottom navigation -->
+        <Grid BackgroundColor="White" Row="2" Padding="10" ColumnSpacing="0" HeightRequest="60">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <VerticalStackLayout Grid.Column="0" HorizontalOptions="Center" Spacing="2">
+                <ImageButton Source="calendar_icon.png" BackgroundColor="Transparent" WidthRequest="24" HeightRequest="24" Clicked="OnCalendarClicked" />
+                <Label Text="التقويم" FontSize="12" TextColor="#8B7B7B" />
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Grid.Column="1" HorizontalOptions="Center" Spacing="2">
+                <ImageButton Source="booking_icon.png" BackgroundColor="Transparent" WidthRequest="24" HeightRequest="24" Clicked="OnBookingClicked" />
+                <Label Text="الحجوزات" FontSize="12" TextColor="#8B7B7B" />
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Grid.Column="2" HorizontalOptions="Center" Spacing="2">
+                <ImageButton Source="home_icon_filled.png" BackgroundColor="Transparent" WidthRequest="24" HeightRequest="24" />
+                <Label Text="الرئيسية" FontSize="12" TextColor="#6200EE" FontAttributes="Bold" />
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Grid.Column="3" HorizontalOptions="Center" Spacing="2">
+                <ImageButton Source="property_icon.png" BackgroundColor="Transparent" WidthRequest="24" HeightRequest="24" Clicked="OnPropertyClicked" />
+                <Label Text="العقار" FontSize="12" TextColor="#8B7B7B" />
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Grid.Column="4" HorizontalOptions="Center" Spacing="2">
+                <ImageButton Source="more_icon.png" BackgroundColor="Transparent" WidthRequest="24" HeightRequest="24" Clicked="OnMoreClicked" />
+                <Label Text="المزيد" FontSize="12" TextColor="#8B7B7B" />
+            </VerticalStackLayout>
         </Grid>
+
     </Grid>
 </ContentPage>
