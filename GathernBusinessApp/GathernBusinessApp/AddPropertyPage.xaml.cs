@@ -13,7 +13,7 @@ namespace GathernBusinessApp
 
     public partial class AddPropertyPage : ContentPage
     {
-        const int TotalSteps = 8;
+        const int TotalSteps = 9;
 
         int _step = 1;
         int _bedrooms = 2;
@@ -124,9 +124,9 @@ namespace GathernBusinessApp
 
             if (_step == 3)
             {
-                if (string.IsNullOrWhiteSpace(PropertyAreaEntry.Text) || !int.TryParse(PropertyAreaEntry.Text, out _))
+                if (string.IsNullOrWhiteSpace(PropertyAreaEntry.Text) || !int.TryParse(PropertyAreaEntry.Text, out int area) || area < 200)
                 {
-                    DisplayAlert("خطأ", "يرجى إدخال مساحة صحيحة", "موافق");
+                    DisplayAlert("خطأ", "مساحة العقار يجب أن تكون 200 متر مربع على الأقل", "موافق");
                     return;
                 }
                 if (_selectedAmenities.Count == 0)
@@ -138,9 +138,19 @@ namespace GathernBusinessApp
 
             if (_step == 4)
             {
-                if (_bedrooms < 1 && _singleUnits < 1 && _masterUnits < 1)
+                if (_bedrooms < 1)
                 {
-                    DisplayAlert("خطأ", "يجب أن يكون هناك على الأقل وحدة سكنية واحدة", "موافق");
+                    DisplayAlert("خطأ", "يجب أن يكون عدد غرف النوم 1 على الأقل", "موافق");
+                    return;
+                }
+                if (_singleUnits < 1)
+                {
+                    DisplayAlert("خطأ", "يجب أن يكون عدد الأسرة المفردة 1 على الأقل", "موافق");
+                    return;
+                }
+                if (_masterUnits < 1)
+                {
+                    DisplayAlert("خطأ", "يجب أن يكون عدد الأسرة الرئيسية 1 على الأقل", "موافق");
                     return;
                 }
             }
@@ -150,6 +160,12 @@ namespace GathernBusinessApp
                 if (_bathroomCount < 1)
                 {
                     DisplayAlert("خطأ", "يجب أن يكون عدد دورات المياه واحد على الأقل", "موافق");
+                    return;
+                }
+                var bathroomAmenities = new[] { "بانيو / حوض استحمام", "جاكوزي", "دش", "شامبو", "صابون", "منايل", "رداء حمام", "ساونا", "سلبير" };
+                if (!_selectedAmenities.Intersect(bathroomAmenities).Any())
+                {
+                    DisplayAlert("خطأ", "يرجى اختيار على الأقل مرفق واحد لدورات المياه", "موافق");
                     return;
                 }
             }
@@ -236,8 +252,6 @@ namespace GathernBusinessApp
                 BathroomCountLabel.Text = _bathroomCount.ToString();
             }
         }
-
-
 
         private void OnAmenityTapped(object sender, EventArgs e)
         {
@@ -392,6 +406,7 @@ namespace GathernBusinessApp
             Step6.IsVisible = false;
             Step7.IsVisible = false;
             Step8.IsVisible = false;
+            Step9.IsVisible = false;
 
             switch (_step)
             {
@@ -426,6 +441,10 @@ namespace GathernBusinessApp
                 case 8:
                     Step8.IsVisible = true;
                     TitleLabel.Text = "وصف العقار";
+                    break;
+                case 9:
+                    Step9.IsVisible = true;
+                    TitleLabel.Text = "رفع الصور";
                     break;
             }
 

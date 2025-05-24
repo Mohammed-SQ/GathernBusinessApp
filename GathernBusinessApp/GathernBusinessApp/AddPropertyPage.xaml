@@ -1376,7 +1376,204 @@ HeightRequest="54">
                 VerticalOptions="FillAndExpand" />
                         </Frame>
                     </VerticalStackLayout>
+                    <!-- STEP 9: Photo Upload -->
+                    <VerticalStackLayout
+x:Name="Step9"
+Spacing="16"
+Padding="20,0"
+IsVisible="False"
+FlowDirection="RightToLeft">
 
+                        <Label
+    Text="10 صور"
+    FontSize="18"
+    FontAttributes="Bold"
+    TextColor="Black" />
+                        <Label
+    Text="على حسب خياراتك اثناء التسجيل، مطلوب منك رفع صورة واحدة كحد ادنى لكلاً من الآتي:"
+    FontSize="16"
+    TextColor="Gray" />
+
+                        <!-- Bedroom Photos -->
+                        <Grid
+    ColumnDefinitions="Auto,Auto"
+    ColumnSpacing="10">
+                            <Label
+        Grid.Column="0"
+        Text="عط 2 صورة غرف النوم (واحدة لكلاً منها)"
+        FontSize="16"
+        TextColor="Black" />
+                            <Frame
+        Grid.Column="1"
+        WidthRequest="100"
+        HeightRequest="100"
+        BackgroundColor="#E0E0E0"
+        CornerRadius="12"
+        HasShadow="False">
+                                <Label
+            Text="صورة 1"
+            FontSize="16"
+            VerticalOptions="Center"
+            HorizontalOptions="Center" />
+                            </Frame>
+                            <Frame
+        Grid.Column="1"
+        WidthRequest="100"
+        HeightRequest="100"
+        BackgroundColor="#E0E0E0"
+        CornerRadius="12"
+        HasShadow="False"
+        Margin="0,10,0,0">
+                                <Label
+            Text="صورة 2"
+            FontSize="16"
+            VerticalOptions="Center"
+            HorizontalOptions="Center" />
+                            </Frame>
+                        </Grid>
+
+                        <!-- Bathroom Photos -->
+                        <Grid
+    ColumnDefinitions="Auto,Auto"
+    ColumnSpacing="10">
+                            <Label
+        Grid.Column="0"
+        Text="س 2 صورة دورات المياة (واحدة لكلاً منها)"
+        FontSize="16"
+        TextColor="Black" />
+                            <Frame
+        Grid.Column="1"
+        WidthRequest="100"
+        HeightRequest="100"
+        BackgroundColor="#E0E0E0"
+        CornerRadius="12"
+        HasShadow="False">
+                                <Label
+            Text="صورة 1"
+            FontSize="16"
+            VerticalOptions="Center"
+            HorizontalOptions="Center" />
+                            </Frame>
+                            <Frame
+        Grid.Column="1"
+        WidthRequest="100"
+        HeightRequest="100"
+        BackgroundColor="#E0E0E0"
+        CornerRadius="12"
+        HasShadow="False"
+        Margin="0,10,0,0">
+                                <Label
+            Text="صورة 2"
+            FontSize="16"
+            VerticalOptions="Center"
+            HorizontalOptions="Center" />
+                            </Frame>
+                        </Grid>
+
+                        <!-- Building Photo -->
+                        <Grid
+    ColumnDefinitions="Auto,Auto"
+    ColumnSpacing="10">
+                            <Label
+        Grid.Column="0"
+        Text="1 صورة المبنى"
+        FontSize="16"
+        TextColor="Black" />
+                            <Frame
+        Grid.Column="1"
+        WidthRequest="100"
+        HeightRequest="100"
+        BackgroundColor="#E0E0E0"
+        CornerRadius="12"
+        HasShadow="False">
+                                <Label
+            Text="صورة"
+            FontSize="16"
+            VerticalOptions="Center"
+            HorizontalOptions="Center" />
+                            </Frame>
+                        </Grid>
+
+                        <!-- Facility Photos -->
+                        <Grid
+    ColumnDefinitions="Auto,Auto"
+    ColumnSpacing="10">
+                            <Label
+        Grid.Column="0"
+        Text="5 صور المرافق (ألعاب أطفال, إطلالة على البحر, دخول ذاتي, شلال على الجبل, إطلالة على الجبل)"
+        FontSize="16"
+        TextColor="Black" />
+                            <Frame
+        Grid.Column="1"
+        WidthRequest="100"
+        HeightRequest="100"
+        BackgroundColor="#E0E0E0"
+        CornerRadius="12"
+        HasShadow="False">
+                                <Label
+            Text="صورة 1"
+            FontSize="16"
+            VerticalOptions="Center"
+            HorizontalOptions="Center" />
+                            </Frame>
+                            <Frame
+        Grid.Column="1"
+        WidthRequest="100"
+        HeightRequest="100"
+        BackgroundColor="#E0E0E0"
+        CornerRadius="12"
+        HasShadow="False"
+        Margin="0,10,0,0">
+                                <Label
+            Text="صورة 2"
+            FontSize="16"
+            VerticalOptions="Center"
+            HorizontalOptions="Center" />
+                            </Frame>
+                            <Frame
+        Grid.Column="1"
+        WidthRequest="100"
+        HeightRequest="100"
+        BackgroundColor="#E0E0E0"
+        CornerRadius="12"
+        HasShadow="False"
+        Margin="0,20,0,0">
+                                <Label
+            Text="صورة 3"
+            FontSize="16"
+            VerticalOptions="Center"
+            HorizontalOptions="Center" />
+                            </Frame>
+                            <Frame
+        Grid.Column="1"
+        WidthRequest="100"
+        HeightRequest="100"
+        BackgroundColor="#E0E0E0"
+        CornerRadius="12"
+        HasShadow="False"
+        Margin="0,30,0,0">
+                                <Label
+            Text="صورة 4"
+            FontSize="16"
+            VerticalOptions="Center"
+            HorizontalOptions="Center" />
+                            </Frame>
+                            <Frame
+        Grid.Column="1"
+        WidthRequest="100"
+        HeightRequest="100"
+        BackgroundColor="#E0E0E0"
+        CornerRadius="12"
+        HasShadow="False"
+        Margin="0,40,0,0">
+                                <Label
+            Text="صورة 5"
+            FontSize="16"
+            VerticalOptions="Center"
+            HorizontalOptions="Center" />
+                            </Frame>
+                        </Grid>
+                    </VerticalStackLayout>
                 </VerticalStackLayout>
             </HorizontalStackLayout>
         </ScrollView>
