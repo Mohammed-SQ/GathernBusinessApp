@@ -1,61 +1,160 @@
-<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="GathernBusinessApp.BookingPage"
              BackgroundColor="White"
              FlowDirection="RightToLeft"
-             WidthRequest="500"
-             Title="الحجوزات">
+             Title="الحجوزات"
+             WidthRequest="500">
 
-    <Grid RowDefinitions="Auto, Auto, *, Auto">
-        <!-- Top bar -->
-        <Grid BackgroundColor="#6200EE" Padding="10" Row="0" HeightRequest="56">
+    <!-- 6 rows: Top bar, tabs, “search” label, search entry, filters, content+nav -->
+    <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,*,Auto" Padding="0">
+
+        <!-- Row 0: Top Bar -->
+        <Grid Grid.Row="0" BackgroundColor="#6200EE" HeightRequest="56" Padding="12">
             <Label Text="الحجوزات" 
-                   FontSize="20" FontAttributes="Bold" 
-                   VerticalOptions="Center" HorizontalOptions="Center" 
-                   TextColor="White" />
-        </Grid>
-        <!-- Tab-like navigation -->
-        <Grid Row="1" ColumnDefinitions="*, *" Padding="0,0,0,10">
-            <Label Text="آخر الحجوزات" FontSize="16" FontAttributes="Bold" TextColor="#6200EE" HorizontalOptions="Center" />
-            <Label Text="الضيوف القادمين" FontSize="16" TextColor="#8B7B7B" HorizontalOptions="Center" />
+                   FontSize="20" 
+                   FontAttributes="Bold" 
+                   TextColor="White"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Center"/>
         </Grid>
 
-        <!-- Search section -->
-        <Grid Row="2" Padding="0,0,0,10" ColumnDefinitions="Auto, *" VerticalOptions="Start">
-            <Image Source="info_icon.png" HeightRequest="24" WidthRequest="24" VerticalOptions="Center" />
-            <Label Text="البحث" FontSize="16" TextColor="#424242" VerticalOptions="Center" Margin="5,0,0,0" />
+        <!-- Row 1: Tabs -->
+        <Grid Grid.Row="1" ColumnDefinitions="*,*" Padding="0,12">
+            <Label x:Name="LblLastBookings"
+                   Text="آخر الحجوزات"
+                   FontSize="16"
+                   FontAttributes="Bold"
+                   TextColor="#6200EE"
+                   HorizontalOptions="End">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnLastBookingsTapped"/>
+                </Label.GestureRecognizers>
+            </Label>
+            <Label x:Name="LblUpcomingGuests"
+                   Text="الضيوف القادمين"
+                   FontSize="16"
+                   TextColor="#8B7B7B"
+                   HorizontalOptions="Start">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnUpcomingGuestsTapped"/>
+                </Label.GestureRecognizers>
+            </Label>
         </Grid>
 
-        <!-- Status indicators row -->
-        <HorizontalStackLayout Grid.Row="3" Spacing="10" HorizontalOptions="Center" Padding="0,10,0,10">
-            <StackLayout Orientation="Horizontal" Spacing="4" VerticalOptions="Center">
-                <BoxView Color="#2E7D32" WidthRequest="15" HeightRequest="15" CornerRadius="7.5" VerticalOptions="Center" />
-                <Label Text="مؤكد" FontSize="14" VerticalOptions="Center" />
-            </StackLayout>
-            <StackLayout Orientation="Horizontal" Spacing="4" VerticalOptions="Center">
-                <BoxView Color="#1976D2" WidthRequest="15" HeightRequest="15" CornerRadius="7.5" VerticalOptions="Center" />
-                <Label Text="جاري السداد" FontSize="14" VerticalOptions="Center" />
-            </StackLayout>
-            <StackLayout Orientation="Horizontal" Spacing="4" VerticalOptions="Center">
-                <BoxView Color="#FBC02D" WidthRequest="15" HeightRequest="15" CornerRadius="7.5" VerticalOptions="Center" />
-                <Label Text="منتهي" FontSize="14" VerticalOptions="Center" />
-            </StackLayout>
-            <StackLayout Orientation="Horizontal" Spacing="4" VerticalOptions="Center">
-                <BoxView Color="#D32F2F" WidthRequest="15" HeightRequest="15" CornerRadius="7.5" VerticalOptions="Center" />
-                <Label Text="ملغي" FontSize="14" VerticalOptions="Center" />
-            </StackLayout>
-            <StackLayout Orientation="Horizontal" Spacing="4" VerticalOptions="Center">
-                <BoxView Color="#424242" WidthRequest="15" HeightRequest="15" CornerRadius="7.5" VerticalOptions="Center" />
-                <Label Text="عدم حضور" FontSize="14" VerticalOptions="Center" />
-            </StackLayout>
+        <!-- Row 2: "البحث" label with info icon -->
+        <HorizontalStackLayout Grid.Row="2"
+                              Padding="20,0"
+                              Spacing="8" 
+                              VerticalOptions="Center">
+            <Image Source="info_icon.png" WidthRequest="20" HeightRequest="20" VerticalOptions="Center"/>
+            <Label Text="البحث" FontSize="16" TextColor="#424242" VerticalOptions="Center"/>
         </HorizontalStackLayout>
 
-        <!-- Empty results label -->
-        <Label Text="لا يوجد نتائج تطابق البحث" FontSize="16" TextColor="#9E9E9E" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
+        <!-- Row 3: Search entry + arrow -->
+        <Frame Grid.Row="3"
+               Margin="20,4"
+               Padding="8"
+               CornerRadius="12"
+               BackgroundColor="White"
+               HasShadow="True">
+            <Grid ColumnDefinitions="*,Auto" VerticalOptions="Center">
+                <Entry x:Name="SearchEntry"
+                       Placeholder="ابحث باسم العميل أو رقم الحجز"
+                       FontSize="14"
+                       TextColor="Black"
+                       VerticalOptions="Center"
+                       Margin="0"/>
+                <ImageButton Grid.Column="1"
+                            x:Name="BtnToggleSearch"
+                            Source="arrow_down_icon.png"
+                            BackgroundColor="Transparent"
+                            WidthRequest="24"
+                            HeightRequest="24"
+                            Clicked="OnToggleSearchClicked"/>
+            </Grid>
+        </Frame>
 
-        <!-- Bottom navigation -->
-        <Grid BackgroundColor="White" Row="4" Padding="10" ColumnSpacing="0" HeightRequest="60" VerticalOptions="End">
+        <!-- Row 4: Filter panel -->
+        <Frame Grid.Row="4"
+               x:Name="FilterPanel"
+               IsVisible="False"
+               Margin="20,0"
+               Padding="12"
+               CornerRadius="12"
+               BackgroundColor="White"
+               HasShadow="True">
+            <VerticalStackLayout Spacing="12">
+
+                <!-- حالة الحجز -->
+                <Label Text="حالة الحجز" FontSize="14" TextColor="#333"/>
+                <Picker x:Name="StatusPicker" Title="اختر الحالة">
+                    <Picker.Items>
+                        <x:String>مؤكد</x:String>
+                        <x:String>جاري السداد</x:String>
+                        <x:String>ملغي</x:String>
+                        <x:String>منتهي</x:String>
+                    </Picker.Items>
+                </Picker>
+
+                <!-- مصدر الحجز -->
+                <Label Text="مصدر الحجز" FontSize="14" TextColor="#333"/>
+                <Picker x:Name="SourcePicker" Title="اختر المصدر">
+                    <Picker.Items>
+                        <x:String>الاستقبال</x:String>
+                        <x:String>جاذر إن</x:String>
+                        <x:String>جاذر إن بلس</x:String>
+                    </Picker.Items>
+                </Picker>
+
+                <!-- Actions -->
+                <HorizontalStackLayout Spacing="12">
+                    <Button Text="مسح" CornerRadius="20" BackgroundColor="#FFFFFF" BorderColor="#6200EE" BorderWidth="1" TextColor="#6200EE" Clicked="OnClearClicked"/>
+                    <Button Text="عرض النتائج" CornerRadius="20" BackgroundColor="#03A9F4" TextColor="White" Clicked="OnShowResultsClicked"/>
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+        </Frame>
+
+        <!-- Row 5: Legend + empty state -->
+        <VerticalStackLayout Grid.Row="5" Spacing="24" Padding="0,20,0,0">
+            <!-- Legend -->
+            <HorizontalStackLayout Spacing="24" HorizontalOptions="Center">
+                <HorizontalStackLayout Spacing="4">
+                    <BoxView Color="#2E7D32" WidthRequest="12" HeightRequest="12" CornerRadius="6"/>
+                    <Label Text="مؤكد" TextColor="Black" FontSize="12"/>
+                </HorizontalStackLayout>
+                <HorizontalStackLayout Spacing="4">
+                    <BoxView Color="#1976D2" WidthRequest="12" HeightRequest="12" CornerRadius="6"/>
+                    <Label Text="جاري السداد" TextColor="Black" FontSize="12"/>
+                </HorizontalStackLayout>
+                <HorizontalStackLayout Spacing="4">
+                    <BoxView Color="#FBC02D" WidthRequest="12" HeightRequest="12" CornerRadius="6"/>
+                    <Label Text="منتهي" TextColor="Black" FontSize="12"/>
+                </HorizontalStackLayout>
+                <HorizontalStackLayout Spacing="4">
+                    <BoxView Color="#D32F2F" WidthRequest="12" HeightRequest="12" CornerRadius="6"/>
+                    <Label Text="ملغي" TextColor="Black" FontSize="12"/>
+                </HorizontalStackLayout>
+                <HorizontalStackLayout Spacing="4">
+                    <BoxView Color="#424242" WidthRequest="12" HeightRequest="12" CornerRadius="6"/>
+                    <Label Text="عدم حضور" TextColor="Black" FontSize="12"/>
+                </HorizontalStackLayout>
+            </HorizontalStackLayout>
+
+            <!-- No results -->
+            <Label Text="لا يوجد نتائج تطابق البحث"
+                   FontSize="16"
+                   TextColor="#9E9E9E"
+                   HorizontalOptions="Center"
+                   VerticalOptions="CenterAndExpand"/>
+        </VerticalStackLayout>
+
+        <!-- Row 6: Bottom Navigation -->
+        <Grid Grid.Row="6"
+              BackgroundColor="White"
+              Padding="10"
+              ColumnSpacing="0"
+              HeightRequest="83">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
@@ -64,31 +163,39 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
+            <!-- تقويم -->
             <VerticalStackLayout Grid.Column="0" HorizontalOptions="Center" Spacing="2">
-                <ImageButton Source="calendar_icon.png" BackgroundColor="Transparent" WidthRequest="24" HeightRequest="24" Clicked="OnCalendarClicked" />
-                <Label Text="التقويم" FontSize="12" TextColor="#8B7B7B" />
+                <ImageButton Source="calendar_icon.png"
+                            BackgroundColor="Transparent"
+                            WidthRequest="24"
+                            HeightRequest="24"
+                            Clicked="OnCalendarClicked"/>
+                <Label Text="التقويم" FontSize="12" TextColor="#8B7B7B" HorizontalOptions="Center"/>
             </VerticalStackLayout>
 
+            <!-- حجوزات -->
             <VerticalStackLayout Grid.Column="1" HorizontalOptions="Center" Spacing="2">
-                <ImageButton Source="booking_icon.png" BackgroundColor="Transparent" WidthRequest="24" HeightRequest="24" />
-                <Label Text="الحجوزات" FontSize="12" TextColor="#6200EE" FontAttributes="Bold" />
+                <ImageButton Source="booking_icon.png" BackgroundColor="#6200EE" CornerRadius="15" WidthRequest="24" HeightRequest="24"/>
+                <Label Text="الحجوزات" FontSize="12" TextColor="#6200EE" FontAttributes="Bold" HorizontalOptions="Center"/>
             </VerticalStackLayout>
 
+            <!-- الرئيسية -->
             <VerticalStackLayout Grid.Column="2" HorizontalOptions="Center" Spacing="2">
-                <ImageButton Source="home_icon.png" BackgroundColor="Transparent" WidthRequest="24" HeightRequest="24" Clicked="OnDashboardClicked" />
-                <Label Text="الرئيسية" FontSize="12" TextColor="#8B7B7B" />
+                <ImageButton Source="home_icon.png" BackgroundColor="Transparent" WidthRequest="24" HeightRequest="24" Clicked="OnDashboardClicked"/>
+                <Label Text="الرئيسية" FontSize="12" TextColor="#8B7B7B" HorizontalOptions="Center"/>
             </VerticalStackLayout>
 
+            <!-- العقار -->
             <VerticalStackLayout Grid.Column="3" HorizontalOptions="Center" Spacing="2">
-                <ImageButton Source="property_icon.png" BackgroundColor="Transparent" WidthRequest="24" HeightRequest="24" Clicked="OnPropertyClicked" />
-                <Label Text="العقار" FontSize="12" TextColor="#8B7B7B" />
+                <ImageButton Source="property_icon.png" BackgroundColor="Transparent" WidthRequest="24" HeightRequest="24" Clicked="OnPropertyClicked"/>
+                <Label Text="العقار" FontSize="12" TextColor="#8B7B7B" HorizontalOptions="Center"/>
             </VerticalStackLayout>
 
+            <!-- المزيد -->
             <VerticalStackLayout Grid.Column="4" HorizontalOptions="Center" Spacing="2">
-                <ImageButton Source="more_icon.png" BackgroundColor="Transparent" WidthRequest="24" HeightRequest="24" Clicked="OnMoreClicked" />
-                <Label Text="المزيد" FontSize="12" TextColor="#8B7B7B" />
+                <ImageButton Source="more_icon.png" BackgroundColor="Transparent" WidthRequest="24" HeightRequest="24" Clicked="OnMoreClicked"/>
+                <Label Text="المزيد" FontSize="12" TextColor="#8B7B7B" HorizontalOptions="Center"/>
             </VerticalStackLayout>
         </Grid>
-
     </Grid>
 </ContentPage>

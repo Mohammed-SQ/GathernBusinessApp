@@ -49,7 +49,7 @@
         </CollectionView>
 
         <!-- Bottom navigation -->
-        <Grid BackgroundColor="White" Row="2" Padding="10" ColumnSpacing="0" HeightRequest="60">
+        <Grid BackgroundColor="White" Row="2" Padding="10" ColumnSpacing="0" HeightRequest="83">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
@@ -60,27 +60,27 @@
 
             <VerticalStackLayout Grid.Column="0" HorizontalOptions="Center" Spacing="2">
                 <ImageButton Source="calendar_icon.png" BackgroundColor="Transparent" WidthRequest="24" HeightRequest="24" Clicked="OnCalendarClicked" />
-                <Label Text="التقويم" FontSize="12" TextColor="#8B7B7B" />
+                <Label Text="التقويم" FontSize="12" TextColor="#8B7B7B" HorizontalOptions="Center"/>
             </VerticalStackLayout>
 
             <VerticalStackLayout Grid.Column="1" HorizontalOptions="Center" Spacing="2">
                 <ImageButton Source="booking_icon.png" BackgroundColor="Transparent" WidthRequest="24" HeightRequest="24" Clicked="OnBookingClicked" />
-                <Label Text="الحجوزات" FontSize="12" TextColor="#8B7B7B" />
+                <Label Text="الحجوزات" FontSize="12" TextColor="#8B7B7B" HorizontalOptions="Center" />
             </VerticalStackLayout>
 
             <VerticalStackLayout Grid.Column="2" HorizontalOptions="Center" Spacing="2">
                 <ImageButton Source="home_icon.png" BackgroundColor="Transparent" WidthRequest="24" HeightRequest="24" Clicked="OnDashboardClicked" />
-                <Label Text="الرئيسية" FontSize="12" TextColor="#8B7B7B" />
+                <Label Text="الرئيسية" FontSize="12" TextColor="#8B7B7B" HorizontalOptions="Center"/>
             </VerticalStackLayout>
 
             <VerticalStackLayout Grid.Column="3" HorizontalOptions="Center" Spacing="2">
-                <ImageButton Source="property_icon.png" BackgroundColor="Transparent" WidthRequest="24" HeightRequest="24" />
-                <Label Text="العقار" FontSize="12" TextColor="#6200EE" FontAttributes="Bold" />
+                <ImageButton Source="property_icon.png" BackgroundColor="#6200EE" CornerRadius="15"  WidthRequest="24" HeightRequest="24" />
+                <Label Text="العقار" FontSize="12" TextColor="#6200EE" FontAttributes="Bold" HorizontalOptions="Center" />
             </VerticalStackLayout>
 
             <VerticalStackLayout Grid.Column="4" HorizontalOptions="Center" Spacing="2">
                 <ImageButton Source="more_icon.png" BackgroundColor="Transparent" WidthRequest="24" HeightRequest="24" Clicked="OnMoreClicked" />
-                <Label Text="المزيد" FontSize="12" TextColor="#8B7B7B" />
+                <Label Text="المزيد" FontSize="12" TextColor="#8B7B7B" HorizontalOptions="Center" />
             </VerticalStackLayout>
         </Grid>
     </Grid>
