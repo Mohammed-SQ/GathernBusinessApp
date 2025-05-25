@@ -4,6 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     BackgroundColor="White"
+    WidthRequest="500"
     FlowDirection="RightToLeft"
     Padding="20">
 
@@ -38,20 +39,21 @@
 أو إنشاء حساب جديد"
   FontSize="22"
   TextColor="Gray"
-  HorizontalTextAlignment="Center"
+  HorizontalTextAlignment="Start"
   HorizontalOptions="Start"
   Margin="0,0,0,20" />
 
 
             <!-- 3) Phone Entry Frame -->
             <Frame
-    CornerRadius="12"
+    CornerRadius="15"
     BorderColor="#E0E0E0"
     BackgroundColor="#F5F5F5"
     HasShadow="False"
-    WidthRequest="500"
+    WidthRequest="460"
+    HeightRequest="80"
     HorizontalOptions="Center">
-                <Grid ColumnDefinitions="*,Auto,Auto" Padding="10,0">
+                <Grid ColumnDefinitions="*,Auto,Auto">
 
                     <!-- a) The phone Entry on the left -->
                     <Entry
@@ -59,14 +61,14 @@
         Grid.Column="0"
         Placeholder="5XXXXXXXX"
         Keyboard="Telephone"
-        FontSize="18"
+        FontSize="20"
         TextColor="Black"
         BackgroundColor="Transparent"
         MaxLength="9"
         HorizontalTextAlignment="End"
+        VerticalTextAlignment="Start"   
         CursorPosition="0"
-        TextChanged="OnPhoneEntryTextChanged"
-        VerticalOptions="Center" />
+        TextChanged="OnPhoneEntryTextChanged"/>
 
                     <!-- b) Country code next -->
                     <Label
@@ -94,9 +96,9 @@
   x:Name="ContinueButton"
   Text="المتابعة"
   FontSize="20"
-  CornerRadius="12"
+  CornerRadius="15"
   HeightRequest="50"
-  WidthRequest="500"
+  WidthRequest="460"
   BackgroundColor="Gray"
   TextColor="White"
   IsEnabled="False"

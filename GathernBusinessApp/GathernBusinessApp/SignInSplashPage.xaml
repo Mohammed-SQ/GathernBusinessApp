@@ -3,6 +3,7 @@
     x:Class="GathernBusinessApp.SignInSplashPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    WidthRequest="500"
     BackgroundColor="White"
     Shell.NavBarIsVisible="False">
 
@@ -37,7 +38,6 @@
       TextColor="#6200EE"
       Opacity="0"
       TranslationX="300"
-                Margin="0,0,0,-40"
       AbsoluteLayout.LayoutBounds="0.5,0.6,AutoSize,AutoSize"
       AbsoluteLayout.LayoutFlags="PositionProportional"
       HorizontalOptions="Center" />

@@ -25,7 +25,7 @@ namespace GathernBusinessApp
                 CenterLetterHolder.Content = new Label
                 {
                     Text = c.ToString(),
-                    FontSize = 200,
+                    FontSize = 125,
                     FontAttributes = FontAttributes.Bold,
                     TextColor = c == 'n'
                                         ? Color.FromArgb("#FF9F1C")
@@ -48,7 +48,7 @@ namespace GathernBusinessApp
                 var lbl = new Label
                 {
                     Text = c.ToString(),
-                    FontSize = 200,
+                    FontSize = 125,
                     FontAttributes = FontAttributes.Bold,
                     TextColor = c == 'n'
                                         ? Color.FromArgb("#FF9F1C")

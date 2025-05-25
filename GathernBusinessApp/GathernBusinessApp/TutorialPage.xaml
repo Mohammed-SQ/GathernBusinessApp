@@ -4,6 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     Shell.NavBarIsVisible="False"
+    WidthRequest="500"
     BackgroundImageSource="purple_pattern.png">
 
     <!-- Outer Grid: main content + bottom row -->
@@ -95,12 +96,12 @@
         </Grid>
 
         <!-- Bottom Bar -->
-        <Grid Grid.Row="1" HeightRequest="140" WidthRequest="500" HorizontalOptions="Center">
+        <Grid Grid.Row="1" HeightRequest="120" WidthRequest="500" HorizontalOptions="Center" >
             <!-- White background -->
             <Frame
                 BackgroundColor="White"
                 CornerRadius="32"
-                Margin="0"
+                Margin="0,0,0,-30"
                 HasShadow="False"
                 HorizontalOptions="FillAndExpand"
                 VerticalOptions="FillAndExpand"/>
@@ -113,8 +114,9 @@
                 BackgroundColor="#6200EE"
                 TextColor="White"
                 CornerRadius="16"
+                FontAttributes="Bold"
                 HeightRequest="60"
-                WidthRequest="200"
+                WidthRequest="370"
                 HorizontalOptions="Center"
                 VerticalOptions="Center"/>
         </Grid>
