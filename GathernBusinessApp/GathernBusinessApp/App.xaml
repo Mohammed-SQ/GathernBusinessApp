@@ -7,12 +7,12 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary>
-                    <!-- Default style for Entry -->
                     <Style TargetType="Entry">
                         <Setter Property="TextColor" Value="Black" />
                     </Style>
-
-
+                    <Style TargetType="Label">
+                        <Setter Property="TextColor" Value="Black" />
+                    </Style>
                 </ResourceDictionary>
                 <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml" />

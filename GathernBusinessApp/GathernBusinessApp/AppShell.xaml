@@ -48,6 +48,26 @@
         ContentTemplate="{DataTemplate local:AddPropertyPage}" />
 
     <ShellContent
+        Title="BookingPage"
+        Route="BookingPage"
+        ContentTemplate="{DataTemplate local:BookingPage}" />
+    
+    <ShellContent
+        Title="CalendarPage"
+        Route="CalendarPage"
+        ContentTemplate="{DataTemplate local:CalendarPage}" />
+    
+    <ShellContent
+        Title="ExtraPage"
+        Route="ExtraPage"
+        ContentTemplate="{DataTemplate local:ExtraPage}" />
+    
+    <ShellContent
+        Title="PropertyPage"
+        Route="PropertyPage"
+        ContentTemplate="{DataTemplate local:PropertyPage}" />
+    
+    <ShellContent
         Title="Dashboard"
         Route="DashboardPage"
         ContentTemplate="{DataTemplate local:DashboardPage}" />

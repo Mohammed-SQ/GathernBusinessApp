@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GathernBusinessApp.ExtraPage"
+             BackgroundColor="White"
+             WidthRequest="500"
+             FlowDirection="RightToLeft"
+             Title="المزيد">
+
+    <Grid RowDefinitions="Auto, *, Auto" Padding="0">
+
+        <!-- Top bar -->
+        <Grid BackgroundColor="#6200EE" Padding="10" Row="0" HeightRequest="56">
+            <Label Text="المزيد" FontSize="20" FontAttributes="Bold" 
+                   VerticalOptions="Center" HorizontalOptions="Center" 
+                   TextColor="White" />
+        </Grid>
+
+        <!-- Main content -->
+        <ScrollView Grid.Row="1" Padding="20,10">
+
+            <VerticalStackLayout Spacing="30">
+
+                <!-- User Info Summary -->
+                <Frame BackgroundColor="#F5F5F5" CornerRadius="12" Padding="10" HasShadow="False">
+                    <Grid ColumnDefinitions="*,*,*"
+                          RowDefinitions="Auto">
+
+                        <!-- Units -->
+                        <VerticalStackLayout HorizontalOptions="Center" Spacing="2">
+                            <Label Text="1/0" FontSize="24" FontAttributes="Bold" HorizontalOptions="Center" />
+                            <Label Text="الوحدات" FontSize="14" HorizontalOptions="Center" />
+                        </VerticalStackLayout>
+
+                        <!-- Bookings -->
+                        <VerticalStackLayout HorizontalOptions="Center" Grid.Column="1" Spacing="2">
+                            <Label Text="0" FontSize="24" FontAttributes="Bold" HorizontalOptions="Center" />
+                            <Label Text="الحجوزات" FontSize="14" HorizontalOptions="Center" />
+                        </VerticalStackLayout>
+
+                        <!-- Sales -->
+                        <VerticalStackLayout HorizontalOptions="Center" Grid.Column="2" Spacing="2">
+                            <Label Text="0" FontSize="24" FontAttributes="Bold" HorizontalOptions="Center" />
+                            <Label Text="المبيعات" FontSize="14" HorizontalOptions="Center" />
+                        </VerticalStackLayout>
+                    </Grid>
+                </Frame>
+
+                <!-- Menu List -->
+                <CollectionView ItemsSource="{Binding MenuItems}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame BackgroundColor="White" CornerRadius="10" Padding="10" HasShadow="True" Margin="0,5">
+                                <Grid ColumnDefinitions="Auto, *, Auto" >
+                                    <Label Text="{Binding Title}" FontSize="16" VerticalOptions="Center" TextColor="#333" />
+                                    <Image Source="{Binding Icon}" WidthRequest="25" HeightRequest="25" Grid.Column="2" VerticalOptions="Center" />
+                                </Grid>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <!-- Footer Info -->
+                <VerticalStackLayout Padding="10" HorizontalOptions="Center" Spacing="5">
+                    <Label Text="تحديث | V8.0" TextColor="#6200EE" FontSize="14" />
+                    <Label Text="v 8.17.5 | ✔" TextColor="#333" FontSize="14" />
+                </VerticalStackLayout>
+
+            </VerticalStackLayout>
+
+        </ScrollView>
+
+        <!-- Bottom navigation -->
+        <Grid BackgroundColor="White" Row="2" Padding="10" ColumnSpacing="0" HeightRequest="60">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <VerticalStackLayout Grid.Column="0" HorizontalOptions="Center" Spacing="2">
+                <ImageButton Source="calendar_icon.png" BackgroundColor="Transparent" WidthRequest="24" HeightRequest="24" Clicked="OnCalendarClicked" />
+                <Label Text="التقويم" FontSize="12" TextColor="#8B7B7B" />
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Grid.Column="1" HorizontalOptions="Center" Spacing="2">
+                <ImageButton Source="booking_icon.png" BackgroundColor="Transparent" WidthRequest="24" HeightRequest="24" Clicked="OnBookingClicked" />
+                <Label Text="الحجوزات" FontSize="12" TextColor="#8B7B7B" />
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Grid.Column="2" HorizontalOptions="Center" Spacing="2">
+                <ImageButton Source="home_icon.png" BackgroundColor="Transparent" WidthRequest="24" HeightRequest="24" Clicked="OnDashboardClicked" />
+                <Label Text="الرئيسية" FontSize="12" TextColor="#8B7B7B" />
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Grid.Column="3" HorizontalOptions="Center" Spacing="2">
+                <ImageButton Source="property_icon.png" BackgroundColor="Transparent" WidthRequest="24" HeightRequest="24" Clicked="OnPropertyClicked" />
+                <Label Text="العقار" FontSize="12" TextColor="#8B7B7B" />
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Grid.Column="4" HorizontalOptions="Center" Spacing="2">
+                <ImageButton Source="more_icon.png" BackgroundColor="Transparent" WidthRequest="24" HeightRequest="24" />
+                <Label Text="المزيد" FontSize="12" TextColor="#6200EE" FontAttributes="Bold" />
+            </VerticalStackLayout>
+        </Grid>
+
+    </Grid>
+
+</ContentPage>

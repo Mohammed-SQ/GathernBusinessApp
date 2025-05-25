@@ -204,7 +204,7 @@
             </VerticalStackLayout>
 
             <VerticalStackLayout Grid.Column="2" HorizontalOptions="Center" Spacing="2">
-                <ImageButton Source="home_icon_filled.png" BackgroundColor="Transparent" WidthRequest="24" HeightRequest="24" />
+                <ImageButton Source="home_icon.png" BackgroundColor="Transparent" WidthRequest="24" HeightRequest="24" />
                 <Label Text="الرئيسية" FontSize="12" TextColor="#6200EE" FontAttributes="Bold" />
             </VerticalStackLayout>
 

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GathernBusinessApp.CalendarPage"
+             BackgroundColor="White"
+             WidthRequest="500"
+             FlowDirection="RightToLeft"
+             Title="التقويم">
+
+    <Grid RowDefinitions="*, Auto" Padding="0">
+
+        <!-- Main Content -->
+        <VerticalStackLayout Spacing="20" Grid.Row="0" Padding="0">
+            <!-- Top bar -->
+            <Grid BackgroundColor="#6200EE" Padding="10" Row="0" HeightRequest="56" >
+                <Label Text="التقويم" 
+                   FontSize="20" FontAttributes="Bold" 
+                   VerticalOptions="Center" HorizontalOptions="Center" 
+                   TextColor="White" />
+            </Grid>
+            <VerticalStackLayout Spacing="20" Grid.Row="0" Padding="20,10,20,0">
+
+                <Label Text="فندق" FontSize="18" TextColor="Black" FontAttributes="Bold" />
+
+            <!-- Calendar grid example -->
+            <Grid ColumnSpacing="6" RowSpacing="6">
+                <!-- 5 rows x 7 cols -->
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="30" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30" />
+                    <ColumnDefinition Width="30" />
+                    <ColumnDefinition Width="30" />
+                    <ColumnDefinition Width="30" />
+                    <ColumnDefinition Width="30" />
+                    <ColumnDefinition Width="30" />
+                    <ColumnDefinition Width="30" />
+                </Grid.ColumnDefinitions>
+
+                <!-- Fill calendar days as squares -->
+                <!-- Light gray squares -->
+                <BoxView Color="#E0E0E0" Grid.Row="0" Grid.Column="0" CornerRadius="6" />
+                <BoxView Color="#E0E0E0" Grid.Row="0" Grid.Column="1" CornerRadius="6" />
+                <BoxView Color="#E0E0E0" Grid.Row="0" Grid.Column="2" CornerRadius="6" />
+                <BoxView Color="#E0E0E0" Grid.Row="0" Grid.Column="3" CornerRadius="6" />
+                <BoxView Color="#E0E0E0" Grid.Row="0" Grid.Column="4" CornerRadius="6" />
+                <BoxView Color="#E0E0E0" Grid.Row="0" Grid.Column="5" CornerRadius="6" />
+                <BoxView Color="#E0E0E0" Grid.Row="0" Grid.Column="6" CornerRadius="6" />
+
+                <BoxView Color="#E0E0E0" Grid.Row="1" Grid.Column="0" CornerRadius="6" />
+                <BoxView Color="#E0E0E0" Grid.Row="1" Grid.Column="1" CornerRadius="6" />
+                <BoxView Color="#E0E0E0" Grid.Row="1" Grid.Column="2" CornerRadius="6" />
+                <BoxView Color="#E0E0E0" Grid.Row="1" Grid.Column="3" CornerRadius="6" />
+                <BoxView Color="#E0E0E0" Grid.Row="1" Grid.Column="4" CornerRadius="6" />
+                <BoxView Color="#E0E0E0" Grid.Row="1" Grid.Column="5" CornerRadius="6" />
+                <BoxView Color="#E0E0E0" Grid.Row="1" Grid.Column="6" CornerRadius="6" />
+
+                <BoxView Color="#E0E0E0" Grid.Row="2" Grid.Column="0" CornerRadius="6" />
+                <BoxView Color="#E0E0E0" Grid.Row="2" Grid.Column="1" CornerRadius="6" />
+                <BoxView Color="#E0E0E0" Grid.Row="2" Grid.Column="2" CornerRadius="6" />
+                <BoxView Color="#E0E0E0" Grid.Row="2" Grid.Column="3" CornerRadius="6" />
+                <BoxView Color="#E0E0E0" Grid.Row="2" Grid.Column="4" CornerRadius="6" />
+                <BoxView Color="#E0E0E0" Grid.Row="2" Grid.Column="5" CornerRadius="6" />
+                <BoxView Color="#E0E0E0" Grid.Row="2" Grid.Column="6" CornerRadius="6" />
+
+                <BoxView Color="#E0E0E0" Grid.Row="3" Grid.Column="0" CornerRadius="6" />
+                <BoxView Color="#E0E0E0" Grid.Row="3" Grid.Column="1" CornerRadius="6" />
+                <BoxView Color="#E0E0E0" Grid.Row="3" Grid.Column="2" CornerRadius="6" />
+                <BoxView Color="#E0E0E0" Grid.Row="3" Grid.Column="3" CornerRadius="6" />
+                <BoxView Color="#E0E0E0" Grid.Row="3" Grid.Column="4" CornerRadius="6" />
+                <BoxView Color="#E0E0E0" Grid.Row="3" Grid.Column="5" CornerRadius="6" />
+                <!-- Highlighted day -->
+                <BoxView Color="#6200EE" Grid.Row="3" Grid.Column="6" CornerRadius="6" />
+
+                <BoxView Color="#E0E0E0" Grid.Row="4" Grid.Column="0" CornerRadius="6" />
+                <BoxView Color="#E0E0E0" Grid.Row="4" Grid.Column="1" CornerRadius="6" />
+                <BoxView Color="#E0E0E0" Grid.Row="4" Grid.Column="2" CornerRadius="6" />
+                <BoxView Color="#E0E0E0" Grid.Row="4" Grid.Column="3" CornerRadius="6" />
+                <BoxView Color="#E0E0E0" Grid.Row="4" Grid.Column="4" CornerRadius="6" />
+                <BoxView Color="#E0E0E0" Grid.Row="4" Grid.Column="5" CornerRadius="6" />
+                <BoxView Color="#E0E0E0" Grid.Row="4" Grid.Column="6" CornerRadius="6" />
+            </Grid>
+
+            <Label Text="فندق" TextColor="#6200EE" FontAttributes="Bold" FontSize="16" HorizontalOptions="Start" Margin="0,10,0,0" />
+        </VerticalStackLayout>
+        </VerticalStackLayout>
+
+        <!-- Bottom navigation -->
+        <Grid BackgroundColor="White" Grid.Row="1" Padding="10" ColumnSpacing="0" HeightRequest="60">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <VerticalStackLayout Grid.Column="0" HorizontalOptions="Center" Spacing="2">
+                <ImageButton Source="calendar_icon.png" BackgroundColor="Transparent" WidthRequest="24" HeightRequest="24" />
+                <Label Text="التقويم" FontSize="12" TextColor="#6200EE" FontAttributes="Bold" />
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Grid.Column="1" HorizontalOptions="Center" Spacing="2">
+                <ImageButton Source="booking_icon.png" BackgroundColor="Transparent" WidthRequest="24" HeightRequest="24" Clicked="OnBookingClicked" />
+                <Label Text="الحجوزات" FontSize="12" TextColor="#8B7B7B" />
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Grid.Column="2" HorizontalOptions="Center" Spacing="2">
+                <ImageButton Source="home_icon.png" BackgroundColor="Transparent" WidthRequest="24" HeightRequest="24" Clicked="OnDashboardClicked" />
+                <Label Text="الرئيسية" FontSize="12" TextColor="#8B7B7B" />
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Grid.Column="3" HorizontalOptions="Center" Spacing="2">
+                <ImageButton Source="property_icon.png" BackgroundColor="Transparent" WidthRequest="24" HeightRequest="24" Clicked="OnPropertyClicked" />
+                <Label Text="العقار" FontSize="12" TextColor="#8B7B7B" />
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Grid.Column="4" HorizontalOptions="Center" Spacing="2">
+                <ImageButton Source="more_icon.png" BackgroundColor="Transparent" WidthRequest="24" HeightRequest="24" Clicked="OnMoreClicked" />
+                <Label Text="المزيد" FontSize="12" TextColor="#8B7B7B" />
+            </VerticalStackLayout>
+        </Grid>
+
+    </Grid>
+</ContentPage>
