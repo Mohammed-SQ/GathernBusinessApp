@@ -17,9 +17,13 @@ namespace GathernBusinessApp
         }
 
         // Navigate absolutely to AddPropertyPage
-        async void OnAddPropertyClicked(object sender, EventArgs e)
+        private async void OnAddPropertyClicked(object sender, EventArgs e)
         {
-            await Shell.Current.GoToAsync("//AddPropertyPage");
+            int userID = 1; // Replace with actual UserID retrieval (e.g., from authentication service or session)
+            await Shell.Current.GoToAsync("//AddPropertyPage", new Dictionary<string, object>
+    {
+        { "userID", userID }
+    });
         }
     }
 }

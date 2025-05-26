@@ -1,46 +1,99 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="GathernBusinessApp.PropertyPage"
-             BackgroundColor="White"
-             WidthRequest="500"
-             FlowDirection="RightToLeft"
-             Title="العقارات و الوحدات">
+<ContentPage 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="GathernBusinessApp.PropertyPage"
+    Title="العقارات و الوحدات"
+    BackgroundColor="White"
+    WidthRequest="500"
+    FlowDirection="RightToLeft">
 
     <Grid RowDefinitions="Auto, *, Auto" Padding="0">
 
         <!-- Top bar -->
         <Grid BackgroundColor="#6200EE" Padding="10" Row="0" HeightRequest="56">
-            <Label Text="العقارات و الوحدات" 
-                   FontSize="20" FontAttributes="Bold" 
-                   VerticalOptions="Center" HorizontalOptions="Center" 
-                   TextColor="White" />
+            <Label 
+        Text="العقارات و الوحدات" 
+        FontSize="20" FontAttributes="Bold" 
+        VerticalOptions="Center" HorizontalOptions="Center" 
+        TextColor="White" />
         </Grid>
 
         <!-- Property list -->
-        <CollectionView Grid.Row="1" ItemsSource="{Binding Properties}" Margin="10" SelectionMode="None">
+        <CollectionView 
+      Grid.Row="1"
+      ItemsSource="{Binding PropertyList}" 
+      Margin="10" 
+      SelectionMode="None">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Frame CornerRadius="10" Padding="15" Margin="0,0,0,10" BackgroundColor="White" HasShadow="True">
-                        <Grid ColumnDefinitions="Auto, *, Auto" RowDefinitions="Auto, Auto, Auto" >
+                    <Frame 
+            CornerRadius="10" Padding="15" 
+            Margin="0,0,0,10" 
+            BackgroundColor="White" 
+            HasShadow="True">
+                        <Grid ColumnDefinitions="Auto, *, Auto" 
+                  RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto">
 
                             <!-- Back arrow -->
-                            <Image Source="back_arrow.png" HeightRequest="25" WidthRequest="25" Grid.RowSpan="3" VerticalOptions="Center" />
+                            <Image 
+                Source="back_arrow.png" 
+                HeightRequest="25" WidthRequest="25" 
+                Grid.RowSpan="8" 
+                VerticalOptions="Center" />
 
-                            <!-- Property Title -->
-                            <Label Text="{Binding Title}" FontSize="20" FontAttributes="Bold" Grid.Column="1" Grid.Row="0" TextColor="#000" />
+                            <!-- Property Name -->
+                            <Label Text="اسم العقار:" FontAttributes="Bold" FontSize="16" Grid.Row="0" Grid.Column="1" TextColor="#000" />
+                            <Entry Text="{Binding [PropertyName]}" Grid.Row="1" Grid.Column="1" />
 
-                            <!-- Offline status -->
-                            <Label Text="غير معروض (اوف لاين)" FontSize="16" TextColor="#D32F2F" Grid.Column="1" Grid.Row="1" />
+                            <!-- Category -->
+                            <Label Text="التصنيف:" FontAttributes="Bold" FontSize="16" Grid.Row="2" Grid.Column="1" TextColor="#000" />
+                            <Picker SelectedItem="{Binding [Category]}" TextColor="Black" Grid.Row="3" Grid.Column="1">
+                                <Picker.ItemsSource>
+                                    <x:Array Type="{x:Type x:String}">
+                                        <x:String>استراحة</x:String>
+                                        <x:String>شاليه</x:String>
+                                        <x:String>شقة</x:String>
+                                        <x:String>فيلا</x:String>
+                                        <x:String>مخيم</x:String>
+                                        <x:String>استوديو</x:String>
+                                        <x:String>مزرعة</x:String>
+                                        <x:String>غرفة</x:String>
+                                        <x:String>منتجع فندقي</x:String>
+                                    </x:Array>
+                                </Picker.ItemsSource>
+                            </Picker>
 
-                            <!-- Location -->
-                            <Label Text="{Binding Location}" FontSize="14" TextColor="#666" Grid.Column="1" Grid.Row="2" />
+                            <!-- City -->
+                            <Label Text="المدينة:" FontAttributes="Bold" FontSize="16" Grid.Row="4" Grid.Column="1" TextColor="#000" />
+                            <Entry Text="{Binding [City]}" Grid.Row="5" Grid.Column="1" />
 
-                            <!-- Units -->
-                            <Label Text="{Binding UnitsText}" FontSize="14" TextColor="#666" Grid.Column="2" Grid.Row="2" HorizontalOptions="End" />
+                            <!-- Direction -->
+                            <Label Text="الاتجاه:" FontAttributes="Bold" FontSize="16" Grid.Row="6" Grid.Column="1" TextColor="#000" />
+                            <Entry Text="{Binding [Direction]}" Grid.Row="7" Grid.Column="1" />
 
-                            <!-- Image -->
-                            <Image Source="{Binding Image}" HeightRequest="80" WidthRequest="80" Grid.Column="2" Grid.Row="0" Grid.RowSpan="2" Aspect="AspectFill" HorizontalOptions="End" />
+                            <!-- Visibility -->
+                            <HorizontalStackLayout Grid.Row="0" Grid.Column="2" Spacing="4">
+                                <Label Text="الحالة:" FontSize="16" VerticalOptions="Center" TextColor="#000" />
+                                <Switch IsToggled="{Binding [IsVisible], Mode=TwoWay}" VerticalOptions="Center" />
+                            </HorizontalStackLayout>
+
+                            <!-- Save Button -->
+                            <Button
+                Text="حفظ"
+                Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.SavePropertyCommand}"
+                CommandParameter="{Binding .}"
+                Grid.Row="1" Grid.Column="2"
+                BackgroundColor="#6200EE"
+                TextColor="White"
+                CornerRadius="10" />
+
+                            <!-- Units Text -->
+                            <Label 
+                Text="{Binding [UnitsText]}" 
+                FontSize="14" TextColor="#666" 
+                Grid.Row="2" Grid.Column="2" 
+                HorizontalOptions="End" />
 
                         </Grid>
                     </Frame>
@@ -49,7 +102,7 @@
         </CollectionView>
 
         <!-- Bottom navigation -->
-        <Grid BackgroundColor="White" Row="2" Padding="10" ColumnSpacing="0" HeightRequest="83">
+        <Grid Grid.Row="2" BackgroundColor="White" Padding="10" HeightRequest="83" ColumnSpacing="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
@@ -60,7 +113,7 @@
 
             <VerticalStackLayout Grid.Column="0" HorizontalOptions="Center" Spacing="2">
                 <ImageButton Source="calendar_icon.png" BackgroundColor="Transparent" WidthRequest="24" HeightRequest="24" Clicked="OnCalendarClicked" />
-                <Label Text="التقويم" FontSize="12" TextColor="#8B7B7B" HorizontalOptions="Center"/>
+                <Label Text="التقويم" FontSize="12" TextColor="#8B7B7B" HorizontalOptions="Center" />
             </VerticalStackLayout>
 
             <VerticalStackLayout Grid.Column="1" HorizontalOptions="Center" Spacing="2">
@@ -70,11 +123,11 @@
 
             <VerticalStackLayout Grid.Column="2" HorizontalOptions="Center" Spacing="2">
                 <ImageButton Source="home_icon.png" BackgroundColor="Transparent" WidthRequest="24" HeightRequest="24" Clicked="OnDashboardClicked" />
-                <Label Text="الرئيسية" FontSize="12" TextColor="#8B7B7B" HorizontalOptions="Center"/>
+                <Label Text="الرئيسية" FontSize="12" TextColor="#8B7B7B" HorizontalOptions="Center" />
             </VerticalStackLayout>
 
             <VerticalStackLayout Grid.Column="3" HorizontalOptions="Center" Spacing="2">
-                <ImageButton Source="property_icon.png" BackgroundColor="#6200EE" CornerRadius="15"  WidthRequest="24" HeightRequest="24" />
+                <ImageButton Source="property_icon.png" BackgroundColor="#6200EE" CornerRadius="15" WidthRequest="24" HeightRequest="24" />
                 <Label Text="العقار" FontSize="12" TextColor="#6200EE" FontAttributes="Bold" HorizontalOptions="Center" />
             </VerticalStackLayout>
 
@@ -82,6 +135,7 @@
                 <ImageButton Source="more_icon.png" BackgroundColor="Transparent" WidthRequest="24" HeightRequest="24" Clicked="OnMoreClicked" />
                 <Label Text="المزيد" FontSize="12" TextColor="#8B7B7B" HorizontalOptions="Center" />
             </VerticalStackLayout>
+
         </Grid>
     </Grid>
 </ContentPage>

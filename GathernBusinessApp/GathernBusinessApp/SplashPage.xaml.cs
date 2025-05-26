@@ -1,5 +1,6 @@
 using Microsoft.Maui.Controls;
-using Microsoft.Maui.Layouts;
+using Microsoft.Maui.Storage;
+using System.Threading.Tasks;
 
 namespace GathernBusinessApp
 {
@@ -43,8 +44,10 @@ namespace GathernBusinessApp
                 await Task.Delay(50);
             }
 
-            System.Diagnostics.Debug.WriteLine("Splash animation completed, navigating to MainPage");
-            await Shell.Current.GoToAsync("//main");
+            System.Diagnostics.Debug.WriteLine("Splash animation completed, checking boarding status");
+            bool hasBoarded = Preferences.Get("HasCompletedBoarding", false);
+            string destination = hasBoarded ? "//DashboardPage" : "//main";
+            await Shell.Current.GoToAsync(destination);
         }
     }
 }

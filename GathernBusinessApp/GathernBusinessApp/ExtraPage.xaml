@@ -5,7 +5,7 @@
              BackgroundColor="White"
              WidthRequest="500"
              FlowDirection="RightToLeft"
-             Title="المزيد">
+             >
 
     <Grid RowDefinitions="Auto, *, Auto" Padding="0">
 

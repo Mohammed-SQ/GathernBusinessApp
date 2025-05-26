@@ -1,7 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using Microsoft.Data.SqlClient;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.Maui.Controls;
+using Microsoft.Maui.Storage;
 
 namespace GathernBusinessApp
 {
@@ -11,6 +15,7 @@ namespace GathernBusinessApp
         public string Name { get; set; } = default!;
     }
 
+    [QueryProperty("UserID", "userID")]
     public partial class AddPropertyPage : ContentPage
     {
         const int TotalSteps = 9;
@@ -26,6 +31,28 @@ namespace GathernBusinessApp
         int _masterUnits = 1;
         const int MaxMaster = 10;
         const int MaxBedrooms = 10;
+        private string _city = "";
+        private string _direction = "";
+        private int _area = 0;
+        private string _description = "";
+
+        private int _userID;
+        public int UserID
+        {
+            get => _userID;
+            set
+            {
+                int prefUserId = Preferences.Get("UserID", 0);
+                _userID = (value > 0 && value != 1) ? value : prefUserId; // Prioritize valid query param, fallback to Preferences
+                if (_userID <= 0)
+                {
+                    Shell.Current.GoToAsync("//SignInPage");
+                    DisplayAlert("خطأ", "لم يتم العثور على معرف المستخدم. يرجى تسجيل الدخول مرة أخرى.", "موافق");
+                }
+            }
+        }
+
+        private readonly string _connectionString = "Data Source=SQL6032.site4now.net,1433;Initial Catalog=db_ab93cb_gathernapp;User Id=db_ab93cb_gathernapp_admin;Password=m1234567;";
 
         public AddPropertyPage()
         {
@@ -34,6 +61,17 @@ namespace GathernBusinessApp
             UpdateUI();
             InitializeAmenities();
             CategoryGrid.SelectionChanged += CategoryGrid_SelectionChanged;
+
+            // Ensure UserID is set even if not passed via navigation
+            if (_userID <= 0)
+            {
+                _userID = Preferences.Get("UserID", 0);
+                if (_userID <= 0)
+                {
+                    Shell.Current.GoToAsync("//SignInPage");
+                    DisplayAlert("خطأ", "لم يتم العثور على معرف المستخدم. يرجى تسجيل الدخول مرة أخرى.", "موافق");
+                }
+            }
         }
 
         void LoadStep1Data()
@@ -90,47 +128,49 @@ namespace GathernBusinessApp
             }
         }
 
-        private void OnNextClicked(object sender, EventArgs e)
+        private async void OnNextClicked(object sender, EventArgs e)
         {
             if (_step == 1)
             {
                 _propertyName = PropertyNameEntry.Text;
                 if (string.IsNullOrWhiteSpace(_propertyName))
                 {
-                    DisplayAlert("خطأ", "يرجى إدخال اسم العقار", "موافق");
+                    await DisplayAlert("خطأ", "يرجى إدخال اسم العقار", "موافق");
                     return;
                 }
                 if (_selectedCategory == null)
                 {
-                    DisplayAlert("خطأ", "يرجى اختيار تصنيف العقار", "موافق");
+                    await DisplayAlert("خطأ", "يرجى اختيار تصنيف العقار", "موافق");
                     return;
                 }
             }
 
             if (_step == 2)
             {
-                if (string.IsNullOrEmpty(CityPicker.SelectedItem?.ToString()))
+                _city = CityPicker.SelectedItem?.ToString() ?? "";
+                _direction = DirectionPicker.SelectedItem?.ToString() ?? "";
+                if (string.IsNullOrEmpty(_city))
                 {
-                    DisplayAlert("خطأ", "يرجى اختيار المدينة", "موافق");
+                    await DisplayAlert("خطأ", "يرجى اختيار المدينة", "موافق");
                     return;
                 }
-                if (string.IsNullOrEmpty(DirectionPicker.SelectedItem?.ToString()))
+                if (string.IsNullOrEmpty(_direction))
                 {
-                    DisplayAlert("خطأ", "يرجى اختيار الاتجاه", "موافق");
+                    await DisplayAlert("خطأ", "يرجى اختيار الاتجاه", "موافق");
                     return;
                 }
             }
 
             if (_step == 3)
             {
-                if (string.IsNullOrWhiteSpace(PropertyAreaEntry.Text) || !int.TryParse(PropertyAreaEntry.Text, out int area) || area < 200)
+                if (!int.TryParse(PropertyAreaEntry.Text, out _area) || _area < 200)
                 {
-                    DisplayAlert("خطأ", "مساحة العقار يجب أن تكون 200 متر مربع على الأقل", "موافق");
+                    await DisplayAlert("خطأ", "مساحة العقار يجب أن تكون 200 متر مربع على الأقل", "موافق");
                     return;
                 }
                 if (_selectedAmenities.Count == 0)
                 {
-                    DisplayAlert("خطأ", "يرجى اختيار على الأقل مرفق واحد", "موافق");
+                    await DisplayAlert("خطأ", "يرجى اختيار على الأقل مرفق واحد", "موافق");
                     return;
                 }
             }
@@ -139,17 +179,17 @@ namespace GathernBusinessApp
             {
                 if (_bedrooms < 1)
                 {
-                    DisplayAlert("خطأ", "يجب أن يكون عدد غرف النوم 1 على الأقل", "موافق");
+                    await DisplayAlert("خطأ", "يجب أن يكون عدد غرف النوم 1 على الأقل", "موافق");
                     return;
                 }
                 if (_singleUnits < 1)
                 {
-                    DisplayAlert("خطأ", "يجب أن يكون عدد الأسرة المفردة 1 على الأقل", "موافق");
+                    await DisplayAlert("خطأ", "يجب أن يكون عدد الأسرة المفردة 1 على الأقل", "موافق");
                     return;
                 }
                 if (_masterUnits < 1)
                 {
-                    DisplayAlert("خطأ", "يجب أن يكون عدد الأسرة الرئيسية 1 على الأقل", "موافق");
+                    await DisplayAlert("خطأ", "يجب أن يكون عدد الأسرة الرئيسية 1 على الأقل", "موافق");
                     return;
                 }
             }
@@ -158,13 +198,23 @@ namespace GathernBusinessApp
             {
                 if (_bathroomCount < 1)
                 {
-                    DisplayAlert("خطأ", "يجب أن يكون عدد دورات المياه واحد على الأقل", "موافق");
+                    await DisplayAlert("خطأ", "يجب أن يكون عدد دورات المياه واحد على الأقل", "موافق");
                     return;
                 }
                 var bathroomAmenities = new[] { "بانيو / حوض استحمام", "جاكوزي", "دش", "شامبو", "صابون", "منايل", "رداء حمام", "ساونا", "سلبير" };
                 if (!_selectedAmenities.Intersect(bathroomAmenities).Any())
                 {
-                    DisplayAlert("خطأ", "يرجى اختيار على الأقل مرفق واحد لدورات المياه", "موافق");
+                    await DisplayAlert("خطأ", "يرجى اختيار على الأقل مرفق واحد لدورات المياة", "موافق");
+                    return;
+                }
+            }
+
+            if (_step == 8)
+            {
+                _description = PropertyDescription.Text;
+                if (string.IsNullOrWhiteSpace(_description))
+                {
+                    await DisplayAlert("خطأ", "يرجى إدخال وصف للعقار", "موافق");
                     return;
                 }
             }
@@ -176,7 +226,46 @@ namespace GathernBusinessApp
             }
             else
             {
-                Shell.Current.GoToAsync("//DashboardPage");
+                await SavePropertyToDatabase();
+                await Shell.Current.GoToAsync("//DashboardPage");
+            }
+        }
+
+        private async Task SavePropertyToDatabase()
+        {
+            using var connection = new SqlConnection(_connectionString);
+            try
+            {
+                await connection.OpenAsync();
+                var amenities = string.Join(",", _selectedAmenities);
+                var features = string.Join(",", new[] { "إطلالة على الحديقة", "إطلالة على الجبل", "اصنصير - مصاعد", "انترنت", "دخول ذاتي", "شاطئ خاص", "اطلاله على البحر", "مدخل سيارة", "شلال على الجبل", "مكتب امن" }
+                    .Where(f => _selectedAmenities.Contains(f)));
+
+                var query = @"INSERT INTO Properties (UserID, PropertyName, Category, City, Direction, Area, Bedrooms, SingleUnits, MasterUnits, Bathrooms, Amenities, Features, Description, Visibility) 
+                              VALUES (@UserID, @PropertyName, @Category, @City, @Direction, @Area, @Bedrooms, @SingleUnits, @MasterUnits, @Bathrooms, @Amenities, @Features, @Description, @Visibility)";
+                using var command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@UserID", _userID);
+                command.Parameters.AddWithValue("@PropertyName", _propertyName ?? "Unknown");
+                command.Parameters.AddWithValue("@Category", _selectedCategory?.Name ?? "Unknown");
+                command.Parameters.AddWithValue("@City", _city);
+                command.Parameters.AddWithValue("@Direction", _direction);
+                command.Parameters.AddWithValue("@Area", _area);
+                command.Parameters.AddWithValue("@Bedrooms", _bedrooms);
+                command.Parameters.AddWithValue("@SingleUnits", _singleUnits);
+                command.Parameters.AddWithValue("@MasterUnits", _masterUnits);
+                command.Parameters.AddWithValue("@Bathrooms", _bathroomCount);
+                command.Parameters.AddWithValue("@Amenities", amenities);
+                command.Parameters.AddWithValue("@Features", features);
+                command.Parameters.AddWithValue("@Description", _description);
+                command.Parameters.AddWithValue("@Visibility", "غير معروض");
+
+                await command.ExecuteNonQueryAsync();
+                Preferences.Set("HasCompletedBoarding", true); // Set HasCompletedBoarding to true after successful save
+                await DisplayAlert("نجاح", "تم حفظ العقار بنجاح", "موافق");
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("خطأ", $"فشل في حفظ العقار: {ex.Message}", "موافق");
             }
         }
 

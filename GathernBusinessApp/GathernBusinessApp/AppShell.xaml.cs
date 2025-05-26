@@ -34,7 +34,7 @@ namespace GathernBusinessApp
             else
             {
                 // User signed in *and* completed boarding → straight into app
-                await GoToAsync("//main");
+                await GoToAsync("//SplashPage");
             }
         }
     }

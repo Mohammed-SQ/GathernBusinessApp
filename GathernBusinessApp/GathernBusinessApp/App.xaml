@@ -6,17 +6,16 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary>
-                    <Style TargetType="Entry">
-                        <Setter Property="TextColor" Value="Black" />
-                    </Style>
-                    <Style TargetType="Label">
-                        <Setter Property="TextColor" Value="Black" />
-                    </Style>
-                </ResourceDictionary>
                 <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            <Style TargetType="Entry">
+                <Setter Property="TextColor" Value="Black" />
+            </Style>
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="Black" />
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
+

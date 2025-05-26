@@ -58,34 +58,34 @@ namespace GathernBusinessApp
             }
 
             int userId;
+            bool isNewUser = false;
+
             try
             {
                 await using var conn = new SqlConnection(ConnectionString);
                 await conn.OpenAsync();
 
-                const string sql = @"
-DECLARE @UserID INT;
-SELECT @UserID = UserID
-  FROM dbo.Users
- WHERE Phone = @phone;
+                // 1) see if this phone already exists
+                const string findSql = "SELECT UserID FROM dbo.Users WHERE Phone = @phone";
+                await using var findCmd = new SqlCommand(findSql, conn);
+                findCmd.Parameters.AddWithValue("@phone", phone);
+                var existing = await findCmd.ExecuteScalarAsync();
 
-IF @UserID IS NULL
-BEGIN
-    INSERT INTO dbo.Users (Phone)
-    VALUES (@phone);
-    SET @UserID = SCOPE_IDENTITY();
-END;
-
-SELECT @UserID;";
-
-                await using var cmd = new SqlCommand(sql, conn);
-                cmd.Parameters.AddWithValue("@phone", phone);
-
-                var obj = await cmd.ExecuteScalarAsync();
-                if (obj == null || obj == DBNull.Value)
-                    throw new InvalidOperationException("UserID came back null from the database.");
-
-                userId = (int)obj;
+                if (existing == null || existing == DBNull.Value)
+                {
+                    // 2) not found ⇒ register
+                    isNewUser = true;
+                    const string insertSql = "INSERT INTO dbo.Users (Phone) VALUES (@phone); SELECT SCOPE_IDENTITY();";
+                    await using var insertCmd = new SqlCommand(insertSql, conn);
+                    insertCmd.Parameters.AddWithValue("@phone", phone);
+                    var newId = await insertCmd.ExecuteScalarAsync();
+                    userId = Convert.ToInt32(newId);
+                }
+                else
+                {
+                    // 3) found ⇒ just log them in
+                    userId = Convert.ToInt32(existing);
+                }
             }
             catch (Exception ex)
             {
@@ -93,13 +93,22 @@ SELECT @UserID;";
                 return;
             }
 
-            // persist
+            // 4) persist
             Preferences.Set("IsLoggedIn", true);
             Preferences.Set("UserPhone", phone);
             Preferences.Set("UserID", userId);
 
-            // navigate
-            await Shell.Current.GoToAsync("//main");
+            // 5) navigate
+            if (isNewUser)
+            {
+                // brand-new user ⇒ send to onboarding or main
+                await Shell.Current.GoToAsync("//main");
+            }
+            else
+            {
+                // existing user ⇒ go straight to dashboard
+                await Shell.Current.GoToAsync("//DashboardPage");
+            }
         }
     }
 }
