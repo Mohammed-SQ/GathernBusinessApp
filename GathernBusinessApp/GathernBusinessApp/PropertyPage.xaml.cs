@@ -35,10 +35,20 @@ namespace GathernBusinessApp
 
         private async void LoadProperties()
         {
+            // Check if user is logged in
             var userId = Preferences.Get("UserID", 0);
+            await DisplayAlert("Debug", $"UserID: {userId}", "OK");
             if (userId <= 0)
             {
                 await Shell.Current.GoToAsync("//SignInPage");
+                return;
+            }
+
+            // Check boarding status
+            bool hasBoarded = Preferences.Get("HasCompletedBoarding", false);
+            if (!hasBoarded)
+            {
+                await Shell.Current.GoToAsync("//main");
                 return;
             }
 
@@ -62,8 +72,10 @@ WHERE UserID = @uid";
                 cmd.Parameters.AddWithValue("@uid", userId);
 
                 using var reader = await cmd.ExecuteReaderAsync();
+                int count = 0;
                 while (await reader.ReadAsync())
                 {
+                    count++;
                     // Build a Dictionary for each row
                     var dict = new Dictionary<string, object>
                     {
@@ -92,6 +104,7 @@ WHERE UserID = @uid";
 
                     PropertyList.Add(dict);
                 }
+                await DisplayAlert("Debug", $"Loaded {count} properties", "OK");
             }
             catch (Exception ex)
             {
@@ -170,7 +183,7 @@ UPDATE Properties
             => await Shell.Current.GoToAsync("//ExtraPage");
 
         // INotifyPropertyChanged implementation
-        public new event PropertyChangedEventHandler PropertyChanged;
+        public new event PropertyChangedEventHandler? PropertyChanged;
         protected new void OnPropertyChanged(string propName)
             => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
     }
